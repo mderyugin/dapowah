@@ -34,8 +34,10 @@
   .hero h1 .out{color:transparent;-webkit-text-stroke:3px var(--pink)}
   .hero h1 .inkline{color:var(--ink);text-shadow:0 6px 0 rgba(0,0,0,.22)}
   .glasses{position:absolute;z-index:1;right:2vw;top:8%;transform:rotate(-6deg);
-           width:min(56vw,540px);opacity:.9;pointer-events:none;filter:drop-shadow(0 10px 0 rgba(0,0,0,.28))}
-  @media(max-width:820px){.glasses{top:12%;right:-4vw;width:78vw;opacity:.7}}
+           width:min(52vw,540px);opacity:.9;pointer-events:none;filter:drop-shadow(0 10px 0 rgba(0,0,0,.28))}
+  @media(max-width:1100px){.hero-side,.hero-num{display:none}}
+  @media(max-width:1024px){.glasses{width:42vw;top:6%;right:1vw}}
+  @media(max-width:860px){.glasses{display:none}}
   .hero-spiral{position:absolute;z-index:1;right:-160px;bottom:-180px;width:480px;height:480px;opacity:.22;
                pointer-events:none;animation:spin 22s linear infinite}
   .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;position:relative;z-index:3}
@@ -43,10 +45,10 @@
   .hero-lead .hand{font-family:'Underdog',cursive;font-size:1rem;opacity:.9;display:block;margin-top:6px}
   .cta{display:inline-block;padding:16px 30px;background:var(--dark);color:var(--ink);font-family:'Russo One';
        text-transform:uppercase;text-decoration:none;font-size:.95rem;letter-spacing:.04em;
-       transition:transform .12s cubic-bezier(.2,.9,.3,1),background .12s,color .12s}
-  .cta:hover{transform:translate(2px,-2px);background:var(--pink);color:#fff}
+       transition:background .14s cubic-bezier(.2,.9,.3,1),color .14s,border-color .14s}
+  .cta:hover{background:var(--pink);color:#fff}
   .cta.ghost{background:transparent;border:2px solid var(--ink);color:var(--ink)}
-  .hero .cta.ghost:hover{background:var(--ink);color:var(--blue)}
+  .hero .cta.ghost:hover{background:var(--ink);color:var(--blue);border-color:var(--ink)}
   @keyframes spin{to{transform:rotate(360deg)}}
 
   /* ===== SECTION LIGHT (кто я — таблица) ===== */
