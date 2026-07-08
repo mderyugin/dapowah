@@ -126,7 +126,7 @@
   .offer ul{list-style:none;display:grid;gap:14px;font-weight:600;align-content:start}
   .offer li{padding-left:26px;position:relative}
   .offer li::before{content:"▸";position:absolute;left:0;font-family:'Russo One';color:var(--dark)}
-  .price-box{border:3px solid var(--dark);padding:28px;display:flex;flex-direction:column;gap:12px;align-self:start}
+  .price-box{border:3px solid var(--dark);padding:28px;display:flex;flex-direction:column;gap:12px;align-self:center}
   .price-box .cta{width:100%}
   .price{font-family:'Alumni Sans';font-weight:900;font-size:clamp(3.6rem,5.2vw,7.4rem);line-height:.88}
   .price .rub{font-size:.5em;vertical-align:.12em}
@@ -217,15 +217,17 @@
   <div class="offer-spiral" id="spiral2"></div>
   <div class="wrap">
   <div class="micro">side B · продукт</div>
-  <h2 class="head display">Первые <span class="out">5</span></h2>
-  <p class="sub">5 выложенных рилсов за месяц и система, по которой снимаешь сам</p>
   <div class="offer-grid">
+    <div class="offer-left">
+    <h2 class="head display">Первые <span class="out">5</span></h2>
+    <p class="sub">5 выложенных рилсов за месяц и система, по которой снимаешь сам</p>
     <ul>
       <li>Разбор профиля как тестировщик: где течет в шапке, хуках, первых кадрах, с точными правками</li>
       <li>Находим твою тему и твоего зрителя, чтобы это был ты, а не косплей чужого блога</li>
       <li>Готовый план 5 рилсов: тема, хук и структура каждого. Тебе остается нажать «запись»</li>
       <li>6 личных встреч: один разбор и по встрече на каждый ролик, пока не начнешь снимать сам</li>
     </ul>
+    </div>
     <div class="price-box">
       <div class="price">9 999 <span class="rub">₽</span><small>6 личных встреч · лично · без марафонов</small></div>
       <div class="permeet">выходит 1 666 ₽ за встречу</div>
