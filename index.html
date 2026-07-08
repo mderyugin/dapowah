@@ -127,6 +127,11 @@
   .offer li{padding-left:26px;position:relative}
   .offer li::before{content:"▸";position:absolute;left:0;font-family:'Russo One';color:var(--dark)}
   .price-box{border:3px solid var(--dark);padding:28px;display:flex;flex-direction:column;gap:12px;align-self:center}
+  .bonus{margin-top:22px}
+  .bonus-title{font-family:'Russo One';text-transform:uppercase;font-size:.85rem;letter-spacing:.06em;margin-bottom:10px}
+  .offer .bonus ul{gap:10px}
+  .offer .bonus li::before{content:"+";font-family:'Russo One'}
+  .slots{font-size:.92rem;font-weight:600}
   .price-box .cta{width:100%}
   .price{font-family:'Alumni Sans';font-weight:900;font-size:clamp(3.6rem,5.2vw,7.4rem);line-height:.88}
   .price .rub{font-size:.5em;vertical-align:.12em}
@@ -227,11 +232,20 @@
       <li>Готовый план 5 рилсов: тема, хук и структура каждого. Тебе остается нажать «запись»</li>
       <li>6 личных встреч: один разбор и по встрече на каждый ролик, пока не начнешь снимать сам</li>
     </ul>
+    <div class="bonus">
+      <div class="bonus-title">Бонусом сверху</div>
+      <ul>
+      <li>2 недели поддержки в личке после шестой встречи, чтобы ты не пропал, когда программа кончится</li>
+      <li>Разбор цифр твоих первых роликов: смотрим удержание, чиним следующие</li>
+      <li>Банк 15 тем под твою нишу, чтобы было что снимать дальше</li>
+      </ul>
+    </div>
     </div>
     <div class="price-box">
       <div class="price">9 999 <span class="rub">₽</span><small>6 личных встреч · лично · без марафонов</small></div>
       <div class="permeet">выходит 1 666 ₽ за встречу</div>
       <div class="guarantee">Гарантия: прошел все встречи и не выложил ни одного ролика? Верну деньги.</div>
+      <div class="slots">Беру мало людей за раз: каждую встречу веду лично, вечерами. Есть ли место в этом месяце? Спроси в личке.</div>
       <a class="cta" href="https://t.me/dapowah">Пиши «РАЗБОР»</a>
     </div>
   </div>
