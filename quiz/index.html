@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Кто из пятерых держит тебя</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#12100C;--fire:#E45329;--amber:#F0A63C;--ink:#EFE6D0;--grey:#9BA093;--panel:#26201A}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--ink);font-family:'Golos Text',sans-serif;min-height:100vh;overflow-x:hidden}
+  .screen{display:none;min-height:100vh;padding:28px 22px 40px;flex-direction:column}
+  .screen.on{display:flex}
+  .kicker{font-family:'Underdog',cursive;color:var(--amber);font-size:19px;margin-bottom:14px}
+  h1{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,11vw,4rem);line-height:.95;color:var(--fire)}
+  h1 .ink{color:var(--ink)}
+  h2{font-family:'Russo One';text-transform:uppercase;font-size:clamp(1.25rem,5.6vw,1.7rem);line-height:1.2;margin-bottom:20px}
+  p{font-size:16px;line-height:1.5}
+  .grey{color:var(--grey)}
+  .btn{display:block;width:100%;border:0;cursor:pointer;background:var(--fire);color:#16100A;
+       font-family:'Russo One';text-transform:uppercase;font-size:16px;padding:16px;margin-top:auto;letter-spacing:.03em}
+  .btn:active{transform:translateY(2px)}
+  .opt{display:block;width:100%;text-align:left;background:var(--panel);border:0;border-left:4px solid var(--fire);
+       color:var(--ink);font-family:'Golos Text';font-size:15.5px;line-height:1.4;padding:14px 14px;margin-bottom:10px;cursor:pointer}
+  .opt:active{background:#332a20}
+  .bar{height:4px;background:var(--panel);margin-bottom:18px}
+  .bar i{display:block;height:100%;background:var(--fire);transition:width .2s}
+  .qnum{font-family:'Russo One';color:var(--grey);font-size:13px;margin-bottom:8px}
+  /* stories */
+  .dots{display:flex;gap:4px;margin-bottom:18px}
+  .dots i{flex:1;height:3px;background:var(--panel)}
+  .dots i.on{background:var(--fire)}
+  .card{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .tagname{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:clamp(3rem,16vw,5.2rem);line-height:.9;color:var(--fire)}
+  .frame{border:3px solid var(--fire);padding:14px 16px;margin:18px 0;font-family:'Underdog',cursive;font-size:19px;color:var(--amber)}
+  .pf{color:var(--grey);font-size:14px;margin-top:14px}
+  .pf b{color:var(--amber);font-family:'Russo One';font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+  .priem{border-left:4px solid var(--fire);background:var(--panel);padding:14px;margin-top:16px;font-size:15px;line-height:1.5}
+  .priem b{display:block;font-family:'Russo One';color:var(--fire);font-size:13px;text-transform:uppercase;margin-bottom:6px}
+  .hint{position:fixed;bottom:10px;left:0;right:0;text-align:center;color:var(--grey);font-size:12px;opacity:.7}
+  .spiral{position:fixed;right:-120px;top:-120px;width:300px;height:300px;opacity:.1;pointer-events:none;z-index:0}
+  .cta-stack{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+  .cta2{display:block;text-align:center;text-decoration:none;border:2px solid var(--ink);color:var(--ink);
+        font-family:'Russo One';text-transform:uppercase;font-size:14px;padding:13px}
+</style>
+</head>
+<body>
+<div class="spiral" id="sp"></div>
+
+<!-- START -->
+<div class="screen on" id="s-start">
+  <div class="kicker">тест на 60 секунд</div>
+  <h1>Кто из пятерых<br><span class="ink">держит тебя</span></h1>
+  <p style="margin-top:16px">5 паттернов не дают людям снимать. Обычно рулит один. 6 вопросов, отвечай как чувствуешь, и я назову твоего.</p>
+  <p class="grey" style="margin-top:10px">Без почты, без регистрации, без «оставьте телефон».</p>
+  <button class="btn" onclick="start()">Погнали</button>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="s-quiz">
+  <div class="bar"><i id="bar" style="width:0%"></i></div>
+  <div class="qnum" id="qnum"></div>
+  <h2 id="qtext"></h2>
+  <div id="opts"></div>
+</div>
+
+<!-- RESULT (stories) -->
+<div class="screen" id="s-res">
+  <div class="dots" id="dots"></div>
+  <div class="card" id="card"></div>
+  <div class="hint">тап справа листает дальше, слева назад</div>
+</div>
+
+<script>
+const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
+
+// спираль
+function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
+document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#F0A63C" stroke-width="10" stroke-linecap="round"/></svg>';
+
+const Q = [
+ {q:"Ролик снят. Что происходит дальше чаще всего?", o:[
+  ["Пересматриваю десятый раз и нахожу косяки","P"],
+  ["Выложу завтра, сегодня уже поздно","T"],
+  ["Думаю, кто из знакомых это увидит","O"],
+  ["Прикидываю, есть ли вообще смысл","V"],
+  ["Выкладываю. А через час удаляю","U"]]},
+ {q:"Почему до сих пор не снимаешь регулярно? Честно.", o:[
+  ["Качество не то, надо докрутить","P"],
+  ["Все время что-то важнее","T"],
+  ["Страшно, что подумают свои","O"],
+  ["Не верю, что это к чему-то приведет","V"],
+  ["Снимаю же. Просто потом стираю","U"]]},
+ {q:"Открыл камеру. Первая мысль?", o:[
+  ["Свет не тот, фон не тот, я не тот","P"],
+  ["Может вечером, сейчас не в форме","T"],
+  ["А вдруг это увидят коллеги","O"],
+  ["Кому это вообще надо","V"],
+  ["Ладно, сниму. Все равно потом удалю","U"]]},
+ {q:"Твой ролик набрал 200 просмотров. Реакция?", o:[
+  ["Стыдно, он же сырой был","P"],
+  ["Надо было в другое время постить","T"],
+  ["Главное, никто из знакомых не написал","O"],
+  ["200? И ради этого столько нервов?","V"],
+  ["Хорошо, что удалил предыдущие","U"]]},
+ {q:"Что говорит голос прямо перед «Поделиться»?", o:[
+  ["Еще дубль, этот кривой","P"],
+  ["Утром выложишь, утро вечера мудренее","T"],
+  ["Тебя заскринят и будут ржать","O"],
+  ["А вдруг зря все это","V"],
+  ["Выкладывай-выкладывай. Я подожду","U"]]},
+ {q:"Сколько роликов ты снял, но НЕ выложил?", o:[
+  ["Лежат, ждут полировки","P"],
+  ["Они в папке «потом»","T"],
+  ["Выкладывал без лица или в закрытый акк","O"],
+  ["Перестал снимать, чтобы не копились","V"],
+  ["Ноль. Я их удаляю сразу","U"]]}
+];
+
+const R = {
+ P:{name:"Перфекционист", rep:"«Может, еще что-то докрутить, потом выложим»",
+    mech:"Он продает тебе полировку как заботу о качестве. На деле это страх в костюме стандартов: пока ролик «не готов», тебя нельзя оценить. Мои биты, которые я вылизывал месяцами, не услышал никто. Сырые купили.",
+    pf:"Любитель полирует, профи выпускает. Профи это не качество ролика, а регулярность выхода.",
+    priem:"Правило сырого дубля: шестой дубль уходит в мир, какой есть. Не десятый, не «еще разок». Реакция живых людей чинит ролик быстрее, чем неделя полировки."},
+ T:{name:"Потом", rep:"«А, похуй, потом сделаю»",
+    mech:"Он никогда не говорит «никогда», он говорит «завтра». Это его маска, и она работает годами. Понедельник не про готовность: он про то, что сегодня страшно, а в будущем как будто нет. Спойлер: там так же.",
+    pf:"Сопротивление никогда не говорит «никогда». Оно говорит «завтра». Любимая маска.",
+    priem:"«Потом» не существует. Есть «сегодня и криво». Снимай в первые 10 минут после идеи, пока он не проснулся: идея старше суток уже тухнет."},
+ O:{name:"Оценщик", rep:"«А вдруг кто-то что-то скажет»",
+    mech:"Он показывает тебе лица знакомых и заставляет снимать для них, а не для своего зрителя. Хотя чужие люди, которым ты реально нужен, тебя пока даже не видели.",
+    pf:"Работай на территории, а не в иерархии: ради дела, а не ради оценки толпы. Оценщик живет только там, где ты работаешь ради оценок.",
+    priem:"Посчитай честно: гадости не пишут под роликом, который никто не увидел. Злой коммент значит одно: тебя вынесло к чужим, это охват. Запиши дату первого хейта, это день, когда тебя начали смотреть."},
+ V:{name:"Вдруг зря", rep:"«А вдруг зря, вдруг не получится»",
+    mech:"Он требует гарантий до старта, хотя гарантий в этой игре не бывает вообще ни у кого. И чем важнее для тебя дело, тем громче он орет. Это, кстати, подсказка.",
+    pf:"Чем страшнее дело, тем важнее оно для твоего роста. Страх это компас, а не стоп-сигнал.",
+    priem:"Смени рамку с «зашло или зря» на «нашел, где течет». Ролик, который не зашел, это не провал, а информация. Решает серия, а серия начинается с кривого первого."},
+ U:{name:"Удаляльщик", rep:"«Ну что, выложил? Теперь удаляй»",
+    mech:"Самый подлый: он разрешает тебе снять и даже выложить. А приходит через час, когда просмотров еще ноль и «стало стыдно». Я так удалил полгода роликов. Мой личный враг №1.",
+    pf:"Сопротивление бьет сильнее всего у самого финиша. Палец над «удалить» это и есть финиш.",
+    priem:"Правило 24 часов: выложил и сутки не трогаешь. Что бы ни казалось. Через сутки его голос тише, а у ролика появились цифры. Продержись сутки, и бой выигран."}
+};
+
+let qi = 0; const score = {P:0,T:0,O:0,V:0,U:0};
+const el = id => document.getElementById(id);
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));el(id).classList.add('on');window.scrollTo(0,0)}
+function start(){qi=0;renderQ();show('s-quiz')}
+function renderQ(){
+  const q=Q[qi];
+  el('bar').style.width=Math.round(qi/Q.length*100)+'%';
+  el('qnum').textContent=(qi+1)+' / '+Q.length;
+  el('qtext').textContent=q.q;
+  el('opts').innerHTML='';
+  // варианты перемешиваем, чтобы паттерны не стояли всегда в одном порядке
+  const opts=[...q.o].sort(()=>Math.random()-.5);
+  for(const [txt,tag] of opts){
+    const b=document.createElement('button');b.className='opt';b.textContent=txt;
+    b.onclick=()=>{score[tag]++;qi++;qi<Q.length?renderQ():result();tg?.HapticFeedback?.impactOccurred('light')};
+    el('opts').appendChild(b);
+  }
+}
+
+let slides=[],si=0;
+function result(){
+  const win=Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];
+  const r=R[win];
+  const uname=tg?.initDataUnsafe?.user?.first_name||"";
+  slides=[
+   `<div class="kicker">твой разбор${uname?", "+uname:""}</div><h2 style="color:var(--grey)">Твой главный:</h2><div class="tagname">${r.name}</div><p class="grey" style="margin-top:14px">исходя из твоих ответов. тапни, покажу, как он работает.</p>`,
+   `<div class="kicker">как он звучит</div><div class="frame">${r.rep}</div><p>${r.mech}</p>`,
+   `<div class="kicker">почему это не «просто характер»</div><p>${r.mech.split(".")[0]}.</p><p class="pf" style="margin-top:16px"><b>По Прессфилду («Война за креатив»)</b><br>${r.pf}</p>`,
+   `<div class="kicker">что делать</div><div class="priem"><b>Прием против него</b>${r.priem}</div><p class="grey" style="margin-top:14px">Это действие руками, а не «поверь в себя». Работает с первого раза, если сделать, а не прочитать.</p>`,
+   `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они ходят вместе</h2><p>Все пятеро, поименно и с приемами, собраны в методичке. А какие рулят именно у тебя и в каком порядке их ломать, Максим разбирает лично.</p>
+    <div class="cta-stack">
+      <a class="btn" style="text-decoration:none;text-align:center" href="https://t.me/rowrowbratha/70">📕 Методичка: все пятеро</a>
+      <a class="cta2" href="https://t.me/rowrowbratha">🌀 Канал Максима</a>
+      <button class="cta2" style="background:none;cursor:pointer" onclick="askRazbor()">✍️ Написать РАЗБОР Максиму</button>
+    </div>`
+  ];
+  si=0;renderSlide();show('s-res');
+  el('s-res').addEventListener('click',tapNav);
+}
+function renderSlide(){
+  el('dots').innerHTML=slides.map((_,i)=>`<i class="${i<=si?'on':''}"></i>`).join('');
+  el('card').innerHTML=slides[si];
+}
+function tapNav(e){
+  if(e.target.closest('a,button'))return;
+  const x=e.clientX/window.innerWidth;
+  if(x>0.35&&si<slides.length-1){si++;renderSlide()}
+  else if(x<=0.35&&si>0){si--;renderSlide()}
+}
+function askRazbor(){
+  if(tg){tg.close()}else{location.href="https://t.me/gurren_dan_poster_bot"}
+}
+</script>
+</body>
+</html>
