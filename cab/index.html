@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кабинет</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#12100C;--fire:#E45329;--amber:#F0A63C;--ink:#EFE6D0;--grey:#9BA093;--panel:#26201A}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--ink);font-family:'Golos Text',sans-serif;min-height:100vh;padding:26px 20px 48px}
+  .kicker{font-family:'Underdog',cursive;color:var(--amber);font-size:18px;margin-bottom:8px}
+  h1{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.95;color:var(--fire);margin-bottom:6px}
+  .sub{color:var(--grey);font-size:14px;margin-bottom:22px}
+  .card{display:block;width:100%;text-align:left;background:var(--panel);border:0;border-left:4px solid var(--fire);
+        color:var(--ink);padding:15px 14px;margin-bottom:10px;cursor:pointer;text-decoration:none}
+  .card b{display:block;font-family:'Russo One';font-size:15px;margin-bottom:3px}
+  .card span{color:var(--grey);font-size:13.5px}
+  .sect{font-family:'Russo One';text-transform:uppercase;font-size:13px;color:var(--amber);letter-spacing:.06em;margin:22px 0 10px}
+  .tag{display:inline-block;font-size:11.5px;color:var(--amber);border:1px solid #3a3226;padding:2px 8px;margin:0 6px 6px 0}
+  /* статья */
+  #art{display:none}
+  #art .back{color:var(--fire);font-family:'Russo One';font-size:14px;cursor:pointer;margin-bottom:16px;display:inline-block}
+  #art h2{font-family:'Russo One';text-transform:uppercase;font-size:1.35rem;line-height:1.25;margin-bottom:14px}
+  #art p{font-size:15.5px;line-height:1.6;margin-bottom:12px}
+  #art .frame{border:3px solid var(--fire);padding:12px 14px;margin:16px 0;font-family:'Underdog',cursive;font-size:18px;color:var(--amber)}
+  #art .do{border-left:4px solid var(--fire);background:var(--panel);padding:12px;margin:16px 0;font-size:15px;line-height:1.55}
+  #art .do b{display:block;font-family:'Russo One';color:var(--fire);font-size:12.5px;text-transform:uppercase;margin-bottom:5px}
+  .cta{display:block;text-align:center;background:var(--fire);color:#16100A;font-family:'Russo One';
+       text-transform:uppercase;font-size:14px;padding:14px;margin-top:20px;text-decoration:none;border:0;width:100%;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div id="hub">
+  <div class="kicker">пространство Гуррен-дана</div>
+  <h1>Кабинет</h1>
+  <p class="sub">Все бесплатное в одном месте. Без почты и «оставьте телефон».</p>
+
+  <div class="sect">Разберись в себе</div>
+  <a class="card" href="../quiz/"><b>⚡ Квиз: кто из пятерых держит тебя</b><span>60 секунд, в конце имя твоего главного врага</span></a>
+  <a class="card" href="https://t.me/rowrowbratha/70"><b>📕 Методичка: 5 паттернов поименно</b><span>реплики и приемы против каждого, PDF</span></a>
+
+  <div class="sect">Статьи</div>
+  <div id="list"></div>
+
+  <div class="sect">Дальше</div>
+  <a class="card" href="https://t.me/rowrowbratha"><b>🌀 Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
+  <button class="card" onclick="razbor()"><b>✍️ Разбор профиля от Максима</b><span>напиши боту слово РАЗБОР, ответит лично</span></button>
+</div>
+
+<div id="art">
+  <span class="back" onclick="hub()">← Кабинет</span>
+  <div id="artbody"></div>
+  <button class="cta" onclick="razbor()">Хочу разбор от Максима</button>
+</div>
+
+<script>
+const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
+
+const ARTS = [
+ {t:"Правило сырого дубля", tag:"перфекционизм", d:"почему шестой дубль обязан уйти в мир",
+  h:`<h2>Правило сырого дубля</h2>
+  <div class="frame">«Может, еще что-то докрутить, потом выложим»</div>
+  <p>Перфекционист продает тебе полировку как заботу о качестве. На деле это страх в костюме стандартов: пока ролик «не готов», тебя нельзя оценить.</p>
+  <p>Я занимался музыкой и вылизывал биты месяцами. Их не услышал никто. А сырые, сделанные за два дня, купили из Европы. Рынку было все равно на мою полировку. Ему было важно, что вещь существует.</p>
+  <div class="do"><b>Что делать</b>Шестой дубль уходит в мир, какой есть. Не десятый, не «еще разок». Поставь себе этот потолок заранее и держи. Реакция живых людей чинит ролик быстрее, чем неделя полировки в стол.</div>
+  <p>Профи отличается от любителя не качеством ролика, а регулярностью выхода. Это по Прессфилду, и это проверяется на любом канале, который ты смотришь.</p>`},
+ {t:"Правило 24 часов", tag:"удаление", d:"что делать в час, когда «стало стыдно»",
+  h:`<h2>Правило 24 часов</h2>
+  <div class="frame">«Ну что, выложил? Теперь удаляй»</div>
+  <p>Удаляльщик самый подлый из пятерых: он разрешает тебе снять и даже выложить. Приходит через час после публикации, когда просмотров еще ноль и кажется, что все зря.</p>
+  <p>Я так удалил полгода роликов. Ни один не успел даже пройти тест алгоритма: ролику нужно время, чтобы система поняла, кому его показывать. Удаляя через час, ты убиваешь его до старта.</p>
+  <div class="do"><b>Что делать</b>Выложил и сутки не трогаешь. Что бы ни казалось. Поставь таймер, уйди гулять, займи руки. Через сутки его голос тише, а у ролика появились первые цифры, с которыми уже можно работать.</div>
+  <p>Сопротивление бьет сильнее всего у самого финиша. Палец над кнопкой «удалить» это и есть финиш. Продержись сутки, и бой выигран.</p>`},
+ {t:"Хейт это охват", tag:"оценщик", d:"почему злой коммент - хороший знак",
+  h:`<h2>Хейт это охват</h2>
+  <div class="frame">«А вдруг кто-то что-то скажет»</div>
+  <p>Посчитай честно: гадости не пишут под роликом, который никто не увидел. Пока тебя смотрят только свои, в комментах тишина и пара огоньков.</p>
+  <p>Злой комментарий значит одно: алгоритм вынес ролик за пределы подписчиков, к чужим людям. Чужие тебе ничего не должны. Зато их много, и среди них твои будущие зрители.</p>
+  <div class="do"><b>Что делать</b>Запиши дату первого хейта. Это день, когда тебя начали смотреть чужие. Критику ролика оставляй в комментах, она кормит активность. За переход на личность блокируй без прощальной речи.</div>
+  <p>И не оправдывайся. Если твой ответ длиннее его комментария, ты уже проиграл. Один панч, и вышел.</p>`},
+ {t:"Лестница: ты уже снимаешь", tag:"старт", d:"если страшно даже включить камеру",
+  h:`<h2>Лестница: ты уже снимаешь</h2>
+  <p>Никто не начинает с «включил камеру и говорю». Начинают со ступеньки, на которой не страшно.</p>
+  <p>Боишься камеры? Пиши. Посты, заметки, телеграм. Голос появляется в тексте раньше, чем в кадре.</p>
+  <p>Пишешь, но не публикуешь? Записывай голосовые. Себе. Каждый день. Привыкаешь слышать себя.</p>
+  <p>Привык к голосу? Включи камеру на 10 секунд. Никому не показывай. Это репетиция без зрителей.</p>
+  <div class="do"><b>Что делать</b>Записал 10 секунд? Выложи их. Кривые, честные, свои. Все: ты уже снимаешь.</div>
+  <p>Я застрял на третьей ступеньке на полгода: снимал и удалял. Если ты сейчас там же, четвертая ступенька ближе, чем кажется. Она один клик.</p>`},
+ {t:"Первые 3 секунды", tag:"хуки", d:"5 проверок ролика до публикации",
+  h:`<h2>Первые 3 секунды</h2>
+  <p>Человеку нужно примерно 1.7 секунды, чтобы решить: смотреть или листать. Если удержание на третьей секунде ниже 40%, ролик мертв, что бы ни было дальше.</p>
+  <div class="do"><b>Чек-лист хука</b>1. Суть в первой секунде? Никаких «всем привет».<br>2. Плашка сделана утверждением до 4 слов? Вопрос = чтение = пролист.<br>3. Первый кадр живой? Лицо, энергия, глаза в объектив.<br>4. Одна мысль на ролик?<br>5. Хук про зрителя, а не «я расскажу»?</div>
+  <p>Все пять «да»? Выкладывай. Хоть одно «нет»? Чини вход, не тело ролика. Полная методичка с лестницей и пятеркой паттернов лежит в канале по тегу #rowrow_PDF.</p>`}
+];
+
+const list = document.getElementById('list');
+ARTS.forEach((a,i)=>{
+  const b=document.createElement('button');b.className='card';
+  b.innerHTML=`<b>${a.t}</b><span>${a.d}</span><div style="margin-top:6px"><span class="tag">${a.tag}</span></div>`;
+  b.onclick=()=>openArt(i);list.appendChild(b);
+});
+function openArt(i){
+  document.getElementById('artbody').innerHTML=ARTS[i].h;
+  document.getElementById('hub').style.display='none';
+  document.getElementById('art').style.display='block';
+  window.scrollTo(0,0);
+}
+function hub(){
+  document.getElementById('art').style.display='none';
+  document.getElementById('hub').style.display='block';
+}
+function razbor(){ if(tg){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
+</script>
+</body>
+</html>
