@@ -160,9 +160,10 @@ function renderQ(){
   }
 }
 
-let slides=[],si=0;
+let slides=[],si=0,winPat=null;
 function result(){
   const win=Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];
+  winPat=win;
   const r=R[win];
   const uname=tg?.initDataUnsafe?.user?.first_name||"";
   slides=[
@@ -191,7 +192,11 @@ function tapNav(e){
   else if(x<=0.35&&si>0){si--;renderSlide()}
 }
 function askRazbor(){
-  if(tg){tg.close()}else{location.href="https://t.me/dapowah_bot"}
+  // диагноз уезжает в бота: /start quiz_<паттерн>, Максим видит врага человека в заявке
+  const url="https://t.me/dapowah_bot"+(winPat?"?start=quiz_"+winPat:"");
+  if(tg?.openTelegramLink){tg.openTelegramLink(url);setTimeout(()=>tg.close(),400)}
+  else if(tg){tg.close()}
+  else{location.href=url}
 }
 </script>
 </body>
