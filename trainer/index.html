@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Тренажер</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#12100C;--fire:#E45329;--amber:#F0A63C;--ink:#EFE6D0;--grey:#9BA093;--panel:#26201A;--hit:cubic-bezier(.2,.9,.3,1)}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:'Golos Text',sans-serif;display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+  .spiral{position:fixed;right:-130px;top:-130px;width:320px;height:320px;opacity:.08;pointer-events:none;z-index:0;animation:spin 20s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  header{padding:18px 18px 12px;position:relative;z-index:1;flex:0 0 auto}
+  .kicker{font-family:'Underdog',cursive;color:var(--amber);font-size:16px}
+  h1{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:2.4rem;line-height:.9;color:var(--fire)}
+  .ammo{margin-top:6px;font-size:12.5px;color:var(--grey);display:flex;align-items:center;gap:7px}
+  .ammo b{letter-spacing:2px;font-size:14px;color:var(--amber)}
+
+  #chat{flex:1 1 auto;overflow-y:auto;padding:6px 16px 12px;position:relative;z-index:1;display:flex;flex-direction:column;gap:10px}
+  .msg{max-width:86%;padding:11px 13px;font-size:15px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word;
+       opacity:0;transform:translateY(16px);animation:hit .22s var(--hit) forwards}
+  @keyframes hit{to{opacity:1;transform:none}}
+  .bot{align-self:flex-start;background:var(--panel);border-left:4px solid var(--fire)}
+  .me{align-self:flex-end;background:#1B1712;border-right:4px solid var(--amber);color:var(--ink)}
+  .sys{align-self:center;color:var(--grey);font-size:13px;text-align:center;background:none;border:0}
+
+  .typing{align-self:flex-start;background:var(--panel);border-left:4px solid var(--fire);padding:13px 16px;display:flex;gap:5px;
+          opacity:0;transform:translateY(16px);animation:hit .18s var(--hit) forwards}
+  .typing i{width:7px;height:7px;background:var(--fire);animation:blink .7s steps(2,start) infinite}
+  .typing i:nth-child(2){animation-delay:.15s}
+  .typing i:nth-child(3){animation-delay:.3s}
+  @keyframes blink{50%{opacity:.15}}
+
+  #bar{flex:0 0 auto;display:flex;gap:8px;padding:10px 14px calc(12px + env(safe-area-inset-bottom));background:#0D0B08;position:relative;z-index:2}
+  #inp{flex:1;background:var(--panel);border:0;border-left:4px solid var(--fire);color:var(--ink);font-family:'Golos Text';
+       font-size:15px;padding:12px;resize:none;max-height:110px;outline:none}
+  #inp::placeholder{color:var(--grey)}
+  #send{flex:0 0 auto;background:var(--fire);color:#16100A;border:0;font-family:'Russo One';font-size:15px;
+        text-transform:uppercase;padding:0 18px;cursor:pointer;transition:transform .12s var(--hit)}
+  #send:active{transform:translateY(2px)}
+  #send:disabled{opacity:.4}
+
+  #done{flex:0 0 auto;display:none;padding:14px 16px calc(16px + env(safe-area-inset-bottom));background:#0D0B08;position:relative;z-index:2}
+  #done p{font-size:14.5px;line-height:1.5;color:var(--ink);margin-bottom:12px}
+  #done .row{display:flex;gap:8px}
+  #done a,#done button{flex:1;text-align:center;text-decoration:none;font-family:'Russo One';text-transform:uppercase;
+        font-size:13.5px;padding:13px;cursor:pointer;border:0}
+  .cta-fire{background:var(--fire);color:#16100A}
+  .cta-line{background:none;border:2px solid var(--ink);color:var(--ink)}
+
+  #gate{position:fixed;inset:0;background:var(--bg);z-index:10;display:none;flex-direction:column;justify-content:center;padding:28px;text-align:left}
+  #gate .kicker{margin-bottom:10px}
+  #gate h2{font-family:'Russo One';text-transform:uppercase;font-size:1.4rem;margin-bottom:12px}
+  #gate p{color:var(--grey);font-size:15px;line-height:1.5;margin-bottom:22px}
+  #gate a{display:block;text-align:center;background:var(--fire);color:#16100A;font-family:'Russo One';
+          text-transform:uppercase;font-size:15px;padding:15px;text-decoration:none}
+
+  @media (prefers-reduced-motion:reduce){
+    .msg,.typing{opacity:1;transform:none;animation:none}
+    .spiral{animation:none}
+    .typing i{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="spiral" id="sp"></div>
+
+<header>
+  <div class="kicker">спарринг-зал Гуррен-дана</div>
+  <h1>Тренажер</h1>
+  <div class="ammo">вопросы: <b id="ammo">⚡⚡⚡⚡⚡</b></div>
+</header>
+
+<div id="chat"></div>
+
+<div id="bar">
+  <textarea id="inp" rows="1" placeholder="Где буксуешь? Пиши как есть"></textarea>
+  <button id="send">Бей</button>
+</div>
+
+<div id="done">
+  <p>Пять бесплатных раундов отработаны. Дальше два пути: живой разбор от Максима или клуб, он скоро откроется.</p>
+  <div class="row">
+    <button class="cta-fire" onclick="toRazbor()">✍️ Разбор</button>
+    <a class="cta-line" href="https://t.me/rowrowbratha">🌀 Канал</a>
+  </div>
+</div>
+
+<div id="gate">
+  <div class="kicker">не так зашел</div>
+  <h2>Тренажер открывается из бота</h2>
+  <p>Это спарринг-зал внутри Telegram. Зайди в бота Максима и жми кнопку «Тренажер».</p>
+  <a href="https://t.me/dapowah_bot?start=trainer">Открыть бота</a>
+</div>
+
+<script>
+const API = "https://dapowah-bot.mdklurk.workers.dev";
+const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
+
+function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
+document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#F0A63C" stroke-width="10" stroke-linecap="round"/></svg>';
+
+const chat=document.getElementById('chat'), inp=document.getElementById('inp'), send=document.getElementById('send');
+let LIMIT=5, used=0, busy=false;
+
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function add(cls, text){
+  const d=document.createElement('div');d.className='msg '+cls;d.innerHTML=esc(text);
+  chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;
+}
+function ammoDraw(){
+  const left=Math.max(0,LIMIT-used);
+  document.getElementById('ammo').textContent=left?'⚡'.repeat(left):'пусто';
+  if(left===0){document.getElementById('bar').style.display='none';document.getElementById('done').style.display='block'}
+}
+function toRazbor(){ if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
+
+const WELCOME="Здорово. Я тренажер на методе Максима: пятеро паттернов, приемы руками, разбор цифр.\n\nРасскажи, где буксуешь: страшно снимать, ролик не заходит, не можешь выложить. Отвечаю конкретикой, без «поверь в себя».";
+
+async function init(){
+  if(!tg||!tg.initData){document.getElementById('gate').style.display='flex';return}
+  try{
+    const r=await fetch(API+'/trainer/history',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})});
+    const j=await r.json();
+    if(j.error){add('sys','Не пустило: открой тренажер заново из бота');return}
+    LIMIT=j.limit;used=j.used;
+    if(j.hist&&j.hist.length){for(const m of j.hist)add(m.role==='user'?'me':'bot',m.content)}
+    else add('bot',WELCOME);
+    if(!j.on)add('sys','Тренажер сейчас спит. Загляни позже или напиши боту слово РАЗБОР');
+    ammoDraw();
+  }catch(e){add('sys','Сеть моргнула. Закрой и открой заново')}
+}
+
+async function ask(){
+  const text=inp.value.trim();
+  if(!text||busy)return;
+  busy=true;send.disabled=true;inp.value='';inp.style.height='auto';
+  add('me',text);
+  const t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';
+  chat.appendChild(t);chat.scrollTop=chat.scrollHeight;
+  try{
+    const r=await fetch(API+'/trainer/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData,text})});
+    const j=await r.json();
+    t.remove();
+    if(j.answer){used=j.used;add('bot',j.answer);tg?.HapticFeedback?.impactOccurred('light')}
+    else if(j.error==='limit'){used=LIMIT}
+    else{add('sys','Тренажер завис. Попробуй еще раз')}
+    ammoDraw();
+  }catch(e){t.remove();add('sys','Сеть моргнула. Попробуй еще раз')}
+  busy=false;send.disabled=false;
+}
+send.onclick=ask;
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask()}});
+inp.addEventListener('input',()=>{inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,110)+'px'});
+init();
+</script>
+</body>
+</html>
