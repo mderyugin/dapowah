@@ -52,6 +52,16 @@
   .cta-fire{background:var(--fire);color:#16100A}
   .cta-line{background:none;border:2px solid var(--ink);color:var(--ink)}
 
+  #chips{display:flex;flex-wrap:wrap;gap:8px;padding:4px 16px 8px;position:relative;z-index:1}
+  .chip{background:none;border:2px solid var(--fire);color:var(--ink);font-family:'Golos Text';font-size:13.5px;
+        padding:8px 12px;cursor:pointer;transition:transform .12s var(--hit)}
+  .chip:active{transform:translateY(2px);background:var(--fire);color:#16100A}
+
+  .rate{align-self:flex-start;display:flex;gap:6px;margin-top:-4px}
+  .rate button{background:none;border:1px solid #3a3226;color:var(--grey);font-size:14px;padding:4px 10px;cursor:pointer}
+  .rate button:active{border-color:var(--fire)}
+  .rate span{color:var(--grey);font-size:12px;padding:4px 2px}
+
   #gate{position:fixed;inset:0;background:var(--bg);z-index:10;display:none;flex-direction:column;justify-content:center;padding:28px;text-align:left}
   #gate .kicker{margin-bottom:10px}
   #gate h2{font-family:'Russo One';text-transform:uppercase;font-size:1.4rem;margin-bottom:12px}
@@ -76,6 +86,13 @@
 </header>
 
 <div id="chat"></div>
+
+<div id="chips">
+  <button class="chip">Страшно выложить</button>
+  <button class="chip">Разбери мой хук</button>
+  <button class="chip">Почему мало просмотров</button>
+  <button class="chip">С чего начать</button>
+</div>
 
 <div id="bar">
   <textarea id="inp" rows="1" placeholder="Где буксуешь? Пиши как есть"></textarea>
@@ -115,7 +132,7 @@ function add(cls, text){
 function ammoDraw(){
   const left=Math.max(0,LIMIT-used);
   document.getElementById('ammo').textContent=left?'⚡'.repeat(left):'пусто';
-  if(left===0){document.getElementById('bar').style.display='none';document.getElementById('done').style.display='block'}
+  if(left===0){document.getElementById('bar').style.display='none';document.getElementById('chips').style.display='none';document.getElementById('done').style.display='block'}
 }
 function toRazbor(){ if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
 
@@ -135,10 +152,23 @@ async function init(){
   }catch(e){add('sys','Сеть моргнула. Закрой и открой заново')}
 }
 
+function rateRow(q,a){
+  const r=document.createElement('div');r.className='rate';
+  r.innerHTML='<button>👍</button><button>👎</button>';
+  const [up,down]=r.querySelectorAll('button');
+  const sendRate=async v=>{
+    r.innerHTML='<span>принял 🌀</span>';
+    try{await fetch(API+'/trainer/rate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData,verdict:v,q,a})})}catch(e){}
+  };
+  up.onclick=()=>sendRate('up');down.onclick=()=>sendRate('down');
+  chat.appendChild(r);chat.scrollTop=chat.scrollHeight;
+}
+
 async function ask(){
   const text=inp.value.trim();
   if(!text||busy)return;
   busy=true;send.disabled=true;inp.value='';inp.style.height='auto';
+  document.getElementById('chips').style.display='none';
   add('me',text);
   const t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';
   chat.appendChild(t);chat.scrollTop=chat.scrollHeight;
@@ -146,9 +176,10 @@ async function ask(){
     const r=await fetch(API+'/trainer/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData,text})});
     const j=await r.json();
     t.remove();
-    if(j.answer){used=j.used;add('bot',j.answer);tg?.HapticFeedback?.impactOccurred('light')}
+    if(j.answer){used=j.used;add('bot',j.answer);rateRow(text,j.answer);tg?.HapticFeedback?.impactOccurred('light')}
     else if(j.error==='limit'){used=LIMIT}
     else if(j.error==='day_limit'){add('sys','На сегодня спарринги все. Продолжим завтра')}
+    else if(j.error==='fast'){add('sys','Не больше трех вопросов в минуту. Выдохни')}
     else if(j.error==='tired'){add('sys','Тренажер сегодня выдохся. Приходи завтра, ответит свежим')}
     else{add('sys','Тренажер завис. Попробуй еще раз')}
     ammoDraw();
@@ -156,6 +187,7 @@ async function ask(){
   busy=false;send.disabled=false;
 }
 send.onclick=ask;
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{inp.value=b.textContent;ask()});
 inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask()}});
 inp.addEventListener('input',()=>{inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,110)+'px'});
 init();
