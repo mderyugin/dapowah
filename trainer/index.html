@@ -104,9 +104,10 @@
 </div>
 
 <div id="done">
-  <p>Пять бесплатных раундов отработаны. Дальше два пути: живой разбор от Максима или клуб, он скоро откроется.</p>
+  <p>Пять бесплатных раундов отработаны. Дальше два пути: клуб с тренажером без лимита или живой разбор от Максима.</p>
+  <button class="cta-fire" style="width:100%;margin-bottom:8px" onclick="club()">💫 Клуб: тренажер без лимита</button>
   <div class="row">
-    <button class="cta-fire" onclick="toRazbor()">✍️ Разбор</button>
+    <button class="cta-line" onclick="toRazbor()">✍️ Разбор</button>
     <a class="cta-line" href="https://t.me/rowrowbratha">🌀 Канал</a>
   </div>
 </div>
@@ -126,7 +127,17 @@ function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a
 document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#F0A63C" stroke-width="10" stroke-linecap="round"/></svg>';
 
 const chat=document.getElementById('chat'), inp=document.getElementById('inp'), send=document.getElementById('send');
-let LIMIT=5, used=0, busy=false;
+let LIMIT=5, used=0, busy=false, SUB=false;
+
+async function club(){
+  try{
+    const r=await fetch(API+'/trainer/club',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})});
+    const j=await r.json();
+    if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{if(st==='paid')location.reload()})}
+    else if(j.link){location.href=j.link}
+    else{add('sys','Инвойс не собрался. Напиши боту слово КЛУБ')}
+  }catch(e){add('sys','Сеть моргнула. Напиши боту слово КЛУБ')}
+}
 
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 function add(cls, text){
@@ -134,6 +145,7 @@ function add(cls, text){
   chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;
 }
 function ammoDraw(){
+  if(SUB){document.getElementById('ammo').textContent='∞ клуб';return}
   const left=Math.max(0,LIMIT-used);
   document.getElementById('ammo').textContent=left?'⚡'.repeat(left):'пусто';
   if(left===0){document.getElementById('bar').style.display='none';document.getElementById('chips').style.display='none';document.getElementById('done').style.display='block'}
@@ -154,8 +166,8 @@ async function init(){
     const r=await fetch(API+'/trainer/history',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})});
     const j=await r.json();
     if(j.error){add('sys','Не пустило: открой тренажер заново из бота');return}
-    LIMIT=j.limit;used=j.used;
-    const who=[j.name,j.fights>0?`${j.rank} · счет ${j.fights}:0`:null].filter(Boolean).join(' · ');
+    LIMIT=j.limit;used=j.used;SUB=!!j.sub;
+    const who=[j.name,SUB?'💫 клуб':null,j.fights>0?`${j.rank} · счет ${j.fights}:0`:null].filter(Boolean).join(' · ');
     if(who){const w=document.getElementById('who');w.textContent=who;w.style.display='block'}
     if(j.hist&&j.hist.length){for(const m of j.hist)add(m.role==='user'?'me':'bot',m.content)}
     else add('bot',welcomeText(j));
@@ -191,7 +203,7 @@ async function ask(){
     const r=await fetch(API+'/trainer/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData,text})});
     const j=await r.json();
     clearInterval(rot);t.remove();
-    if(j.answer){used=j.used;add('bot',j.answer);rateRow(text,j.answer);tg?.HapticFeedback?.impactOccurred('light')}
+    if(j.answer){used=j.used;if(j.sub!==undefined)SUB=!!j.sub;add('bot',j.answer);rateRow(text,j.answer);tg?.HapticFeedback?.impactOccurred('light')}
     else if(j.error==='limit'){used=LIMIT}
     else if(j.error==='day_limit'){add('sys','На сегодня спарринги все. Продолжим завтра')}
     else if(j.error==='fast'){add('sys','Не больше трех вопросов в минуту. Выдохни')}
