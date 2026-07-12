@@ -83,6 +83,7 @@
   <div class="kicker">спарринг-зал Гуррен-дана</div>
   <h1>Тренажер</h1>
   <div class="ammo">вопросы: <b id="ammo">⚡⚡⚡⚡⚡</b></div>
+  <div class="ammo" id="who" style="display:none"></div>
 </header>
 
 <div id="chat"></div>
@@ -139,7 +140,13 @@ function ammoDraw(){
 }
 function toRazbor(){ if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
 
-const WELCOME="Здорово. Я тренажер на методе Максима: пятеро паттернов, приемы руками, разбор цифр.\n\nРасскажи, где буксуешь: страшно снимать, ролик не заходит, не можешь выложить. Отвечаю конкретикой, без «поверь в себя».";
+function welcomeText(j){
+  const hi=j.name?`Здорово, ${j.name}.`:"Здорово.";
+  if(j.pattern&&j.fights>0)return `${hi} Твой главный по квизу ${j.pattern}, помню. И счет ${j.fights}:0 в твою пользу тоже помню.\n\nРассказывай, где буксуешь, разберем через твоего.`;
+  if(j.pattern)return `${hi} Твой главный по квизу ${j.pattern}, помню.\n\nРассказывай, где буксуешь: разберем через твоего врага, конкретикой, без «поверь в себя».`;
+  if(j.fights>0)return `${hi} Счет ${j.fights}:0 в твою пользу, звание ${j.rank}. Уважение.\n\nРассказывай, где буксуешь сейчас.`;
+  return `${hi} Я тренажер на методе Максима: пятеро паттернов, приемы руками, разбор цифр.\n\nРасскажи, где буксуешь: страшно снимать, ролик не заходит, не можешь выложить. Отвечаю конкретикой, без «поверь в себя».`;
+}
 
 async function init(){
   if(!tg||!tg.initData){document.getElementById('gate').style.display='flex';return}
@@ -148,8 +155,10 @@ async function init(){
     const j=await r.json();
     if(j.error){add('sys','Не пустило: открой тренажер заново из бота');return}
     LIMIT=j.limit;used=j.used;
+    const who=[j.name,j.fights>0?`${j.rank} · счет ${j.fights}:0`:null].filter(Boolean).join(' · ');
+    if(who){const w=document.getElementById('who');w.textContent=who;w.style.display='block'}
     if(j.hist&&j.hist.length){for(const m of j.hist)add(m.role==='user'?'me':'bot',m.content)}
-    else add('bot',WELCOME);
+    else add('bot',welcomeText(j));
     if(!j.on)add('sys','Тренажер сейчас спит. Загляни позже или напиши боту слово РАЗБОР');
     ammoDraw();
   }catch(e){add('sys','Сеть моргнула. Закрой и открой заново')}
@@ -173,12 +182,15 @@ async function ask(){
   busy=true;send.disabled=true;inp.value='';inp.style.height='auto';
   document.getElementById('chips').style.display='none';
   add('me',text);
-  const t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';
+  const t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i><span style="color:var(--grey);font-size:12.5px;margin-left:6px"></span>';
   chat.appendChild(t);chat.scrollTop=chat.scrollHeight;
+  const phrases=['перебираю приемы','сверяюсь с методичкой','спрашиваю Сопротивление','точу ответ'];
+  let pi=0;const lbl=t.querySelector('span');lbl.textContent=phrases[0];
+  const rot=setInterval(()=>{pi=(pi+1)%phrases.length;lbl.textContent=phrases[pi]},2600);
   try{
     const r=await fetch(API+'/trainer/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData,text})});
     const j=await r.json();
-    t.remove();
+    clearInterval(rot);t.remove();
     if(j.answer){used=j.used;add('bot',j.answer);rateRow(text,j.answer);tg?.HapticFeedback?.impactOccurred('light')}
     else if(j.error==='limit'){used=LIMIT}
     else if(j.error==='day_limit'){add('sys','На сегодня спарринги все. Продолжим завтра')}
@@ -186,7 +198,7 @@ async function ask(){
     else if(j.error==='tired'){add('sys','Тренажер сегодня выдохся. Приходи завтра, ответит свежим')}
     else{add('sys','Тренажер завис. Попробуй еще раз')}
     ammoDraw();
-  }catch(e){t.remove();add('sys','Сеть моргнула. Попробуй еще раз')}
+  }catch(e){clearInterval(rot);t.remove();add('sys','Сеть моргнула. Попробуй еще раз')}
   busy=false;send.disabled=false;
 }
 send.onclick=ask;
