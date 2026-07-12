@@ -148,6 +148,8 @@ async function ask(){
     t.remove();
     if(j.answer){used=j.used;add('bot',j.answer);tg?.HapticFeedback?.impactOccurred('light')}
     else if(j.error==='limit'){used=LIMIT}
+    else if(j.error==='day_limit'){add('sys','На сегодня спарринги все. Продолжим завтра')}
+    else if(j.error==='tired'){add('sys','Тренажер сегодня выдохся. Приходи завтра, ответит свежим')}
     else{add('sys','Тренажер завис. Попробуй еще раз')}
     ammoDraw();
   }catch(e){t.remove();add('sys','Сеть моргнула. Попробуй еще раз')}
