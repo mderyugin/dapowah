@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Тренажер</title>
+<title>Напарник</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
 <style>
@@ -80,8 +80,8 @@
 <div class="spiral" id="sp"></div>
 
 <header>
-  <div class="kicker">спарринг-зал Гуррен-дана</div>
-  <h1>Тренажер</h1>
+  <div class="kicker">ИИ-помощник по рилсам · Гуррен-дан</div>
+  <h1>Напарник</h1>
   <div class="ammo">вопросы: <b id="ammo">⚡⚡⚡⚡⚡</b></div>
   <div class="ammo" id="who" style="display:none"></div>
 </header>
@@ -104,8 +104,8 @@
 </div>
 
 <div id="done">
-  <p>Пять бесплатных раундов отработаны. Дальше два пути: клуб с тренажером без лимита или живой разбор от Максима.</p>
-  <button class="cta-fire" style="width:100%;margin-bottom:8px" onclick="club()">💫 Клуб: тренажер без лимита</button>
+  <p>Пять бесплатных раундов отработаны. Дальше два пути: клуб с Напарником без лимита или живой разбор от Максима.</p>
+  <button class="cta-fire" style="width:100%;margin-bottom:8px" onclick="club()">💫 Клуб: Напарник без лимита</button>
   <div class="row">
     <button class="cta-line" onclick="toRazbor()">✍️ Разбор</button>
     <a class="cta-line" href="https://t.me/rowrowbratha">🌀 Канал</a>
@@ -114,8 +114,8 @@
 
 <div id="gate">
   <div class="kicker">не так зашел</div>
-  <h2>Тренажер открывается из бота</h2>
-  <p>Это спарринг-зал внутри Telegram. Зайди в бота Максима и жми кнопку «Тренажер».</p>
+  <h2>Напарник открывается из бота</h2>
+  <p>Это ИИ-помощник внутри Telegram. Зайди в бота Максима и жми кнопку «Напарник».</p>
   <a href="https://t.me/dapowah_bot?start=trainer">Открыть бота</a>
 </div>
 
@@ -157,7 +157,7 @@ function welcomeText(j){
   if(j.pattern&&j.fights>0)return `${hi} Твой главный по квизу ${j.pattern}, помню. И счет ${j.fights}:0 в твою пользу тоже помню.\n\nРассказывай, где буксуешь, разберем через твоего.`;
   if(j.pattern)return `${hi} Твой главный по квизу ${j.pattern}, помню.\n\nРассказывай, где буксуешь: разберем через твоего врага, конкретикой, без «поверь в себя».`;
   if(j.fights>0)return `${hi} Счет ${j.fights}:0 в твою пользу, звание ${j.rank}. Уважение.\n\nРассказывай, где буксуешь сейчас.`;
-  return `${hi} Я тренажер на методе Максима: пятеро паттернов, приемы руками, разбор цифр.\n\nРасскажи, где буксуешь: страшно снимать, ролик не заходит, не можешь выложить. Отвечаю конкретикой, без «поверь в себя».`;
+  return `${hi} Я Напарник, ИИ-помощник по рилсам на методе Максима: пятеро паттернов, приемы руками, разбор цифр.\n\nРасскажи, где буксуешь: страшно снимать, ролик не заходит, не можешь выложить. Отвечаю конкретикой, без «поверь в себя».`;
 }
 
 async function init(){
@@ -165,13 +165,13 @@ async function init(){
   try{
     const r=await fetch(API+'/trainer/history',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})});
     const j=await r.json();
-    if(j.error){add('sys','Не пустило: открой тренажер заново из бота');return}
+    if(j.error){add('sys','Не пустило: открой Напарника заново из бота');return}
     LIMIT=j.limit;used=j.used;SUB=!!j.sub;
     const who=[j.name,SUB?'💫 клуб':null,j.fights>0?`${j.rank} · счет ${j.fights}:0`:null].filter(Boolean).join(' · ');
     if(who){const w=document.getElementById('who');w.textContent=who;w.style.display='block'}
     if(j.hist&&j.hist.length){for(const m of j.hist)add(m.role==='user'?'me':'bot',m.content)}
     else add('bot',welcomeText(j));
-    if(!j.on)add('sys','Тренажер сейчас спит. Загляни позже или напиши боту слово РАЗБОР');
+    if(!j.on)add('sys','Напарник сейчас спит. Загляни позже или напиши боту слово РАЗБОР');
     ammoDraw();
   }catch(e){add('sys','Сеть моргнула. Закрой и открой заново')}
 }
@@ -207,8 +207,8 @@ async function ask(){
     else if(j.error==='limit'){used=LIMIT}
     else if(j.error==='day_limit'){add('sys','На сегодня спарринги все. Продолжим завтра')}
     else if(j.error==='fast'){add('sys','Не больше трех вопросов в минуту. Выдохни')}
-    else if(j.error==='tired'){add('sys','Тренажер сегодня выдохся. Приходи завтра, ответит свежим')}
-    else{add('sys','Тренажер завис. Попробуй еще раз')}
+    else if(j.error==='tired'){add('sys','Напарник сегодня выдохся. Приходи завтра, ответит свежим')}
+    else{add('sys','Напарник завис. Попробуй еще раз')}
     ammoDraw();
   }catch(e){clearInterval(rot);t.remove();add('sys','Сеть моргнула. Попробуй еще раз')}
   busy=false;send.disabled=false;
