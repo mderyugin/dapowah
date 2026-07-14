@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Стена бойцов</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#12100C;--fire:#E45329;--amber:#F0A63C;--ink:#EFE6D0;--grey:#9BA093;--panel:#26201A;--hit:cubic-bezier(.2,.9,.3,1)}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--ink);font-family:'Golos Text',sans-serif;min-height:100dvh;padding:26px 18px 44px;overflow-x:hidden}
+  .spiral{position:fixed;right:-120px;top:-120px;width:300px;height:300px;opacity:.07;pointer-events:none;z-index:0;animation:spin 20s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .kicker{font-family:'Underdog',cursive;color:var(--amber);font-size:17px;margin-bottom:6px}
+  h1{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.92;color:var(--fire);margin-bottom:6px}
+  .sub{color:var(--grey);font-size:14px;margin-bottom:22px;position:relative;z-index:1}
+  .row{display:flex;align-items:center;gap:12px;background:var(--panel);border-left:4px solid var(--fire);padding:12px 14px;margin-bottom:8px;
+       opacity:0;transform:translateY(14px);animation:hit .22s var(--hit) forwards;position:relative;z-index:1}
+  @keyframes hit{to{opacity:1;transform:none}}
+  .row .n{font-family:'Russo One';color:var(--grey);font-size:13px;min-width:26px}
+  .row .who{flex:1}
+  .row .who b{font-family:'Russo One';font-size:15px;display:block}
+  .row .who span{color:var(--amber);font-size:12.5px}
+  .row .sc{font-family:'Alumni Sans';font-weight:900;font-size:2rem;color:var(--fire);line-height:1}
+  .empty{color:var(--grey);font-size:15px;line-height:1.5;position:relative;z-index:1}
+  @media (prefers-reduced-motion:reduce){.row{opacity:1;transform:none;animation:none}.spiral{animation:none}}
+</style>
+</head>
+<body>
+<div class="spiral" id="sp"></div>
+<div class="kicker">кто уже в бою</div>
+<h1>Стена бойцов</h1>
+<p class="sub">Все, кто вышел из штиля. Тут не рейтинг: тут те, кто перестал молчать.</p>
+<div id="list"><p class="empty">Собираю стену...</p></div>
+
+<script>
+const API="https://dapowah-bot.mdklurk.workers.dev";
+const tg=window.Telegram?.WebApp;tg?.expand();tg?.ready();
+function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
+document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#F0A63C" stroke-width="10" stroke-linecap="round"/></svg>';
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+async function load(){
+  try{
+    const r=await fetch(API+'/trainer/wall',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg?.initData||''})});
+    const j=await r.json();
+    const list=document.getElementById('list');
+    if(!j.wall||!j.wall.length){list.innerHTML='<p class="empty">Стена пока пустая. Стань первым: выложи ролик и кинь ссылку боту. Первый бой в зачет 🌀</p>';return}
+    list.innerHTML='';
+    j.wall.forEach((b,i)=>{
+      const d=document.createElement('div');d.className='row';d.style.animationDelay=Math.min(i*40,600)+'ms';
+      d.innerHTML='<div class="n">'+(i+1)+'</div><div class="who"><b>'+esc(b.n)+'</b><span>'+esc(b.r)+'</span></div><div class="sc">'+b.f+'</div>';
+      list.appendChild(d);
+    });
+  }catch(e){document.getElementById('list').innerHTML='<p class="empty">Сеть моргнула. Закрой и открой заново.</p>'}
+}
+load();
+</script>
+</body>
+</html>

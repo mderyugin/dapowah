@@ -46,6 +46,10 @@
   <div class="sect">Статьи</div>
   <div id="list"></div>
 
+  <div class="sect">Банда</div>
+  <a class="card" href="../wall/"><b>🧱 Стена бойцов</b><span>кто уже вышел из штиля и сколько боев выиграл</span></a>
+  <button class="card" onclick="club()"><b>💫 Шторм</b><span>Напарник без лимита вопросов и все клубное. 30 дней, отмена в два клика</span></button>
+
   <div class="sect">Дальше</div>
   <a class="card" href="https://t.me/rowrowbratha"><b>🌀 Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
   <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank"><b>🔥 Сайт: «Первые 5»</b><span>кто я, что за программа и сколько стоит</span></a>
@@ -123,6 +127,16 @@ function hub(){
   document.getElementById('hub').style.display='block';
 }
 function razbor(){ if(tg){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
+async function club(){
+  try{
+    const r=await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/club",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg?.initData||""})});
+    const j=await r.json();
+    if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{})}
+    else if(j.link){location.href=j.link}
+    else if(tg){tg.close()}
+    else{location.href="https://t.me/dapowah_bot"}
+  }catch(e){if(tg){tg.close()}else{location.href="https://t.me/dapowah_bot"}}
+}
 </script>
 </body>
 </html>

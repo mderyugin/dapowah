@@ -161,9 +161,12 @@ function renderQ(){
 }
 
 let slides=[],si=0,winPat=null;
+const API="https://dapowah-bot.mdklurk.workers.dev";
 function result(){
   const win=Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];
   winPat=win;
+  // пиксель: анонимно считаем прохождение по паттерну (один раз на результат)
+  try{fetch(API+"/quiz/hit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({p:win}),keepalive:true})}catch(e){}
   const r=R[win];
   const uname=tg?.initDataUnsafe?.user?.first_name||"";
   slides=[
@@ -173,8 +176,8 @@ function result(){
    `<div class="kicker">что делать</div><div class="priem"><b>Прием против него</b>${r.priem}</div><p class="grey" style="margin-top:14px">Это действие руками, а не «поверь в себя». Работает с первого раза, если сделать, а не прочитать.</p>`,
    `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они ходят вместе</h2><p>Все пятеро, поименно и с приемами, собраны в методичке. А какие рулят именно у тебя и в каком порядке их ломать, Максим разбирает лично.</p>
     <div class="cta-stack">
-      <a class="btn" style="text-decoration:none;text-align:center" href="https://t.me/rowrowbratha/70">📕 Методичка: все пятеро</a>
-      <a class="cta2" href="https://t.me/rowrowbratha">🌀 Канал Максима</a>
+      <button class="btn" style="border:0;cursor:pointer" onclick="share()">📤 Забрать карточку в сторис</button>
+      <a class="cta2" style="text-decoration:none;text-align:center" href="https://t.me/rowrowbratha/70">📕 Методичка: все пятеро</a>
       <button class="cta2" style="background:none;cursor:pointer" onclick="askRazbor()">✍️ Написать РАЗБОР Максиму</button>
     </div>`
   ];
@@ -190,6 +193,37 @@ function tapNav(e){
   const x=e.clientX/window.innerWidth;
   if(x>0.35&&si<slides.length-1){si++;renderSlide()}
   else if(x<=0.35&&si>0){si--;renderSlide()}
+}
+function share(){
+  // рисуем сторис-карточку 1080x1920 на canvas и отдаем как файл
+  const r=R[winPat];
+  const c=document.createElement('canvas');c.width=1080;c.height=1920;
+  const x=c.getContext('2d');
+  x.fillStyle='#12100C';x.fillRect(0,0,1080,1920);
+  // спираль-водяной знак
+  x.save();x.globalAlpha=.09;x.strokeStyle='#F0A63C';x.lineWidth=14;x.beginPath();
+  let px=540,py=760;x.moveTo(px,py);for(let a=0;a<=4*2*Math.PI;a+=.05){const rr=13*a;x.lineTo(540+rr*Math.cos(a),760+rr*Math.sin(a))}x.stroke();x.restore();
+  x.textAlign='center';
+  x.fillStyle='#F0A63C';x.font='46px Georgia';x.fillText('мой главный враг перед камерой',540,300);
+  x.fillStyle='#E45329';x.font='900 190px "Alumni Sans",sans-serif';
+  const nm=r.name.toUpperCase();x.font=(nm.length>10?'900 130px ':'900 175px ')+'"Alumni Sans",sans-serif';
+  x.fillText(nm,540,1000);
+  x.fillStyle='#EFE6D0';x.font='40px "Golos Text",sans-serif';
+  wrap(x,r.rep.replace(/[«»]/g,''),540,1150,880,54);
+  x.fillStyle='#9BA093';x.font='34px "Golos Text",sans-serif';
+  x.fillText('а твой кто? пройди тест',540,1700);
+  x.fillStyle='#F0A63C';x.font='700 40px "Golos Text",sans-serif';
+  x.fillText('@rowrowbratha',540,1770);
+  c.toBlob(b=>{
+    const f=new File([b],'moy-vrag.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f]}).catch(()=>{})}
+    else{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='moy-vrag.png';a.click()}
+  },'image/png');
+}
+function wrap(x,t,cx,cy,max,lh){
+  const w=t.split(' ');let line='',y=cy;
+  for(const word of w){const test=line+word+' ';if(x.measureText(test).width>max&&line){x.fillText(line.trim(),cx,y);line=word+' ';y+=lh}else line=test}
+  x.fillText(line.trim(),cx,y);
 }
 function askRazbor(){
   // диагноз уезжает в бота: /start quiz_<паттерн>, Максим видит врага человека в заявке
