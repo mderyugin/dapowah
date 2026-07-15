@@ -104,8 +104,8 @@
 </div>
 
 <div id="done">
-  <p>Пять бесплатных раундов отработаны. Дальше два пути: клуб с Напарником без лимита или живой разбор от Максима.</p>
-  <button class="cta-fire" style="width:100%;margin-bottom:8px" onclick="club()">💫 Шторм: Напарник без лимита</button>
+  <p>Пять бесплатных раундов отработаны. Дальше два пути: клуб с Напарником без лимита за 399 звезд в месяц или живой разбор от Максима.</p>
+  <button class="cta-fire" style="width:100%;margin-bottom:8px" onclick="club()">💫 Шторм: без лимита, 399 звезд в месяц</button>
   <div class="row">
     <button class="cta-line" onclick="toRazbor()">✍️ Разбор</button>
     <a class="cta-line" href="https://t.me/rowrowbratha">🌀 Канал</a>
@@ -188,6 +188,14 @@ function rateRow(q,a){
   chat.appendChild(r);chat.scrollTop=chat.scrollHeight;
 }
 
+const NEXT=['Дай прием на сегодня','Разбери мой хук','Что снять первым'];
+function chipsNext(){
+  if(!SUB&&used>=LIMIT)return;
+  const c=document.getElementById('chips');c.innerHTML='';
+  for(const t of NEXT){const b=document.createElement('button');b.className='chip';b.textContent=t;b.onclick=()=>{inp.value=t;ask()};c.appendChild(b)}
+  c.style.display='flex';
+}
+
 async function ask(){
   const text=inp.value.trim();
   if(!text||busy)return;
@@ -203,7 +211,7 @@ async function ask(){
     const r=await fetch(API+'/trainer/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData,text})});
     const j=await r.json();
     clearInterval(rot);t.remove();
-    if(j.answer){used=j.used;if(j.sub!==undefined)SUB=!!j.sub;add('bot',j.answer);rateRow(text,j.answer);tg?.HapticFeedback?.impactOccurred('light')}
+    if(j.answer){used=j.used;if(j.sub!==undefined)SUB=!!j.sub;add('bot',j.answer);rateRow(text,j.answer);tg?.HapticFeedback?.impactOccurred('light');chipsNext()}
     else if(j.error==='limit'){used=LIMIT}
     else if(j.error==='day_limit'){add('sys','На сегодня спарринги все. Продолжим завтра')}
     else if(j.error==='fast'){add('sys','Не больше трех вопросов в минуту. Выдохни')}
