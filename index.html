@@ -55,6 +55,7 @@
     .hero-cta{width:100%;justify-content:center}
     .hero-cta .cta{flex:1 1 0;min-width:0;padding:16px 12px}
     .hero-cta .cta.ghost{flex:0 1 auto;padding:16px 18px}
+    .cta-note{text-align:center;margin:10px auto 0}
   }
   .hero h1 .out{color:transparent;-webkit-text-stroke:5px var(--ink);text-shadow:none}
   .hero h1 .inkline{color:var(--amber);text-shadow:0 6px 0 rgba(0,0,0,.35)}
@@ -83,6 +84,7 @@
   .hero .cta.ghost:hover{background:var(--ink);color:var(--dark);border-color:var(--ink)}
   .hero-cta{display:flex;gap:12px;align-items:stretch}
   .hero-cta .cta.ghost{font-size:.82rem;padding:16px 22px}
+  .cta-note{font-family:'Golos Text';font-weight:500;font-size:.85rem;color:var(--ink);max-width:38ch;margin:10px 0 0;text-align:left;background:rgba(18,16,12,.78);padding:8px 12px;display:inline-block}
   @keyframes spin{to{transform:rotate(360deg)}}
 
   /* ===== SECTION LIGHT (кто я — таблица) ===== */
@@ -194,11 +196,13 @@
       Я этот голос знаю в лицо.
       <span class="hand">не веришь в себя? норм. я верю за двоих.</span>
     </p>
-    <div class="hero-cta">
-      <a class="cta" href="https://t.me/dapowah_bot?start=site">Пиши «РАЗБОР»</a>
-      <a class="cta ghost" href="https://instagram.com/rowrowbratha">Мои рилсы</a>
+    <div>
+      <div class="hero-cta">
+        <a class="cta" href="https://t.me/dapowah_bot?start=site">Пиши «РАЗБОР»</a>
+        <a class="cta ghost" href="https://instagram.com/rowrowbratha">Мои рилсы</a>
+      </div>
+      <p class="cta-note">разбор: гляну твой профиль и скажу голосом, где течет и что чинить первым</p>
     </div>
-    <p class="micro" style="margin-top:14px;color:var(--grey)">разбор: гляну твой профиль и скажу голосом, где течет и что чинить первым</p>
   </div>
 </section>
 
