@@ -54,7 +54,7 @@
 
   <div class="sect">Банда</div>
   <a class="card" href="../wall/"><b>Стена бойцов</b><span>кто уже вышел из штиля и сколько боев выиграл</span></a>
-  <button class="card" onclick="club(this)"><b>ИИ-Напарник без лимита</b><span>клуб Шторм: снимает потолок в 5 бесплатных вопросов. 399 звезд в месяц, отмена в два клика</span></button>
+  <button class="card" onclick="club(this)"><b>ИИ-Напарник без лимита</b><span>снимает потолок в 5 бесплатных вопросов. 399 звезд в месяц, отмена в два клика</span></button>
 
   <div class="sect">Дальше</div>
   <a class="card" href="https://t.me/rowrowbratha"><b>Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
@@ -171,7 +171,7 @@ async function club(btn){
     else if(j.link){location.href=j.link}
     else{throw 0}
   }catch(e){
-    if(tg?.showAlert){tg.showAlert('Оплата не открылась. Зайди к боту и напиши там про Шторм, он разберется.')}
+    if(tg?.showAlert){tg.showAlert('Оплата не открылась. Зайди к боту и напиши там слово КЛУБ, он разберется.')}
     else{location.href="https://t.me/dapowah_bot"}
   }finally{
     if(btn){btn.disabled=false;if(label&&old)label.textContent=old}
