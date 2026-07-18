@@ -82,7 +82,7 @@
 <header>
   <div class="kicker">ИИ-помощник по рилсам · банда Максима</div>
   <h1>ИИ-Напарник</h1>
-  <div class="ammo">вопросы: <b id="ammo">⚡⚡⚡⚡⚡</b></div>
+  <div class="ammo">вопросы: <b id="ammo">▮▮▮▮▮</b></div>
   <div class="ammo" id="who" style="display:none"></div>
 </header>
 
@@ -105,10 +105,10 @@
 
 <div id="done">
   <p>Пять бесплатных раундов отработаны. Дальше два пути: клуб с ИИ-Напарником без лимита за 399 звезд в месяц или живой разбор от Максима.</p>
-  <button class="cta-fire" style="width:100%;margin-bottom:8px" onclick="club()">💫 ИИ-Напарник без лимита, 399 звезд в месяц</button>
+  <button class="cta-fire" style="width:100%;margin-bottom:8px" onclick="club()">ИИ-Напарник без лимита, 399 звезд в месяц</button>
   <div class="row">
-    <button class="cta-line" onclick="toRazbor()">✍️ Разбор</button>
-    <a class="cta-line" href="https://t.me/rowrowbratha">🌀 Канал</a>
+    <button class="cta-line" onclick="toRazbor()">Разбор</button>
+    <a class="cta-line" href="https://t.me/rowrowbratha">Канал</a>
   </div>
 </div>
 
@@ -147,7 +147,7 @@ function add(cls, text){
 function ammoDraw(){
   if(SUB){document.getElementById('ammo').textContent='∞ клуб';return}
   const left=Math.max(0,LIMIT-used);
-  document.getElementById('ammo').textContent=left?'⚡'.repeat(left):'пусто';
+  document.getElementById('ammo').textContent=left?'▮'.repeat(left):'пусто';
   if(left===0){document.getElementById('bar').style.display='none';document.getElementById('chips').style.display='none';document.getElementById('done').style.display='block'}
 }
 function toRazbor(){ if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
@@ -167,7 +167,7 @@ async function init(){
     const j=await r.json();
     if(j.error){add('sys','Не пустило: открой ИИ-Напарника заново из бота');return}
     LIMIT=j.limit;used=j.used;SUB=!!j.sub;
-    const who=[j.name,SUB?'💫 клуб':null,j.fights>0?`${j.rank} · счет ${j.fights}:0`:null].filter(Boolean).join(' · ');
+    const who=[j.name,SUB?'клуб':null,j.fights>0?`${j.rank} · счет ${j.fights}:0`:null].filter(Boolean).join(' · ');
     if(who){const w=document.getElementById('who');w.textContent=who;w.style.display='block'}
     if(j.hist&&j.hist.length){for(const m of j.hist)add(m.role==='user'?'me':'bot',m.content)}
     else add('bot',welcomeText(j));
@@ -178,10 +178,10 @@ async function init(){
 
 function rateRow(q,a){
   const r=document.createElement('div');r.className='rate';
-  r.innerHTML='<button>👍</button><button>👎</button>';
+  r.innerHTML='<button>норм</button><button>мимо</button>';
   const [up,down]=r.querySelectorAll('button');
   const sendRate=async v=>{
-    r.innerHTML='<span>принял 🌀</span>';
+    r.innerHTML='<span>принял</span>';
     try{await fetch(API+'/trainer/rate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData,verdict:v,q,a})})}catch(e){}
   };
   up.onclick=()=>sendRate('up');down.onclick=()=>sendRate('down');

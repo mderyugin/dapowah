@@ -45,7 +45,7 @@ async function load(){
     const r=await fetch(API+'/trainer/wall',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg?.initData||''})});
     const j=await r.json();
     const list=document.getElementById('list');
-    if(!j.wall||!j.wall.length){list.innerHTML='<p class="empty">Стена пока пустая. Стань первым: выложи ролик и кинь ссылку боту. Первый бой в зачет 🌀</p>';return}
+    if(!j.wall||!j.wall.length){list.innerHTML='<p class="empty">Стена пока пустая. Стань первым: выложи ролик и кинь ссылку боту. Первый бой в зачет</p>';return}
     list.innerHTML='';
     j.wall.forEach((b,i)=>{
       const d=document.createElement('div');d.className='row';d.style.animationDelay=Math.min(i*40,600)+'ms';
