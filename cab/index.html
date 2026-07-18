@@ -29,6 +29,12 @@
   #art .do b{display:block;font-family:'Russo One';color:var(--fire);font-size:12.5px;text-transform:uppercase;margin-bottom:5px}
   .cta{display:block;text-align:center;background:var(--fire);color:#16100A;font-family:'Russo One';
        text-transform:uppercase;font-size:14px;padding:14px;margin-top:20px;text-decoration:none;border:0;width:100%;cursor:pointer}
+  /* вход экрана: короткий удар, не телепорт */
+  .view{animation:vin .22s cubic-bezier(.2,.9,.3,1)}
+  @keyframes vin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.view{animation:none}}
+  #lib{display:none}
+  #lib .back{color:var(--fire);font-family:'Russo One';font-size:14px;cursor:pointer;margin-bottom:16px;display:inline-block}
 </style>
 </head>
 <body>
@@ -39,26 +45,32 @@
   <p class="sub">Все бесплатное в одном месте. Без почты и «оставьте телефон».</p>
 
   <div class="sect">Разберись в себе</div>
-  <a class="card" href="../trainer/"><b>🤖 ИИ-Напарник</b><span>помощник по рилсам: страх, хуки, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
-  <a class="card" href="../quiz/"><b>⚡ Квиз: кто из пятерых держит тебя</b><span>60 секунд, в конце имя твоего главного врага</span></a>
-  <a class="card" href="https://t.me/rowrowbratha/70"><b>📕 Методичка: 5 паттернов поименно</b><span>реплики и приемы против каждого, PDF</span></a>
+  <a class="card" href="../trainer/"><b>ИИ-Напарник</b><span>помощник по рилсам: страх, хуки, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
+  <a class="card" href="../quiz/"><b>Квиз: кто из пятерых держит тебя</b><span>60 секунд, в конце имя твоего главного врага</span></a>
+  <a class="card" href="https://t.me/rowrowbratha/70"><b>Методичка: 5 паттернов поименно</b><span>реплики и приемы против каждого, PDF</span></a>
 
   <div class="sect">Статьи</div>
   <div id="list"></div>
 
   <div class="sect">Банда</div>
-  <a class="card" href="../wall/"><b>🧱 Стена бойцов</b><span>кто уже вышел из штиля и сколько боев выиграл</span></a>
-  <button class="card" onclick="club()"><b>💫 ИИ-Напарник без лимита</b><span>клуб Шторм: снимает потолок в 5 бесплатных вопросов. 399 звезд в месяц, отмена в два клика</span></button>
+  <a class="card" href="../wall/"><b>Стена бойцов</b><span>кто уже вышел из штиля и сколько боев выиграл</span></a>
+  <button class="card" onclick="club(this)"><b>ИИ-Напарник без лимита</b><span>клуб Шторм: снимает потолок в 5 бесплатных вопросов. 399 звезд в месяц, отмена в два клика</span></button>
 
   <div class="sect">Дальше</div>
-  <a class="card" href="https://t.me/rowrowbratha"><b>🌀 Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
-  <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank"><b>🔥 Сайт: «Первые 5»</b><span>кто я, что за программа и сколько стоит</span></a>
-  <button class="card" onclick="razbor()"><b>⚡ Пинок за 990 рублей</b><span>экспресс-разбор профиля голосом за 48 часов. Напиши боту слово ПИНОК. Возьмешь потом «Первые 5»? 990 зачтутся</span></button>
-  <button class="card" onclick="razbor()"><b>✍️ Разбор профиля от Максима</b><span>напиши боту слово РАЗБОР, ответит лично</span></button>
+  <a class="card" href="https://t.me/rowrowbratha"><b>Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
+  <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank"><b>Сайт: «Первые 5»</b><span>кто я, что за программа и сколько стоит</span></a>
+  <button class="card" onclick="razbor()"><b>Пинок за 990 рублей</b><span>экспресс-разбор профиля голосом за 48 часов. Напиши боту слово ПИНОК. Возьмешь потом «Первые 5»? 990 зачтутся</span></button>
+  <button class="card" onclick="razbor()"><b>Разбор профиля от Максима</b><span>напиши боту слово РАЗБОР, ответит лично</span></button>
+</div>
+
+<div id="lib">
+  <span class="back" onclick="show('hub')">← Кабинет</span>
+  <div class="sect">Библиотека</div>
+  <div id="liblist"></div>
 </div>
 
 <div id="art">
-  <span class="back" onclick="hub()">← Кабинет</span>
+  <span class="back" onclick="artBack()">← Назад</span>
   <div id="artbody"></div>
   <button class="cta" onclick="razbor()">Хочу разбор от Максима</button>
 </div>
@@ -66,6 +78,7 @@
 <script>
 const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
 
+// НОВЫЕ СТАТЬИ ДОБАВЛЯТЬ В НАЧАЛО МАССИВА: хаб показывает первые две как свежие, остальное живет в Библиотеке
 const ARTS = [
  {t:"Правило сырого дубля", tag:"перфекционизм", d:"почему шестой дубль обязан уйти в мир",
   h:`<h2>Правило сырого дубля</h2>
@@ -110,32 +123,59 @@ const ARTS = [
   <p>Все пять «да»? Выкладывай. Хоть одно «нет»? Чини вход, не тело ролика. Полная методичка с лестницей и пятеркой паттернов лежит в канале по тегу #rowrow_PDF.</p>`}
 ];
 
-const list = document.getElementById('list');
-ARTS.forEach((a,i)=>{
+function artCard(a,i,from){
   const b=document.createElement('button');b.className='card';
   b.innerHTML=`<b>${a.t}</b><span>${a.d}</span><div style="margin-top:6px"><span class="tag">${a.tag}</span></div>`;
-  b.onclick=()=>openArt(i);list.appendChild(b);
-});
-function openArt(i){
-  document.getElementById('artbody').innerHTML=ARTS[i].h;
-  document.getElementById('hub').style.display='none';
-  document.getElementById('art').style.display='block';
+  b.onclick=()=>openArt(i,from);return b;
+}
+
+// хаб: две свежие статьи + дверь в библиотеку
+const list = document.getElementById('list');
+ARTS.slice(0,2).forEach((a,i)=>list.appendChild(artCard(a,i,'hub')));
+const lb=document.createElement('button');lb.className='card';
+lb.innerHTML=`<b>Библиотека</b><span>все статьи метода, уже ${ARTS.length}, пополняется</span>`;
+lb.onclick=()=>show('lib');list.appendChild(lb);
+
+// библиотека: все статьи
+const liblist=document.getElementById('liblist');
+ARTS.forEach((a,i)=>liblist.appendChild(artCard(a,i,'lib')));
+
+let artFrom='hub';
+function show(id){
+  ['hub','lib','art'].forEach(v=>{document.getElementById(v).style.display = v===id?'block':'none'});
+  const el=document.getElementById(id);
+  el.classList.remove('view');void el.offsetWidth;el.classList.add('view');
   window.scrollTo(0,0);
+  if(tg?.BackButton){ id==='hub' ? tg.BackButton.hide() : tg.BackButton.show(); }
 }
-function hub(){
-  document.getElementById('art').style.display='none';
-  document.getElementById('hub').style.display='block';
+function openArt(i,from){
+  artFrom=from||'hub';
+  document.getElementById('artbody').innerHTML=ARTS[i].h;
+  show('art');
 }
+function artBack(){ show(artFrom); }
+function hub(){ show('hub'); }
+tg?.BackButton?.onClick(()=>{
+  if(document.getElementById('art').style.display==='block'){ artBack(); }
+  else { show('hub'); }
+});
+
 function razbor(){ if(tg){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
-async function club(){
+async function club(btn){
+  const label=btn?.querySelector('b');const old=label?.textContent;
+  if(btn){btn.disabled=true;if(label)label.textContent='Открываю оплату...'}
   try{
     const r=await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/club",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg?.initData||""})});
     const j=await r.json();
     if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{})}
     else if(j.link){location.href=j.link}
-    else if(tg){tg.close()}
+    else{throw 0}
+  }catch(e){
+    if(tg?.showAlert){tg.showAlert('Оплата не открылась. Зайди к боту и напиши там про Шторм, он разберется.')}
     else{location.href="https://t.me/dapowah_bot"}
-  }catch(e){if(tg){tg.close()}else{location.href="https://t.me/dapowah_bot"}}
+  }finally{
+    if(btn){btn.disabled=false;if(label&&old)label.textContent=old}
+  }
 }
 </script>
 </body>
