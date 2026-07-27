@@ -123,6 +123,13 @@
   .five-cta .cta.ghost:hover{background:var(--ink);color:var(--dark)}
   .five-note{font-size:.88rem;color:var(--grey);font-weight:600}
 
+  /* ===== ПРАВИЛА КЛУБА ===== */
+  .rules .head{font-size:clamp(3.2rem,11vw,8.5rem)}
+  .club-rules{list-style:none;display:grid;gap:16px;margin-top:34px;max-width:680px;position:relative;z-index:1}
+  .club-rules li{display:flex;gap:18px;align-items:baseline;font-weight:600;font-size:1.06rem;color:#3a3d35}
+  .club-rules b{font-family:'Russo One';font-weight:400;color:var(--fire);font-size:.92rem;flex:0 0 34px}
+  .club-rules .hard{font-family:'Russo One';letter-spacing:.03em;color:var(--dark)}
+
   /* ===== SKIP LINK ===== */
   .skip{position:absolute;left:-9999px;top:0;background:var(--fire);color:#16100A;font-family:'Russo One';padding:12px 18px;z-index:99;text-decoration:none;text-transform:uppercase;font-size:.85rem}
   .skip:focus{left:0}
@@ -284,6 +291,24 @@
   </div>
 </section>
 
+<!-- ============ ПРАВИЛА КЛУБА ============ -->
+<section class="light rules" id="rules">
+  <div class="wrap">
+  <div class="micro" style="color:#4a4d45">[ УСТАВ · ИСКЛЮЧЕНИЙ НЕТ ]</div>
+  <h2 class="head display">Правила <span>клуба</span></h2>
+  <ol class="club-rules">
+    <li><b>01</b><span>снятое выкладывается.</span></li>
+    <li><b>02</b><span class="hard">СНЯТОЕ. ВЫКЛАДЫВАЕТСЯ.</span></li>
+    <li><b>03</b><span>выложил? сутки не трогаешь, что бы ни казалось.</span></li>
+    <li><b>04</b><span>шестой дубль уходит в мир как есть.</span></li>
+    <li><b>05</b><span>один ролик не решает ничего. решает серия.</span></li>
+    <li><b>06</b><span>ныть на алгоритм можно после 250 роликов.</span></li>
+    <li><b>07</b><span>кривой сегодня сильнее идеального в сентябре.</span></li>
+    <li><b>08</b><span>если ты здесь впервые, сегодня ты снимаешь.</span></li>
+  </ol>
+  </div>
+</section>
+
 <!-- ============ ОФФЕР (розовый блок) ============ -->
 <section class="offer" id="offer">
   <div class="offer-five" aria-hidden="true">5</div>
@@ -369,7 +394,7 @@
   spiral(document.getElementById('spiral1'),'#F0A63C');
   spiral(document.getElementById('spiral2'),'#EFE6D0');
 
-  var targets=document.querySelectorAll('.head,.sub,.sub2,.facts tbody tr,.voice,.five-cta,.offer li,.price-box,.steps li,.doubt,.hero-lead');
+  var targets=document.querySelectorAll('.head,.sub,.sub2,.facts tbody tr,.voice,.five-cta,.offer li,.price-box,.steps li,.doubt,.hero-lead,.club-rules li');
   targets.forEach(function(el,i){el.classList.add('rv');el.style.transitionDelay=(Math.min(i%5,3)*70)+'ms';});
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
