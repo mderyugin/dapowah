@@ -59,8 +59,8 @@
   <div class="sect">Дальше</div>
   <a class="card" href="https://t.me/rowrowbratha"><b>Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
   <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank"><b>🔥 Сайт: «Первые 5»</b><span>кто я, что за программа и сколько стоит</span></a>
-  <button class="card" onclick="razbor()"><b>👊 Пинок за 990 рублей</b><span>экспресс-разбор профиля голосом за 48 часов. Напиши боту слово ПИНОК. Возьмешь потом «Первые 5»? 990 зачтутся</span></button>
-  <button class="card" onclick="razbor()"><b>✍️ Разбор профиля от Максима</b><span>«Первые 5»: разбор профиля, план 5 рилсов и 6 личных встреч. Напиши боту слово РАЗБОР, ответит лично</span></button>
+  <button class="card" onclick="razbor('pinok')"><b>👊 Пинок за 990 рублей</b><span>экспресс-разбор профиля голосом за 48 часов. Напиши боту слово ПИНОК. Возьмешь потом «Первые 5»? 990 зачтутся</span></button>
+  <button class="card" onclick="razbor('razbor')"><b>✍️ Разбор профиля от Максима</b><span>«Первые 5»: разбор профиля, план 5 рилсов и 6 личных встреч. Напиши боту слово РАЗБОР, ответит лично</span></button>
 
   <p style="color:var(--grey);font-size:11.5px;line-height:1.5;margin-top:18px"><a href="../legal/" target="_blank" style="color:var(--grey)">Правила и данные</a>. Стереть свои данные: слово УДАЛИ боту</p>
 </div>
@@ -74,11 +74,13 @@
 <div id="art">
   <span class="back" onclick="artBack()">← Назад</span>
   <div id="artbody"></div>
-  <button class="cta" onclick="razbor()">Хочу разбор от Максима</button>
+  <button class="cta" onclick="razbor('article')">Хочу разбор от Максима</button>
 </div>
 
 <script>
 const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
+const inTG = !!tg?.initDataUnsafe?.user;   // объект WebApp есть и в обычном браузере, отличает нас только initData
+const BOT = "https://t.me/dapowah_bot";
 
 // НОВЫЕ СТАТЬИ ДОБАВЛЯТЬ В НАЧАЛО МАССИВА: хаб показывает первые две как свежие, остальное живет в Библиотеке
 const ARTS = [
@@ -162,7 +164,7 @@ tg?.BackButton?.onClick(()=>{
   else { show('hub'); }
 });
 
-function razbor(){ if(tg){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
+function razbor(src){ if(inTG){tg.close()} else {location.href=BOT+"?start=cab_"+(src||"razbor")} }
 async function club(btn){
   const label=btn?.querySelector('b');const old=label?.textContent;
   if(btn){btn.disabled=true;if(label)label.textContent='Открываю оплату...'}
@@ -173,8 +175,8 @@ async function club(btn){
     else if(j.link){location.href=j.link}
     else{throw 0}
   }catch(e){
-    if(tg?.showAlert){tg.showAlert('Оплата не открылась. Зайди к боту и напиши там слово КЛУБ, он разберется.')}
-    else{location.href="https://t.me/dapowah_bot"}
+    if(inTG&&tg.showAlert){tg.showAlert('Оплата не открылась. Зайди к боту и напиши там слово КЛУБ, он разберется.')}
+    else{location.href=BOT+"?start=cab_club"}
   }finally{
     if(btn){btn.disabled=false;if(label&&old)label.textContent=old}
   }
