@@ -171,6 +171,7 @@ async function club(btn){
   try{
     const r=await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/club",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg?.initData||""})});
     const j=await r.json();
+    if(j.already){const t='Ты уже в Чемпиках, ИИ-Напарник без лимита до '+j.until+'. Второй раз платить не надо';try{tg.showAlert(t)}catch(e2){alert(t)}return}
     if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{})}
     else if(j.link){location.href=j.link}
     else{throw 0}

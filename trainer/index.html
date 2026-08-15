@@ -134,10 +134,27 @@ async function club(){
   try{
     const r=await fetch(API+'/trainer/club',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})});
     const j=await r.json();
-    if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{if(st==='paid')location.reload()})}
+    if(j.already){add('sys','Ты уже в Чемпиках, ИИ-Напарник без лимита до '+j.until+'. Второй раз платить не надо');return}
+    if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{if(st==='paid')waitSub();else if(st==='failed')add('sys','Оплата не прошла, звезды остались у тебя. Попробуй еще раз или напиши боту слово КЛУБ')})}
     else if(j.link){location.href=j.link}
     else{add('sys','Инвойс не собрался. Напиши боту слово КЛУБ')}
   }catch(e){add('sys','Сеть моргнула. Напиши боту слово КЛУБ')}
+}
+
+// оплата и включение доступа идут разными дорогами: статус paid прилетает в мини-апп сразу,
+// а доступ включает вебхук бота, и запись догоняет не мгновенно. Поэтому ждем, а не перезагружаем вслепую
+async function waitSub(){
+  document.getElementById('done').style.display='none';
+  const w=add('sys','Оплата прошла. Включаю доступ, пара секунд');
+  for(let i=0;i<20;i++){
+    await new Promise(r=>setTimeout(r,1500));
+    try{
+      const r=await fetch(API+'/trainer/history',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})});
+      const j=await r.json();
+      if(j.sub){location.reload();return}
+    }catch(e){}
+  }
+  w.textContent='Оплата прошла, доступ уже за тобой. Бывает, он включается с задержкой, закрой Напарника и открой заново из бота. Не появилось за минуту, напиши боту слово КЛУБ';
 }
 
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
