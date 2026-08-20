@@ -52,7 +52,7 @@
 <div class="screen on" id="s-start">
   <div class="kicker">тест на 60 секунд</div>
   <h1>Кто из пятерых<br><span class="ink">держит тебя</span></h1>
-  <p style="margin-top:16px">5 паттернов не дают людям снимать. Обычно рулит один. 6 вопросов, отвечай как чувствуешь, и я назову твоего.</p>
+  <p style="margin-top:16px">Их пятеро. Рулит обычно один. 6 вопросов, отвечай как чувствуешь, и я назову твоего.</p>
   <p class="grey" style="margin-top:10px">Без почты, без регистрации, без «оставьте телефон».</p>
   <button class="btn" onclick="start()">Погнали</button>
 </div>
@@ -170,7 +170,7 @@ function result(){
   const r=R[win];
   const uname=tg?.initDataUnsafe?.user?.first_name||"";
   slides=[
-   `<div class="kicker">твой разбор${uname?", "+uname:""}</div><h2 style="color:var(--grey)">Твой главный:</h2><div class="tagname">${r.name}</div><p class="grey" style="margin-top:14px">исходя из твоих ответов. тапни, покажу, как он работает.</p>`,
+   `<div class="kicker">твой разбор${uname?", "+uname:""}</div><h2 style="color:var(--grey)">Твой главный:</h2><div class="tagname">${r.name}</div><p class="grey" style="margin-top:14px">по твоим ответам. тапни, покажу, как он работает.</p>`,
    `<div class="kicker">как он звучит</div><div class="frame">${r.rep}</div><p>${r.mech}</p>`,
    `<div class="kicker">почему это не «просто характер»</div><p>${r.mech.split(".")[0]}.</p><p class="pf" style="margin-top:16px"><b>По Прессфилду («Война за креатив»)</b><br>${r.pf}</p>`,
    `<div class="kicker">что делать</div><div class="priem"><b>Прием против него</b>${r.priem}</div><p class="grey" style="margin-top:14px">Это действие руками, а не «поверь в себя». Работает с первого раза, если сделать, а не прочитать.</p>`,

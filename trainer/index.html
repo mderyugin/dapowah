@@ -168,7 +168,11 @@ function ammoDraw(){
   document.getElementById('ammo').textContent=left?'▮'.repeat(left):'пусто';
   if(left===0){document.getElementById('bar').style.display='none';document.getElementById('chips').style.display='none';document.getElementById('done').style.display='block'}
 }
-function toRazbor(){ if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot"} }
+async function toRazbor(){
+  // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch
+  try{await fetch(API+'/trainer/razbor',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})})}catch(e){}
+  if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot"}
+}
 
 function welcomeText(j){
   const hi=j.name?`Здорово, ${j.name}.`:"Здорово.";

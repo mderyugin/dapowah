@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Кабинет</title>
+<title>Штаб</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
 <style>
@@ -40,16 +40,16 @@
 <body>
 
 <div id="hub">
-  <div class="kicker">штаб банды Максима</div>
-  <h1>Кабинет</h1>
+  <div class="kicker">здорово, бандит</div>
+  <h1>Штаб</h1>
   <p class="sub">Все бесплатное в одном месте. Без почты и «оставьте телефон».</p>
 
   <div class="sect">Разберись в себе</div>
   <a class="card" href="../trainer/"><b>🤖 ИИ-Напарник</b><span>помощник по рилсам: страх, хуки, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
-  <a class="card" href="../quiz/"><b>⚡ Квиз: кто из пятерых держит тебя</b><span>60 секунд, в конце имя твоего главного врага</span></a>
-  <a class="card" href="https://t.me/rowrowbratha/70"><b>📕 Методичка: 5 паттернов поименно</b><span>реплики и приемы против каждого, PDF</span></a>
+  <a class="card" href="../quiz/"><b>⚡ Тест: кто из пятерых держит тебя</b><span>60 секунд, в конце имя твоего главного врага</span></a>
+  <a class="card" href="https://t.me/rowrowbratha/70"><b>📕 Методичка: все пятеро поименно</b><span>реплики и приемы против каждого, PDF</span></a>
 
-  <div class="sect">Статьи</div>
+  <div class="sect">Приемы</div>
   <div id="list"></div>
 
   <div class="sect">Банда</div>
@@ -62,11 +62,11 @@
   <button class="card" onclick="razbor('pinok')"><b>👊 Пинок за 990 рублей</b><span>экспресс-разбор профиля голосом за 48 часов. Напиши боту слово ПИНОК. Возьмешь потом «Первые 5»? 990 зачтутся</span></button>
   <button class="card" onclick="razbor('razbor')"><b>✍️ Разбор профиля от Максима</b><span>«Первые 5»: разбор профиля, план 5 рилсов и 6 личных встреч. Напиши боту слово РАЗБОР, ответит лично</span></button>
 
-  <p style="color:var(--grey);font-size:11.5px;line-height:1.5;margin-top:18px"><a href="../legal/" target="_blank" style="color:var(--grey)">Правила и данные</a>. Стереть свои данные: слово УДАЛИ боту</p>
+  <p style="color:var(--grey);font-size:11.5px;line-height:1.5;margin-top:18px"><a href="../legal/" target="_blank" style="color:var(--grey)">Правила и данные, без мелкого шрифта</a>. Стереть свои данные: слово УДАЛИ боту</p>
 </div>
 
 <div id="lib">
-  <span class="back" onclick="show('hub')">← Кабинет</span>
+  <span class="back" onclick="show('hub')">← Штаб</span>
   <div class="sect">Библиотека</div>
   <div id="liblist"></div>
 </div>
@@ -74,7 +74,7 @@
 <div id="art">
   <span class="back" onclick="artBack()">← Назад</span>
   <div id="artbody"></div>
-  <button class="cta" onclick="razbor('article')">Хочу разбор от Максима</button>
+  <button class="cta" onclick="razbor('article')">Написать РАЗБОР Максиму</button>
 </div>
 
 <script>
@@ -137,7 +137,7 @@ function artCard(a,i,from){
 const list = document.getElementById('list');
 ARTS.slice(0,2).forEach((a,i)=>list.appendChild(artCard(a,i,'hub')));
 const lb=document.createElement('button');lb.className='card';
-lb.innerHTML=`<b>Библиотека</b><span>все статьи метода, уже ${ARTS.length}, пополняется</span>`;
+lb.innerHTML=`<b>Библиотека</b><span>все приемы метода, уже ${ARTS.length}, пополняется</span>`;
 lb.onclick=()=>show('lib');list.appendChild(lb);
 
 // библиотека: все статьи
