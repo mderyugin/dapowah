@@ -56,7 +56,7 @@
     .hero-cta{width:100%;flex-direction:column;align-items:stretch}
     .hero-cta .cta{padding:16px 12px}
     .hero-cta .cta.ghost{padding:16px 18px}
-    .cta-note{text-align:center;margin:10px auto 0}
+    .cta-note{text-align:center;margin:0 auto 10px}
     .five-cta{justify-content:center}
     .five-cta .cta{flex:1 1 100%}
     .five-note{flex-basis:100%;text-align:center}
@@ -71,11 +71,12 @@
     .hero-spiral{position:absolute;z-index:0;right:-190px;bottom:-200px;width:460px;height:460px;opacity:.14;
                pointer-events:none;animation:spin 22s linear infinite}
   .hero-photo{position:absolute;inset:0 0 0 auto;width:46%;z-index:0;overflow:hidden;pointer-events:none}
+  .hero-photo picture{display:block;width:100%;height:100%}
   .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:46% 8%;
-    filter:saturate(.9) contrast(1.02) brightness(.97);
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%);
     mask-image:linear-gradient(90deg,transparent 0,#000 24%)}
-  @media(max-width:860px){.hero-photo{width:100%;opacity:.72}.hero-photo img{object-position:50% 15%}
+  @media(max-width:860px){.hero-photo{width:100%}.hero-photo img{opacity:.72;object-position:50% 15%}
+    .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,16,12,.55) 0,transparent 35%,transparent 55%,rgba(18,16,12,.82) 100%)}
     .hero h1 .out{color:var(--ink);-webkit-text-stroke:0}}
   .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;position:relative;z-index:3}
   .hero-lead{max-width:44ch;font-size:1.06rem;font-weight:600}
@@ -92,7 +93,8 @@
   .hero .cta.ghost:hover{background:var(--ink);color:var(--dark);border-color:var(--ink)}
   .hero-cta{display:flex;gap:12px;align-items:stretch}
   .hero-cta .cta.ghost{font-size:.82rem;padding:16px 22px}
-  .cta-note{font-family:'Golos Text';font-weight:500;font-size:.85rem;color:var(--ink);max-width:38ch;margin:10px 0 0;text-align:left;background:rgba(18,16,12,.78);padding:8px 12px;display:inline-block}
+  .cta-note{font-family:'Golos Text';font-weight:600;font-size:.85rem;color:var(--ink);max-width:38ch;margin:0 0 10px;text-align:left;background:rgba(18,16,12,.78);padding:8px 12px;display:inline-block}
+  .hero-tag{margin-top:16px;color:var(--amber);position:relative;z-index:2;text-shadow:1px 1px 0 rgba(14,16,13,.6);text-wrap:balance}
   @keyframes spin{to{transform:rotate(360deg)}}
 
   /* ===== SECTION LIGHT (кто я — таблица) ===== */
@@ -219,6 +221,22 @@
   @media (prefers-reduced-motion:reduce){
     .rv{opacity:1;transform:none;transition:none}
     .hero-spiral,.offer-spiral{animation:none}
+    .sticky-cta{transition:none}
+  }
+
+  /* ===== КОНТРАСТ (WCAG AA) ===== */
+  .offer .why{color:rgba(239,230,208,.85)}
+  .light .facts .n,.facts .tag,.club-rules b{color:var(--crimson)}
+  .facts tbody tr:hover .n,.facts tbody tr:hover .tag{color:var(--fire)}
+
+  /* ===== STICKY CTA (мобила) ===== */
+  .sticky-cta{display:none}
+  @media(max-width:860px){
+    .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:95;display:flex;padding:10px 14px;
+      background:rgba(18,16,12,.94);border-top:2px solid var(--fire);
+      transform:translateY(110%);transition:transform .18s cubic-bezier(.2,.9,.3,1)}
+    .sticky-cta.show{transform:none}
+    .sticky-cta .cta{flex:1;padding:15px 12px}
   }
 </style>
 </head>
@@ -227,12 +245,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero">
-  <div class="hero-photo"><img src="me.png" alt="Максим, автор" loading="eager" fetchpriority="high"></div>
+  <div class="hero-photo"><picture><source type="image/webp" srcset="me.webp"><img src="me.png" width="1400" height="1868" alt="Максим, автор" loading="eager" fetchpriority="high"></picture></div>
   <div class="hero-top micro">
     <span>Максим</span>
     <span>пинок здравому смыслу и страхам</span>
-    <a href="https://instagram.com/rowrowbratha" target="_blank" rel="noopener">IG @rowrowbratha</a>
-    <a href="https://t.me/rowrowbratha" target="_blank" rel="noopener">TG-канал</a>
   </div>
 
 
@@ -240,6 +256,7 @@
     <div class="hero-spiral" id="spiral1"></div>
     <svg class="kamina" viewBox="0 0 120 90" aria-hidden="true"><path d="M66 4 L28 50 L52 50 L44 86 L92 34 L64 34 Z" fill="var(--fire)" stroke="var(--fire)" stroke-width="3" stroke-linejoin="round"/></svg>
     <h1>Сломаем<br><span class="out">твой страх</span><br><span class="inkline">камеры</span></h1>
+    <p class="hero-tag micro">«Первые 5» · 5 выложенных рилсов за месяц · 6 личных встреч</p>
   </div>
 
   <div class="hero-bottom">
@@ -248,11 +265,11 @@
       <span class="hand">не веришь в себя? норм. я верю за двоих.</span>
     </p>
     <div>
+      <p class="cta-note">разбор: гляну твой профиль и скажу голосом, где течет и что чинить первым</p>
       <div class="hero-cta">
         <a class="cta" href="https://t.me/dapowah_bot?start=site">Пиши «РАЗБОР»</a>
         <a class="cta ghost" href="cab/">Забрать бесплатное</a>
       </div>
-      <p class="cta-note">разбор: гляну твой профиль и скажу голосом, где течет и что чинить первым</p>
     </div>
   </div>
 </section>
@@ -350,7 +367,7 @@
       <div class="slots" style="font-weight:600">Можно пополам: 5 000 сейчас, 4 990 после третьей встречи.</div>
       <div class="guarantee">Гарантия: прошел все встречи и не выложил ни одного ролика? Верну деньги.</div>
       <div class="slots">Беру мало людей за раз: 6 встреч это 6 моих вечеров. Есть ли место в этом месяце? Жми кнопку и спроси.</div>
-      <a class="cta" href="https://t.me/dapowah_bot?start=site">Пиши «РАЗБОР»</a>
+      <a class="cta" href="https://t.me/dapowah_bot?start=site_price">Пиши «РАЗБОР»</a>
     </div>
   </div>
 
@@ -365,9 +382,9 @@
   <div class="pinok">
     <div>
       <b>А бесплатно есть?</b>
-      <p>Есть. «ИИ-Напарник»: помощник по рилсам, собранный на моем методе и в моем стиле. Знает пятерых поименно, разбирает начало ролика, страхи и цифры. В три ночи тоже отвечает. Первые 5 вопросов бесплатно. Вопросы кончатся раньше, чем страх, и тогда есть «Чемпики»: тот же Напарник без лимита, 399 звезд Telegram в месяц, пароль КЛУБ боту, отмена в два клика. Это нейросеть, не живой я. Живой я по слову РАЗБОР.</p>
+      <p>Есть. «ИИ-Напарник»: помощник по рилсам, собранный на моем методе и в моем стиле. Знает пятерых поименно, разбирает начало ролика, страхи и цифры. В три ночи тоже отвечает. Первые 5 вопросов бесплатно. Это нейросеть, не живой я. Живой я по слову РАЗБОР.</p>
     </div>
-    <a class="cta" href="https://t.me/dapowah_bot?start=site_ai">Спросить ИИ-Напарника</a>
+    <a class="cta ghost" href="https://t.me/dapowah_bot?start=site_ai">Спросить ИИ-Напарника</a>
   </div>
   </div>
 </section>
@@ -387,7 +404,7 @@
 
   <p class="doubt">Сомневаешься? Нормально. Сомнение и есть тот голос, про который весь мой блог. Я знаю цену этой веры: месяцы «подготовки», удаленные ролики, чужие блоги, которые растут.</p>
   <p class="doubt-strong">Ты не обязан быть готовым. Ты обязан только начать.</p>
-  <a class="cta" href="https://t.me/dapowah_bot?start=site">Погнали</a>
+  <a class="cta" id="cta-final" href="https://t.me/dapowah_bot?start=site_final">Погнали</a>
 
   <footer class="micro">
     <span>Максим · rowrowbratha</span>
@@ -396,6 +413,8 @@
   </footer>
   </div>
 </section>
+
+<div class="sticky-cta"><a class="cta" href="https://t.me/dapowah_bot?start=site_sticky">Пиши «РАЗБОР»</a></div>
 
 <script>
 (function(){
@@ -410,6 +429,16 @@
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
     targets.forEach(function(el){io.observe(el);});
   } else {targets.forEach(function(el){el.classList.add('in');});}
+
+  var bar=document.querySelector('.sticky-cta');
+  if(bar&&'IntersectionObserver' in window){
+    var heroEl=document.querySelector('.hero'),priceEl=document.querySelector('.price-box'),finalEl=document.getElementById('cta-final');
+    var heroOut=false,priceIn=false,finalIn=false;
+    var upd=function(){bar.classList.toggle('show',heroOut&&!priceIn&&!finalIn);};
+    new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting;upd();}).observe(heroEl);
+    new IntersectionObserver(function(e){priceIn=e[0].isIntersecting;upd();}).observe(priceEl);
+    if(finalEl){new IntersectionObserver(function(e){finalIn=e[0].isIntersecting;upd();}).observe(finalEl);}
+  }
 })();
 </script>
 </body>
