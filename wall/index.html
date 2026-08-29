@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Стена бойцов</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -49,7 +50,7 @@ async function load(){
     list.innerHTML='';
     j.wall.forEach((b,i)=>{
       const d=document.createElement('div');d.className='row';d.style.animationDelay=Math.min(i*40,600)+'ms';
-      d.innerHTML='<div class="n">'+(i+1)+'</div><div class="who"><b>'+esc(b.n)+'</b><span>'+esc(b.r)+'</span></div><div class="sc">'+b.f+'</div>';
+      d.innerHTML='<div class="n">'+(i+1)+'</div><div class="who"><b>'+esc(b.n)+'</b><span>'+esc(b.r)+'</span></div><div class="sc">'+esc(b.f)+'</div>';
       list.appendChild(d);
     });
   }catch(e){document.getElementById('list').innerHTML='<p class="empty">Сеть моргнула. Закрой и открой заново.</p>'}

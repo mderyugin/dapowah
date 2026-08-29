@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><title>Бот Максима</title>
 <script>
-const src = new URLSearchParams(location.search).get("s") || "link";
+const src = (new URLSearchParams(location.search).get("s") || "link").replace(/[^A-Za-z0-9_-]/g, "");
 location.replace("https://t.me/dapowah_bot?start=" + src);
 </script>
 <meta http-equiv="refresh" content="1;url=https://t.me/dapowah_bot">

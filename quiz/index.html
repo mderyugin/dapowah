@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Кто из пятерых держит тебя</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -74,6 +75,7 @@
 
 <script>
 const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
 // спираль
 function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
@@ -168,7 +170,7 @@ function result(){
   // пиксель: анонимно считаем прохождение по паттерну (один раз на результат)
   try{fetch(API+"/quiz/hit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({p:win}),keepalive:true})}catch(e){}
   const r=R[win];
-  const uname=tg?.initDataUnsafe?.user?.first_name||"";
+  const uname=esc(tg?.initDataUnsafe?.user?.first_name||"");
   slides=[
    `<div class="kicker">твой разбор${uname?", "+uname:""}</div><h2 style="color:var(--grey)">Твой главный:</h2><div class="tagname">${r.name}</div><p class="grey" style="margin-top:14px">по твоим ответам. тапни, покажу, как он работает.</p>`,
    `<div class="kicker">как он звучит</div><div class="frame">${r.rep}</div><p>${r.mech}</p>`,
