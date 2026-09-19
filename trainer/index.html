@@ -136,10 +136,10 @@ async function club(){
     const r=await fetch(API+'/trainer/club',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})});
     const j=await r.json();
     if(j.already){add('sys','У тебя уже ИИ-Напарник без лимита до '+j.until+'. Второй раз платить не надо');return}
-    if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{if(st==='paid')waitSub();else if(st==='failed')add('sys','Оплата не прошла, звезды остались у тебя. Попробуй еще раз или напиши боту слово КЛУБ')})}
+    if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{if(st==='paid')waitSub();else if(st==='failed')add('sys','Оплата не прошла, звезды остались у тебя. Попробуй еще раз или напиши боту слово НАПАРНИК')})}
     else if(j.link){location.href=j.link}
-    else{add('sys','Инвойс не собрался. Напиши боту слово КЛУБ')}
-  }catch(e){add('sys','Сеть моргнула. Напиши боту слово КЛУБ')}
+    else{add('sys','Инвойс не собрался. Напиши боту слово НАПАРНИК')}
+  }catch(e){add('sys','Сеть моргнула. Напиши боту слово НАПАРНИК')}
 }
 
 // оплата и включение доступа идут разными дорогами: статус paid прилетает в мини-апп сразу,
@@ -155,7 +155,7 @@ async function waitSub(){
       if(j.sub){location.reload();return}
     }catch(e){}
   }
-  w.textContent='Оплата прошла, доступ уже за тобой. Бывает, он включается с задержкой, закрой Напарника и открой заново из бота. Не появилось за минуту, напиши боту слово КЛУБ';
+  w.textContent='Оплата прошла, доступ уже за тобой. Бывает, он включается с задержкой, закрой Напарника и открой заново из бота. Не появилось за минуту, напиши боту слово НАПАРНИК';
 }
 
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -164,7 +164,7 @@ function add(cls, text){
   chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;
 }
 function ammoDraw(){
-  if(SUB){document.getElementById('ammo').textContent='∞ клуб';return}
+  if(SUB){document.getElementById('ammo').textContent='∞ без лимита';return}
   const left=Math.max(0,LIMIT-used);
   document.getElementById('ammo').textContent=left?'▮'.repeat(left):'пусто';
   if(left===0){document.getElementById('bar').style.display='none';document.getElementById('chips').style.display='none';document.getElementById('done').style.display='block'}
@@ -190,7 +190,7 @@ async function init(){
     const j=await r.json();
     if(j.error){add('sys','Не пустило: открой ИИ-Напарника заново из бота');return}
     LIMIT=j.limit;used=j.used;SUB=!!j.sub;
-    const who=[j.name,SUB?'клуб':null,j.fights>0?`${j.rank} · счет ${j.fights}:0`:null].filter(Boolean).join(' · ');
+    const who=[j.name,SUB?'без лимита':null,j.fights>0?`${j.rank} · счет ${j.fights}:0`:null].filter(Boolean).join(' · ');
     if(who){const w=document.getElementById('who');w.textContent=who;w.style.display='block'}
     if(j.hist&&j.hist.length){for(const m of j.hist)add(m.role==='user'?'me':'bot',m.content)}
     else add('bot',welcomeText(j));
