@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Штаб</title>
+<title>Ранчо</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
 <style>
@@ -42,7 +42,7 @@
 
 <div id="hub">
   <div class="kicker">здорово, бандит</div>
-  <h1>Штаб</h1>
+  <h1>Ранчо</h1>
   <p class="sub">Все бесплатное в одном месте. Без почты и «оставьте телефон».</p>
 
   <div class="sect">Разберись в себе</div>
@@ -55,7 +55,7 @@
 
   <div class="sect">Банда</div>
   <a class="card" href="../wall/"><b>Стена бойцов</b><span>кто уже вышел из штиля и сколько боев выиграл</span></a>
-  <button class="card" onclick="club(this)"><b>🔓 Ранчо: ИИ-Напарник без лимита</b><span>клуб, где потолок в 5 бесплатных вопросов снят. 399 звезд в месяц, отмена в два клика</span></button>
+  <button class="card" onclick="club(this)"><b>🔓 ИИ-Напарник без лимита</b><span>клуб, где потолок в 5 бесплатных вопросов снят. 399 звезд в месяц, отмена в два клика</span></button>
 
   <div class="sect">Дальше</div>
   <a class="card" href="https://t.me/rowrowbratha"><b>Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
@@ -67,7 +67,7 @@
 </div>
 
 <div id="lib">
-  <span class="back" onclick="show('hub')">← Штаб</span>
+  <span class="back" onclick="show('hub')">← Ранчо</span>
   <div class="sect">Библиотека</div>
   <div id="liblist"></div>
 </div>
@@ -172,7 +172,7 @@ async function club(btn){
   try{
     const r=await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/club",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg?.initData||""})});
     const j=await r.json();
-    if(j.already){const t='Ты уже на Ранчо, ИИ-Напарник без лимита до '+j.until+'. Второй раз платить не надо';try{tg.showAlert(t)}catch(e2){alert(t)}return}
+    if(j.already){const t='У тебя уже ИИ-Напарник без лимита до '+j.until+'. Второй раз платить не надо';try{tg.showAlert(t)}catch(e2){alert(t)}return}
     if(j.link&&tg?.openInvoice){tg.openInvoice(j.link,st=>{})}
     else if(j.link){location.href=j.link}
     else{throw 0}
