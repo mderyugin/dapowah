@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Максим | Сломаем твой страх камеры. «Первые 5»</title>
-<meta name="description" content="Боишься снимать? «Первые 5»: с мертвого профиля до 5 выложенных рилсов за месяц. По-братски, без мотивационного сиропа.">
+<title>Максим | Сломаем твой страх камеры</title>
+<meta name="description" content="Три продукта Максима по 7 дней: «Что подумают», «Потом», «Не живу, а существую». Покупаешь и проходишь сам в Telegram, без созвонов. Плюс бесплатно: квиз, методичка, ИИ-Напарник.">
 <link rel="canonical" href="https://mderyugin.github.io/dapowah/">
 <meta name="theme-color" content="#12100C">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Сломаем твой страх камеры">
-<meta property="og:description" content="«Первые 5»: с мертвого профиля до 5 выложенных рилсов за месяц. 6 личных встреч. Гарантия.">
+<meta property="og:description" content="Три продукта по 7 дней: «Что подумают», «Потом», «Не живу, а существую». Покупаешь и проходишь сам, без созвонов.">
 <meta property="og:url" content="https://mderyugin.github.io/dapowah/">
 <meta property="og:image" content="https://mderyugin.github.io/dapowah/og.png">
 <meta property="og:image:width" content="1200">
@@ -185,6 +185,14 @@
   .price small{font-family:'Golos Text';font-size:.85rem;font-weight:600;display:block;letter-spacing:0;text-transform:none}
   .guarantee{font-size:.92rem;font-weight:600;border-top:2px solid var(--ink);padding-top:10px}
   .offer .cta:hover{background:var(--ink);color:var(--dark)}
+  .prods{display:grid;gap:16px;position:relative;z-index:1;margin-top:8px}
+  .prod{border:3px solid var(--ink);padding:22px 24px;display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:center;background:rgba(18,16,12,.18)}
+  .prod-n{font-family:'Russo One';font-size:2rem;color:var(--amber);line-height:1}
+  .prod b{font-family:'Russo One';font-weight:400;text-transform:uppercase;font-size:clamp(1.2rem,2.4vw,1.6rem);display:block;margin-bottom:6px;letter-spacing:.01em}
+  .prod p{font-size:.98rem;font-weight:600;max-width:60ch}
+  .prod .cta{white-space:nowrap}
+  .prods-note{margin-top:16px;font-family:'Underdog',cursive;color:var(--amber);font-size:1.05rem;position:relative;z-index:1}
+  @media(max-width:760px){.prod{grid-template-columns:1fr;gap:10px}.prod-n{font-size:1.4rem}.prod .cta{width:100%}}
   .offer-spiral{position:absolute;right:-140px;top:-140px;width:420px;height:420px;opacity:.10;pointer-events:none;animation:spin 26s linear infinite}
 
   /* ===== STEPS / FINAL (dark) ===== */
@@ -242,7 +250,7 @@
 </style>
 </head>
 <body>
-<a class="skip" href="#offer">К программе «Первые 5»</a>
+<a class="skip" href="#offer">К продуктам</a>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
@@ -259,7 +267,7 @@
     <div class="hero-spiral" id="spiral1"></div>
     <svg class="kamina" viewBox="0 0 120 90" aria-hidden="true"><path d="M66 4 L28 50 L52 50 L44 86 L92 34 L64 34 Z" fill="var(--fire)" stroke="var(--fire)" stroke-width="3" stroke-linejoin="round"/></svg>
     <h1>Сломаем<br><span class="out">твой страх</span><br><span class="inkline">камеры</span></h1>
-    <p class="hero-tag micro">«Первые 5» · 5 выложенных рилсов за месяц · 6 личных встреч</p>
+    <p class="hero-tag micro">три продукта по 7 дней · покупаешь и проходишь сам · без созвонов</p>
   </div>
 
   <div class="hero-bottom">
@@ -268,9 +276,9 @@
       <span class="hand">не веришь в себя? норм. я верю за двоих.</span>
     </p>
     <div>
-      <p class="cta-note">разбор: гляну твой профиль и скажу голосом, где течет и что чинить первым</p>
+      <p class="cta-note">«Что подумают», «Потом», «Не живу, а существую»: отметь свой, и бот пришлет его первым в день выхода</p>
       <div class="hero-cta">
-        <a class="cta" href="https://t.me/dapowah_bot?start=site">Пиши «РАЗБОР»</a>
+        <a class="cta" href="#offer">Три продукта</a>
         <a class="cta ghost" href="cab/">Забрать бесплатное</a>
       </div>
     </div>
@@ -338,54 +346,38 @@
   </div>
 </section>
 
-<!-- ============ ОФФЕР (розовый блок) ============ -->
+<!-- ============ ПРОДУКТЫ (бывший оффер «Первые 5», личная работа закрыта 10.10.2026) ============ -->
 <section class="offer" id="offer">
-  <div class="offer-five" aria-hidden="true">5</div>
+  <div class="offer-five" aria-hidden="true">3</div>
   <div class="offer-spiral" id="spiral2"></div>
   <div class="wrap">
   <div class="micro" style="color:rgba(232,228,216,.75)">[ SIDE B · ЗА ДЕНЬГИ ]</div>
-  <div class="offer-grid">
-    <div class="offer-left">
-    <h2 class="head display">Первые <span class="out">5</span></h2>
-    <p class="sub">5 выложенных рилсов за месяц и система, по которой снимаешь сам</p>
-    <p class="why">Тебе будут говорить, что страх камеры это нормально и со временем пройдет. Сам он не проходит. Мы не ждем, мы снимаем 5 роликов за месяц.</p>
-    <ul>
-      <li>Разбор профиля как тестировщик: где течет в шапке, первых секундах и первых кадрах, с точными правками</li>
-      <li>Находим твою тему и твоего зрителя, чтобы это был ты, а не косплей чужого блога</li>
-      <li>Готовый план 5 рилсов: тема, первые секунды и структура каждого. Тебе остается нажать «запись»</li>
-      <li>6 личных встреч: один разбор и по встрече на каждый ролик, пока не начнешь снимать сам</li>
-    </ul>
-    <div class="bonus">
-      <div class="bonus-title">Бонусом сверху</div>
-      <ul>
-      <li>2 недели поддержки в личке после шестой встречи, чтобы ты не пропал, когда программа кончится</li>
-      <li>Разбор цифр твоих первых роликов: смотрим, на какой секунде тебя бросают, чиним следующие</li>
-      <li>Банк 15 идей под твою тему, чтобы было что снимать дальше</li>
-      </ul>
+  <h2 class="head display">Три <span class="out">продукта</span></h2>
+  <p class="sub">7 дней каждый. Покупаешь сам, проходишь сам, прямо в Telegram</p>
+  <p class="why">Голос «не сейчас» держит тебя не только у камеры. Он же решает, что подумают свои, что подождет до понедельника и зачем вообще все это. Внутри то, через что я прошел сам, и выжимка из книг по теме. В день одно короткое чтение и одно дело минут на 10.</p>
+  <div class="prods">
+    <div class="prod">
+      <span class="prod-n">01</span>
+      <div><b>«Что подумают»</b><p>Для тех, кто перед каждым шагом прикидывает, что скажут свои: родня, коллеги, бывшие одноклассники. Новая куртка, ролик, увольнение, неважно что.</p></div>
+      <a class="cta" href="https://t.me/dapowah_bot?start=wait_chto">Хочу первым</a>
     </div>
+    <div class="prod">
+      <span class="prod-n">02</span>
+      <div><b>«Потом»</b><p>Для тех, у кого важное дело лежит месяцами, а день уходит на мелочи и ленту. Разберешь, почему ты откладываешь именно его, и сдвинешь с места.</p></div>
+      <a class="cta" href="https://t.me/dapowah_bot?start=wait_potom">Хочу первым</a>
     </div>
-    <div class="price-box">
-      <div class="price">9 990 <span class="rub">₽</span><small>6 встреч один на один · без марафонов</small></div>
-      <div class="permeet">выходит 1 665 рублей за встречу</div>
-      <div class="slots" style="font-weight:600">Можно пополам: 5 000 сейчас, 4 990 после третьей встречи.</div>
-      <div class="guarantee">Гарантия: прошел все встречи и не выложил ни одного ролика? Верну деньги.</div>
-      <div class="slots">Беру мало людей за раз: 6 встреч это 6 моих вечеров. Есть ли место в этом месяце? Жми кнопку и спроси.</div>
-      <a class="cta" href="https://t.me/dapowah_bot?start=site_price">Пиши «РАЗБОР»</a>
+    <div class="prod">
+      <span class="prod-n">03</span>
+      <div><b>«Не живу, а существую»</b><p>Для тех, кто живет на автопилоте: работа, дом, лента, и непонятно, чего хочется. Найдешь, что тебе правда нужно, без сказок про предназначение.</p></div>
+      <a class="cta" href="https://t.me/dapowah_bot?start=wait_zhivu">Хочу первым</a>
     </div>
   </div>
-
-  <div class="pinok">
-    <div>
-      <b>Не готов к «Первым 5»?</b>
-      <p>Возьми «Пинок» за 990 ₽: экспресс-разбор твоего профиля голосом, три точные правки и план первого ролика. За 48 часов. Решишь взять «Первые 5» в течение месяца? Эти 990 зачту.</p>
-    </div>
-    <a class="cta" href="https://t.me/dapowah_bot?start=pinok">Пиши «ПИНОК»</a>
-  </div>
+  <p class="prods-note">Продукты в работе. Жми «Хочу первым»: бот запомнит и пришлет тебе первым, как только выйдет.</p>
 
   <div class="pinok">
     <div>
       <b>А бесплатно есть?</b>
-      <p>Есть. «ИИ-Напарник»: помощник по рилсам, собранный на моем методе и в моем стиле. Знает пятерых поименно, разбирает начало ролика, страхи и цифры. В три ночи тоже отвечает. Первые 5 вопросов бесплатно. Это нейросеть, не живой я. Живой я по слову РАЗБОР.</p>
+      <p>Есть. «ИИ-Напарник»: помощник по рилсам, собранный на моем методе и в моем стиле. Знает пятерых поименно, разбирает начало ролика, страхи и цифры. В три ночи тоже отвечает. Первые 5 вопросов бесплатно. Это нейросеть, не живой я.</p>
     </div>
     <a class="cta ghost" href="https://t.me/dapowah_bot?start=site_ai">Спросить ИИ-Напарника</a>
   </div>
@@ -395,14 +387,14 @@
 <!-- ============ КАК ПРОХОДИТ + ФИНАЛ ============ -->
 <section class="final">
   <div class="wrap">
-  <div class="micro" style="color:var(--grey)">[ 6 ВСТРЕЧ · БЕЗ МАРАФОНОВ ]</div>
+  <div class="micro" style="color:var(--grey)">[ 7 ДНЕЙ · БЕЗ СОЗВОНОВ ]</div>
   <h2 class="head display">Как это <span>проходит</span></h2>
   <ol class="steps">
-    <li>Пишешь «РАЗБОР» боту и отвечаешь на три коротких вопроса о себе</li>
-    <li>Смотрю профиль до созвона, выписываю, что бросается в глаза</li>
-    <li>Первый ролик выходит уже на первой встрече. Барьер падает сразу</li>
-    <li>Все, что решаем, отправляю текстом. Ничего не теряется</li>
-    <li>Через пару дней спрошу: «ну что, снял?» И это сработает</li>
+    <li>Жмешь «Хочу первым» под своим продуктом, бот запоминает</li>
+    <li>В день выхода бот присылает его тебе первым</li>
+    <li>Платишь один раз прямо в Telegram</li>
+    <li>День 1 приходит сразу, дальше по дню в сутки</li>
+    <li>Каждый день: короткое чтение и одно дело минут на 10</li>
   </ol>
 
   <p class="doubt">Сомневаешься? Нормально. Сомнение и есть тот голос, про который весь мой блог. Я знаю цену этой веры: месяцы «подготовки», удаленные ролики, чужие блоги, которые растут.</p>
@@ -412,12 +404,12 @@
   <footer class="micro">
     <span>Максим · rowrowbratha</span>
     <span><a href="https://instagram.com/rowrowbratha">Instagram</a> · <a href="https://t.me/rowrowbratha">Telegram-канал</a> · <a href="legal/">Правила и данные, без мелкого шрифта</a></span>
-    <span>отзывы · только реальные, с первыми клиентами</span>
+    <span>отзывы · только реальные, с первыми покупателями</span>
   </footer>
   </div>
 </section>
 
-<div class="sticky-cta"><a class="cta" href="https://t.me/dapowah_bot?start=site_sticky">Пиши «РАЗБОР»</a></div>
+<div class="sticky-cta"><a class="cta" href="#offer">Три продукта</a></div>
 
 <script>
 (function(){

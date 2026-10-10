@@ -176,9 +176,9 @@ function result(){
    `<div class="kicker">как он звучит</div><div class="frame">${r.rep}</div><p>${r.mech}</p>`,
    `<div class="kicker">почему это не «просто характер»</div><p>${r.mech.split(".")[0]}.</p><p class="pf" style="margin-top:16px"><b>По Прессфилду («Война за креатив»)</b><br>${r.pf}</p>`,
    `<div class="kicker">что делать</div><div class="priem"><b>Прием против него</b>${r.priem}</div><p class="grey" style="margin-top:14px">Это действие руками, а не «поверь в себя». Работает с первого раза, если сделать, а не прочитать.</p>`,
-   `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они ходят вместе</h2><p>Все пятеро, поименно и с приемами, собраны в методичке. А какие рулят именно у тебя и в каком порядке их ломать, Максим разбирает лично.</p>
+   `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они ходят вместе</h2><p>Все пятеро, поименно и с приемами, собраны в методичке. А если этот голос мешает не только у камеры, у Максима в работе три продукта по 7 дней.</p>
     <div class="cta-stack">
-      <button class="btn" style="border:0;cursor:pointer" onclick="askRazbor()">Написать РАЗБОР Максиму</button>
+      <button class="btn" style="border:0;cursor:pointer" onclick="prods()">Три продукта Максима</button>
       <button class="cta2" style="background:none;cursor:pointer" onclick="share()">Забрать карточку в сторис</button>
       <a class="cta2" style="text-decoration:none;text-align:center" href="https://t.me/rowrowbratha/70">Методичка: все пятеро</a>
     </div>`
@@ -226,6 +226,11 @@ function wrap(x,t,cx,cy,max,lh){
   const w=t.split(' ');let line='',y=cy;
   for(const word of w){const test=line+word+' ';if(x.measureText(test).width>max&&line){x.fillText(line.trim(),cx,y);line=word+' ';y+=lh}else line=test}
   x.fillText(line.trim(),cx,y);
+}
+async function prods(){
+  // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch
+  if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/prods",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData})})}catch(e){} tg.close()}
+  else location.href="https://t.me/dapowah_bot?start=prods";
 }
 function askRazbor(){
   // диагноз уезжает в бота: /start quiz_<паттерн>, Максим видит врага человека в заявке

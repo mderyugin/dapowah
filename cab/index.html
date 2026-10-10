@@ -59,9 +59,8 @@
 
   <div class="sect">Дальше</div>
   <a class="card" href="https://t.me/rowrowbratha"><b>Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
-  <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank" rel="noopener"><b>🔥 Сайт: «Первые 5»</b><span>кто я, что за программа и сколько стоит</span></a>
-  <button class="card" onclick="razbor('pinok')"><b>👊 Пинок за 990 рублей</b><span>экспресс-разбор профиля голосом за 48 часов. Напиши боту слово ПИНОК. Возьмешь потом «Первые 5»? 990 зачтутся</span></button>
-  <button class="card" onclick="razbor('razbor')"><b>✍️ Разбор профиля от Максима</b><span>«Первые 5»: разбор профиля, план 5 рилсов и 6 личных встреч. Напиши боту слово РАЗБОР, ответит лично</span></button>
+  <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank" rel="noopener"><b>🔥 Сайт</b><span>кто я и что за продукты</span></a>
+  <button class="card" onclick="prods()"><b>⚡ Три продукта Максима</b><span>«Что подумают», «Потом», «Не живу, а существую». 7 дней каждый, проходишь сам. Отметь свой, пришлю первым</span></button>
 
   <p style="color:var(--grey);font-size:11.5px;line-height:1.5;margin-top:18px"><a href="../legal/" target="_blank" style="color:var(--grey)">Правила и данные, без мелкого шрифта</a>. Стереть свои данные: слово УДАЛИ боту</p>
 </div>
@@ -75,7 +74,7 @@
 <div id="art">
   <span class="back" onclick="artBack()">← Назад</span>
   <div id="artbody"></div>
-  <button class="cta" onclick="razbor('article')">Написать РАЗБОР Максиму</button>
+  <button class="cta" onclick="prods()">Три продукта Максима</button>
 </div>
 
 <script>
@@ -165,7 +164,11 @@ tg?.BackButton?.onClick(()=>{
   else { show('hub'); }
 });
 
-function razbor(src){ if(inTG){tg.close()} else {location.href=BOT+"?start=cab_"+(src||"razbor")} }
+async function prods(){
+  // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch
+  if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/prods",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData})})}catch(e){} tg.close()}
+  else location.href="https://t.me/dapowah_bot?start=prods";
+}
 async function club(btn){
   const label=btn?.querySelector('b');const old=label?.textContent;
   if(btn){btn.disabled=true;if(label)label.textContent='Открываю оплату...'}
