@@ -180,7 +180,7 @@ function result(){
     <div class="cta-stack">
       <button class="btn" style="border:0;cursor:pointer" onclick="prods()">Три продукта Максима</button>
       <button class="cta2" style="background:none;cursor:pointer" onclick="share()">Забрать карточку в сторис</button>
-      <a class="cta2" style="text-decoration:none;text-align:center" href="https://t.me/rowrowbratha/70">Методичка: все пятеро</a>
+      <button class="cta2" style="background:none;cursor:pointer" onclick="pdf('five')">Методичка: все пятеро</button>
     </div>`
   ];
   si=0;renderSlide();show('s-res');
@@ -226,6 +226,11 @@ function wrap(x,t,cx,cy,max,lh){
   const w=t.split(' ');let line='',y=cy;
   for(const word of w){const test=line+word+' ';if(x.measureText(test).width>max&&line){x.fillText(line.trim(),cx,y);line=word+' ';y+=lh}else line=test}
   x.fillText(line.trim(),cx,y);
+}
+async function pdf(slug){
+  // в телеге: бот присылает файл в чат, окно закрывается; в браузере: в бота со старт-меткой
+  if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/pdf",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,slug})})}catch(e){} tg.close()}
+  else location.href="https://t.me/dapowah_bot?start=pdf_"+slug;
 }
 async function prods(){
   // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch

@@ -48,9 +48,9 @@
   <div class="sect">Разберись в себе</div>
   <a class="card" href="../trainer/"><b>🤖 ИИ-Напарник</b><span>помощник по рилсам: страх, хуки, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
   <a class="card" href="../quiz/"><b>⚡ Тест: кто из пятерых держит тебя</b><span>60 секунд, в конце имя твоего главного врага</span></a>
-  <a class="card" href="https://t.me/rowrowbratha/70"><b>📕 Методичка: все пятеро поименно</b><span>реплики и приемы против каждого, PDF</span></a>
-  <a class="card" href="https://t.me/rowrowbratha/67"><b>📄 Чек-лист: первые 3 секунды</b><span>проверь ролик до публикации, PDF на одну страницу</span></a>
-  <a class="card" href="https://t.me/rowrowbratha/66"><b>📄 Если пришел хейт</b><span>что делать с первым злым комментом, PDF</span></a>
+  <button class="card" onclick="pdf('five')"><b>📕 Методичка: все пятеро поименно</b><span>реплики и приемы против каждого, PDF придет в чат</span></button>
+  <button class="card" onclick="pdf('chek')"><b>📄 Чек-лист: первые 3 секунды</b><span>проверь ролик до публикации, PDF придет в чат</span></button>
+  <button class="card" onclick="pdf('hate')"><b>📄 Если пришел хейт</b><span>что делать с первым злым комментом, PDF придет в чат</span></button>
 
   <div class="sect">Приемы</div>
   <div id="list"></div>
@@ -60,7 +60,6 @@
   <button class="card" onclick="club(this)"><b>🔓 ИИ-Напарник без лимита</b><span>потолок в 5 бесплатных вопросов снят. 399 звезд в месяц, отмена в два клика</span></button>
 
   <div class="sect">Дальше</div>
-  <a class="card" href="https://t.me/rowrowbratha"><b>Канал</b><span>разборы, дубли, цифры и провалы, все живое</span></a>
   <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank" rel="noopener"><b>🔥 Сайт</b><span>кто я и что за продукты</span></a>
   <button class="card" onclick="prods()"><b>⚡ Три продукта Максима</b><span>«Что подумают», «Потом», «Не живу, а существую». 7 дней каждый, проходишь сам. Отметь свой, пришлю первым</span></button>
 
@@ -126,7 +125,7 @@ const ARTS = [
   h:`<h2>Первые 3 секунды</h2>
   <p>Человеку нужно примерно 1.7 секунды, чтобы решить: смотреть или листать. Если удержание на третьей секунде ниже 40%, ролик мертв, что бы ни было дальше.</p>
   <div class="do"><b>Чек-лист хука</b>1. Суть в первой секунде? Никаких «всем привет».<br>2. Плашка сделана утверждением до 4 слов? Вопрос = чтение = пролист.<br>3. Первый кадр живой? Лицо, энергия, глаза в объектив.<br>4. Одна мысль на ролик?<br>5. Хук про зрителя, а не «я расскажу»?</div>
-  <p>Все пять «да»? Выкладывай. Хоть одно «нет»? Чини вход, не тело ролика. Полная методичка с лестницей и пятеркой паттернов лежит в канале по тегу #rowrow_PDF.</p>`}
+  <p>Все пять «да»? Выкладывай. Хоть одно «нет»? Чини вход, не тело ролика. Полная методичка с лестницей и пятеркой паттернов лежит здесь же, в Ранчо.</p>`}
 ];
 
 function artCard(a,i,from){
@@ -166,6 +165,11 @@ tg?.BackButton?.onClick(()=>{
   else { show('hub'); }
 });
 
+async function pdf(slug){
+  // в телеге: бот присылает файл в чат, окно закрывается; в браузере: в бота со старт-меткой
+  if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/pdf",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,slug})})}catch(e){} tg.close()}
+  else location.href="https://t.me/dapowah_bot?start=pdf_"+slug;
+}
 async function prods(){
   // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch
   if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/prods",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData})})}catch(e){} tg.close()}

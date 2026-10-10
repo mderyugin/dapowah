@@ -110,7 +110,7 @@
   <p style="color:#9BA093;font-size:11px;margin:0 0 8px;text-align:center">Продлевается сам, отмена в два клика в настройках Telegram</p>
   <div class="row">
     <button class="cta-line" onclick="toProds()">Продукты</button>
-    <a class="cta-line" href="https://t.me/rowrowbratha">Канал</a>
+    <button class="cta-line" onclick="pdf('five')">Методичка</button>
   </div>
 </div>
 
@@ -168,6 +168,11 @@ function ammoDraw(){
   const left=Math.max(0,LIMIT-used);
   document.getElementById('ammo').textContent=left?'▮'.repeat(left):'пусто';
   if(left===0){document.getElementById('bar').style.display='none';document.getElementById('chips').style.display='none';document.getElementById('done').style.display='block'}
+}
+async function pdf(slug){
+  // в телеге: бот присылает файл в чат, окно закрывается; в браузере: в бота со старт-меткой
+  if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/pdf",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,slug})})}catch(e){} tg.close()}
+  else location.href="https://t.me/dapowah_bot?start=pdf_"+slug;
 }
 async function toProds(){
   try{await fetch(API+'/trainer/prods',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})})}catch(e){}

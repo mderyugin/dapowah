@@ -259,7 +259,7 @@
     <span>Максим</span>
     <span>пинок здравому смыслу и страхам</span>
     <a href="https://instagram.com/rowrowbratha" target="_blank" rel="noopener">IG @rowrowbratha</a>
-    <a href="https://t.me/rowrowbratha" target="_blank" rel="noopener">TG-канал</a>
+    <a href="https://t.me/dapowah_bot?start=site_top" target="_blank" rel="noopener">TG-бот</a>
   </div>
 
 
@@ -322,7 +322,7 @@
   </div>
   <div class="five-cta">
     <a class="cta" href="quiz/">Тест: кто держит тебя</a>
-    <a class="cta ghost" href="https://t.me/rowrowbratha/70">Методичка против пятерых</a>
+    <a class="cta ghost" href="https://t.me/dapowah_bot?start=pdf_five">Методичка против пятерых</a>
     <span class="five-note">60 секунд · бесплатно · в конце имя твоего</span>
   </div>
   </div>
@@ -403,7 +403,7 @@
 
   <footer class="micro">
     <span>Максим · rowrowbratha</span>
-    <span><a href="https://instagram.com/rowrowbratha">Instagram</a> · <a href="https://t.me/rowrowbratha">Telegram-канал</a> · <a href="legal/">Правила и данные, без мелкого шрифта</a></span>
+    <span><a href="https://instagram.com/rowrowbratha">Instagram</a> · <a href="https://t.me/dapowah_bot">Telegram-бот</a> · <a href="legal/">Правила и данные, без мелкого шрифта</a></span>
     <span>отзывы · только реальные, с первыми покупателями</span>
   </footer>
   </div>
@@ -427,11 +427,11 @@
 
   var bar=document.querySelector('.sticky-cta');
   if(bar&&'IntersectionObserver' in window){
-    var heroEl=document.querySelector('.hero'),priceEl=document.querySelector('.price-box'),finalEl=document.getElementById('cta-final');
+    var heroEl=document.querySelector('.hero'),priceEl=document.querySelector('.prods'),finalEl=document.getElementById('cta-final');
     var heroOut=false,priceIn=false,finalIn=false;
     var upd=function(){bar.classList.toggle('show',heroOut&&!priceIn&&!finalIn);};
     new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting;upd();}).observe(heroEl);
-    new IntersectionObserver(function(e){priceIn=e[0].isIntersecting;upd();}).observe(priceEl);
+    if(priceEl){new IntersectionObserver(function(e){priceIn=e[0].isIntersecting;upd();}).observe(priceEl);}
     if(finalEl){new IntersectionObserver(function(e){finalIn=e[0].isIntersecting;upd();}).observe(finalEl);}
   }
 })();
