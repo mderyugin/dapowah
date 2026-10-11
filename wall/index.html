@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Стена бойцов</title>
+<title>Доска легенд</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -44,10 +44,10 @@
 </head>
 <body>
 <div class="spiral" id="sp"></div>
-<div class="kicker">кто уже в бою</div>
-<h1>Стена бойцов</h1>
-<p class="sub">Все, кто вышел из штиля. Тут не рейтинг: тут те, кто перестал молчать.</p>
-<div id="list"><p class="empty">Собираю стену...</p></div>
+<div class="kicker">кто уже выкладывает</div>
+<h1>Доска легенд</h1>
+<p class="sub">Тут не рейтинг, тут те, кто перестал молчать. Цифра справа это зарубки: сколько роликов человек выложил.</p>
+<div id="list"><p class="empty">Собираю доску...</p></div>
 
 <script>
 const API="https://dapowah-bot.mdklurk.workers.dev";
@@ -60,7 +60,7 @@ async function load(){
     const r=await fetch(API+'/trainer/wall',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg?.initData||''})});
     const j=await r.json();
     const list=document.getElementById('list');
-    if(!j.wall||!j.wall.length){list.innerHTML='<p class="empty">Стена пока пустая. Стань первым: выложи ролик и кинь ссылку боту. Первый бой в зачет</p>';return}
+    if(!j.wall||!j.wall.length){list.innerHTML='<p class="empty">Доска пока пустая. Стань первой легендой: выложи ролик и кинь ссылку боту, сделаю первую зарубку.</p>';return}
     list.innerHTML='';
     j.wall.forEach((b,i)=>{
       const d=document.createElement('div');d.className='row';d.style.animationDelay=Math.min(i*40,600)+'ms';
