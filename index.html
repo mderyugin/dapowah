@@ -29,8 +29,8 @@
     --f-body:'Manrope',sans-serif;
     --dark:#15100B; --dark-2:#1D140D; --fire:#D9572A; --fire-hi:#E8693B; --amber:#E9A845; --brass:#C9A05A; --ink:#EEE2C6; --ink-dim:rgba(238,226,198,.78);
     --paper:#E8D5AE; --rust:#8E3517; --text-dark:#22160D; --text-dark-dim:#4A3826;
-    --grain-l:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .84 0 0 0 0 .68 1.05 0 0 0 -.6'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E");
-    --grain-d:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .22 0 0 0 0 .14 0 0 0 0 .07 1.2 0 0 0 -.64'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E");
+    --grain-l:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .84 0 0 0 0 .68 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E");
+    --grain-d:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .22 0 0 0 0 .14 0 0 0 0 .07 .8 0 0 0 -.45'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E");
     --tear:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='14' preserveAspectRatio='none'%3E%3Cpath d='M0 14 L0 6 L8 9 L15 4 L24 8 L31 3 L40 7 L47 2 L57 8 L64 5 L73 9 L80 3 L90 7 L98 4 L106 9 L113 5 L120 7 L120 14 Z'/%3E%3C/svg%3E");
     --tear-b:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='14' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L0 8 L9 5 L17 10 L25 6 L33 11 L41 6 L50 12 L58 7 L66 10 L75 5 L83 11 L92 7 L100 10 L109 6 L120 9 L120 0 Z'/%3E%3C/svg%3E");
   }
@@ -53,18 +53,17 @@
   p{text-wrap:pretty}
 
   /* ===== КНОПКИ: сплошные, без украшательств ===== */
-  .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:60px;padding:0 30px;border-radius:4px;
-    background:linear-gradient(180deg,var(--fire-hi),#C94C22);color:#1A0E07;text-decoration:none;
-    font-family:var(--f-body);font-weight:800;font-size:15px;letter-spacing:.08em;text-transform:uppercase;line-height:1.1;text-align:center;
-    box-shadow:inset 0 1px 0 rgba(255,214,180,.4),inset 0 -2px 0 rgba(90,30,10,.35),0 14px 28px -12px rgba(217,87,42,.7);
-    transition:transform .18s cubic-bezier(.2,.9,.3,1),box-shadow .18s,filter .18s}
+  .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:58px;padding:0 30px;border-radius:2px;
+    background:var(--fire);color:#160E08;text-decoration:none;
+    font-family:var(--f-head);font-weight:800;font-size:1.4rem;letter-spacing:.09em;text-transform:uppercase;line-height:1;text-align:center;
+    transition:background-color .18s,color .18s}
   .btn svg{width:18px;height:18px;flex:none;transition:transform .18s cubic-bezier(.2,.9,.3,1)}
-  @media(hover:hover){.btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:inset 0 1px 0 rgba(255,214,180,.45),inset 0 -2px 0 rgba(90,30,10,.35),0 20px 34px -12px rgba(217,87,42,.8)}
+  @media(hover:hover){.btn:hover{background:var(--ink);color:var(--dark)}
     .btn:hover svg{transform:translateX(4px)}}
-  .btn:active{transform:translateY(1px)}
+  .btn:active{background:#C24A21}
   .btn:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
-  .btn.dark{background:rgba(29,20,13,.9);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(201,160,90,.55),0 14px 28px -14px rgba(0,0,0,.8)}
-  @media(hover:hover){.btn.dark:hover{box-shadow:inset 0 0 0 1px var(--amber),0 18px 30px -14px rgba(0,0,0,.85)}}
+  .btn.dark{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(201,160,90,.6)}
+  @media(hover:hover){.btn.dark:hover{background:var(--ink);color:var(--dark)}}
   .link{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(201,160,90,.6);padding-bottom:2px;transition:color .15s,border-color .15s}
   @media(hover:hover){.link:hover{color:var(--amber);border-color:var(--amber)}}
   .actions{display:flex;align-items:center;gap:22px 26px;flex-wrap:wrap;margin-top:34px}
@@ -73,7 +72,7 @@
   /* ===== РАМКА-КАДР для картинок ===== */
   .frame{position:relative;padding:7px;background:linear-gradient(180deg,#2A1D12,#1A120C);box-shadow:inset 0 0 0 1px rgba(201,160,90,.4),0 24px 50px -24px rgba(0,0,0,.85)}
   .frame img{width:100%;height:100%;object-fit:cover}
-  .frame::after{content:"";position:absolute;inset:7px;pointer-events:none;box-shadow:inset 0 0 60px rgba(10,6,3,.55);background:var(--grain-l)}
+  .frame::after{content:"";position:absolute;inset:7px;pointer-events:none;box-shadow:inset 0 0 50px rgba(10,6,3,.4)}
 
   /* ===== HERO ===== */
   .hero{min-height:100svh;display:flex;flex-direction:column;padding:22px clamp(20px,3.5vw,56px) clamp(32px,6vh,64px);background:#130D09}
@@ -122,7 +121,7 @@
   /* ===== ПРОДУКТЫ: карточки с кадром ===== */
   .offer{background:var(--grain-l),radial-gradient(70% 45% at 85% 0%,rgba(217,87,42,.18),transparent 65%),linear-gradient(180deg,#22140B 0%,#17100A 100%)}
   .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,28px);margin-top:clamp(40px,5vw,60px)}
-  .prod{display:flex;flex-direction:column;background:var(--grain-l),linear-gradient(180deg,#24180F,#1A110B);box-shadow:inset 0 0 0 1px rgba(201,160,90,.3),0 26px 50px -26px rgba(0,0,0,.9)}
+  .prod{display:flex;flex-direction:column;background:linear-gradient(180deg,#24180F,#1A110B);box-shadow:inset 0 0 0 1px rgba(201,160,90,.3),0 26px 50px -26px rgba(0,0,0,.9)}
   .prod .frame{aspect-ratio:3/2;padding:0;box-shadow:none;background:none}
   .prod .frame::after{inset:0}
   .prod-body{display:flex;flex-direction:column;flex:1;padding:22px 22px 24px}
@@ -366,7 +365,7 @@
     <div class="qa">
       <details open><summary>Сколько времени в день?</summary><div class="a">Минут 10: короткое чтение и одно дело. Следующий день бот пришлет сам через сутки.</div></details>
       <details><summary>Это курс с вебинарами?</summary><div class="a">Нет. Ни вебинаров, ни созвонов, ни общих чатов. Текст приходит в телегу, проходишь, когда удобно.</div></details>
-      <details><summary>Это психология?</summary><div class="a">Нет. Я не психолог и не коуч, и это не терапия. Это 7 дней маленьких дел против голоса «не сейчас». Если тебе совсем плохо, иди к специалисту.</div></details>
+      <details><summary>Это психология?</summary><div class="a">Нет. Я не психолог и не коуч, и это не терапия. Это 7 дней маленьких дел против голоса «не сейчас».</div></details>
       <details><summary>Как платить?</summary><div class="a">Звездами Telegram, прямо в боте, один раз. Подписки нет, ничего не продлевается.</div></details>
       <details><summary>А бесплатно что-то есть?</summary><div class="a">Есть. <a href="quiz/">Тест на 60 секунд</a>, <a href="https://t.me/dapowah_bot?start=pdf_five">методичка против пятерых</a> и <a href="https://t.me/dapowah_bot?start=site_ai">ИИ-Напарник</a>: первые 5 вопросов бесплатно. Напарник это нейросеть на моем методе, не живой я.</div></details>
       <details><summary>С какого продукта начать?</summary><div class="a">Пройди <a href="quiz/">тест</a>. Он покажет, кто из пятерых держит тебя, и бот предложит продукт под него.</div></details>
