@@ -6,26 +6,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Стена бойцов</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#12100C;--fire:#E45329;--amber:#F0A63C;--ink:#EFE6D0;--grey:#9BA093;--panel:#26201A;--hit:cubic-bezier(.2,.9,.3,1)}
+  :root{--bg:#15100B;--fire:#D9572A;--amber:#E9A845;--ink:#EEE2C6;--grey:#A8977A;--panel:#22170F;--brass:#C9A05A;--line:rgba(201,160,90,.34);--hit:cubic-bezier(.2,.9,.3,1)}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{background:var(--bg);color:var(--ink);font-family:'Golos Text',sans-serif;min-height:100dvh;padding:26px 18px 44px;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif;min-height:100dvh;padding:26px 18px 44px;overflow-x:hidden}
   .spiral{position:fixed;right:-120px;top:-120px;width:300px;height:300px;opacity:.07;pointer-events:none;z-index:0;animation:spin 20s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .kicker{font-family:'Underdog',cursive;color:var(--amber);font-size:17px;margin-bottom:6px}
-  h1{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.92;color:var(--fire);margin-bottom:6px}
+  .kicker{font-family:'Manrope',sans-serif;color:var(--amber);font-size:17px;margin-bottom:6px}
+  h1{font-family:'Sofia Sans Extra Condensed';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.92;color:var(--fire);margin-bottom:6px}
   .sub{color:var(--grey);font-size:14px;margin-bottom:22px;position:relative;z-index:1}
   .row{display:flex;align-items:center;gap:12px;background:var(--panel);border-left:4px solid var(--fire);padding:12px 14px;margin-bottom:8px;
        opacity:0;transform:translateY(14px);animation:hit .22s var(--hit) forwards;position:relative;z-index:1}
   @keyframes hit{to{opacity:1;transform:none}}
-  .row .n{font-family:'Russo One';color:var(--grey);font-size:13px;min-width:26px}
+  .row .n{font-family:'Manrope';font-weight:800;color:var(--grey);font-size:13px;min-width:26px}
   .row .who{flex:1}
-  .row .who b{font-family:'Russo One';font-size:15px;display:block}
+  .row .who b{font-family:'Manrope';font-weight:800;font-size:15px;display:block}
   .row .who span{color:var(--amber);font-size:12.5px}
-  .row .sc{font-family:'Alumni Sans';font-weight:900;font-size:2rem;color:var(--fire);line-height:1}
+  .row .sc{font-family:'Sofia Sans Extra Condensed';font-weight:900;font-size:2rem;color:var(--fire);line-height:1}
   .empty{color:var(--grey);font-size:15px;line-height:1.5;position:relative;z-index:1}
   @media (prefers-reduced-motion:reduce){.row{opacity:1;transform:none;animation:none}.spiral{animation:none}}
+
+  /* ===== ВЕСТЕРН (12.10.2026): как на главной — Druk-двойник + Manrope, латунь, матовые кнопки ===== */
+  body{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .84 0 0 0 0 .68 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E"),var(--bg);font-weight:500}
+  .kicker{font-family:'Manrope',sans-serif!important;font-weight:800;font-size:12px!important;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)!important;display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:22px;height:1px;background:currentColor;opacity:.7;flex:none}
+  h1{font-family:'Sofia Sans Extra Condensed',sans-serif;font-weight:900;color:var(--ink)!important;letter-spacing:.005em}
+
+  body{background:linear-gradient(180deg,rgba(14,9,5,.82),rgba(14,9,5,.9)),url(../img/wall.webp) center top/cover,var(--bg)!important}
+  h1{font-size:3.4rem!important;line-height:.88!important}
+  .sub{color:var(--ink)!important;opacity:.78}
+  .row{border-left:0!important;box-shadow:inset 0 0 0 1px var(--line);background:linear-gradient(180deg,rgba(36,24,15,.94),rgba(27,18,12,.94))!important}
+  .row .n{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:900;font-size:1.5rem!important;color:var(--brass)!important}
+  .row .who b{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:900;text-transform:uppercase;font-size:1.4rem!important;line-height:1}
+  .row .sc{color:var(--fire)!important;font-size:2.4rem!important}
 </style>
 </head>
 <body>
@@ -39,7 +53,7 @@
 const API="https://dapowah-bot.mdklurk.workers.dev";
 const tg=window.Telegram?.WebApp;tg?.expand();tg?.ready();
 function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
-document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#F0A63C" stroke-width="10" stroke-linecap="round"/></svg>';
+document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#C9A05A" stroke-width="10" stroke-linecap="round"/></svg>';
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 async function load(){
   try{

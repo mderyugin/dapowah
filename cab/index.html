@@ -6,64 +6,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ранчо</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#12100C;--fire:#E45329;--amber:#F0A63C;--ink:#EFE6D0;--grey:#9BA093;--panel:#26201A}
+  :root{--bg:#15100B;--fire:#D9572A;--amber:#E9A845;--ink:#EEE2C6;--grey:#A8977A;--panel:#22170F;--brass:#C9A05A;--line:rgba(201,160,90,.34)}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{background:var(--bg);color:var(--ink);font-family:'Golos Text',sans-serif;min-height:100vh;padding:26px 20px 48px}
-  .kicker{font-family:'Underdog',cursive;color:var(--amber);font-size:18px;margin-bottom:8px}
-  h1{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.95;color:var(--fire);margin-bottom:6px}
+  body{background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif;min-height:100vh;padding:26px 20px 48px}
+  .kicker{font-family:'Manrope',sans-serif;color:var(--amber);font-size:18px;margin-bottom:8px}
+  h1{font-family:'Sofia Sans Extra Condensed';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.95;color:var(--fire);margin-bottom:6px}
   .sub{color:var(--grey);font-size:14px;margin-bottom:22px}
   .card{display:block;width:100%;text-align:left;background:var(--panel);border:0;border-left:4px solid var(--fire);
         color:var(--ink);padding:15px 14px;margin-bottom:10px;cursor:pointer;text-decoration:none}
-  .card b{display:block;font-family:'Russo One';font-size:15px;margin-bottom:3px}
+  .card b{display:block;font-family:'Manrope';font-weight:800;font-size:15px;margin-bottom:3px}
   .card span{color:var(--grey);font-size:13.5px}
-  .sect{font-family:'Russo One';text-transform:uppercase;font-size:13px;color:var(--amber);letter-spacing:.06em;margin:22px 0 10px}
+  .sect{font-family:'Manrope';font-weight:800;text-transform:uppercase;font-size:13px;color:var(--amber);letter-spacing:.06em;margin:22px 0 10px}
   .tag{display:inline-block;font-size:11.5px;color:var(--amber);border:1px solid #3a3226;padding:2px 8px;margin:0 6px 6px 0}
   /* статья */
   #art{display:none}
-  #art .back{color:var(--fire);font-family:'Russo One';font-size:14px;cursor:pointer;margin-bottom:16px;display:inline-block}
-  #art h2{font-family:'Russo One';text-transform:uppercase;font-size:1.35rem;line-height:1.25;margin-bottom:14px}
+  #art .back{color:var(--fire);font-family:'Manrope';font-weight:800;font-size:14px;cursor:pointer;margin-bottom:16px;display:inline-block}
+  #art h2{font-family:'Manrope';font-weight:800;text-transform:uppercase;font-size:1.35rem;line-height:1.25;margin-bottom:14px}
   #art p{font-size:15.5px;line-height:1.6;margin-bottom:12px}
-  #art .frame{border:3px solid var(--fire);padding:12px 14px;margin:16px 0;font-family:'Underdog',cursive;font-size:18px;color:var(--amber)}
+  #art .frame{border:3px solid var(--fire);padding:12px 14px;margin:16px 0;font-family:'Manrope',sans-serif;font-size:18px;color:var(--amber)}
   #art .do{border-left:4px solid var(--fire);background:var(--panel);padding:12px;margin:16px 0;font-size:15px;line-height:1.55}
-  #art .do b{display:block;font-family:'Russo One';color:var(--fire);font-size:12.5px;text-transform:uppercase;margin-bottom:5px}
-  .cta{display:block;text-align:center;background:var(--fire);color:#16100A;font-family:'Russo One';
+  #art .do b{display:block;font-family:'Manrope';font-weight:800;color:var(--fire);font-size:12.5px;text-transform:uppercase;margin-bottom:5px}
+  .cta{display:block;text-align:center;background:var(--fire);color:#16100A;font-family:'Manrope';font-weight:800;
        text-transform:uppercase;font-size:14px;padding:14px;margin-top:20px;text-decoration:none;border:0;width:100%;cursor:pointer}
   /* вход экрана: короткий удар, не телепорт */
   .view{animation:vin .22s cubic-bezier(.2,.9,.3,1)}
   @keyframes vin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.view{animation:none}}
   #lib{display:none}
-  #lib .back{color:var(--fire);font-family:'Russo One';font-size:14px;cursor:pointer;margin-bottom:16px;display:inline-block}
+  #lib .back{color:var(--fire);font-family:'Manrope';font-weight:800;font-size:14px;cursor:pointer;margin-bottom:16px;display:inline-block}
+
+  /* ===== ВЕСТЕРН (12.10.2026): как на главной — Druk-двойник + Manrope, латунь, матовые кнопки ===== */
+  body{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .84 0 0 0 0 .68 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E"),var(--bg);font-weight:500}
+  .kicker{font-family:'Manrope',sans-serif!important;font-weight:800;font-size:12px!important;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)!important;display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:22px;height:1px;background:currentColor;opacity:.7;flex:none}
+  h1{font-family:'Sofia Sans Extra Condensed',sans-serif;font-weight:900;color:var(--ink)!important;letter-spacing:.005em}
+
+  .banner{margin:-26px -20px 20px;height:190px;position:relative;overflow:hidden}
+  .banner img{width:100%;height:100%;object-fit:cover;object-position:28% 45%;display:block}
+  .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,16,11,.15) 0%,transparent 35%,var(--bg) 100%)}
+  h1{font-size:3.4rem!important;line-height:.88!important;margin-bottom:8px!important}
+  .sub{color:var(--grey)!important;font-size:15px!important}
+  .sect{font-family:'Manrope',sans-serif!important;font-weight:800;font-size:12px!important;letter-spacing:.2em!important;color:var(--brass)!important;margin:26px 0 12px!important}
+  .card{border:0!important;box-shadow:inset 0 0 0 1px var(--line);background:linear-gradient(180deg,#24180F,#1B120C)!important;padding:16px!important;transition:box-shadow .15s}
+  .card:active{box-shadow:inset 0 0 0 1px var(--amber)}
+  .card b{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:900;text-transform:uppercase;font-size:1.45rem!important;line-height:1;margin-bottom:6px!important;letter-spacing:.01em}
+  .card span{font-size:14px!important;line-height:1.45}
+  .tag{border-color:var(--line)!important;color:var(--amber)!important;font-weight:700}
+  #art .back,#lib .back{font-family:'Manrope',sans-serif!important;font-weight:800;color:var(--amber)!important;font-size:13px!important;letter-spacing:.12em;text-transform:uppercase}
+  #art h2{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:900;font-size:2.4rem!important;line-height:.92!important}
+  #art p{font-size:16px!important}
+  #art .frame{border:0!important;border-left:2px solid var(--fire)!important;padding:4px 0 4px 16px!important;font-family:'Manrope',sans-serif!important;font-weight:700;font-size:17px!important;color:var(--amber)!important}
+  #art .do{border:0!important;box-shadow:inset 0 0 0 1px var(--line);background:#20160E!important;padding:14px!important}
+  #art .do b{font-family:'Manrope',sans-serif!important;font-weight:800;letter-spacing:.14em;color:var(--amber)!important}
+  .cta{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;background:var(--fire);color:#160E08;font-size:1.35rem!important;padding:16px!important}
 </style>
 </head>
 <body>
 
 <div id="hub">
+  <div class="banner" aria-hidden="true"><img src="../img/hero-sky-m.webp" alt=""></div>
   <div class="kicker">здорово, бандит</div>
   <h1>Ранчо</h1>
   <p class="sub">Все бесплатное в одном месте. Без почты и «оставьте телефон».</p>
 
   <div class="sect">Разберись в себе</div>
-  <a class="card" href="../trainer/"><b>🤖 ИИ-Напарник</b><span>помощник по рилсам: страх, хуки, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
-  <a class="card" href="../quiz/"><b>⚡ Тест: кто из пятерых держит тебя</b><span>60 секунд, в конце имя твоего главного врага</span></a>
-  <button class="card" onclick="pdf('five')"><b>📕 Методичка: все пятеро поименно</b><span>реплики и приемы против каждого, PDF придет в чат</span></button>
-  <button class="card" onclick="pdf('chek')"><b>📄 Чек-лист: первые 3 секунды</b><span>проверь ролик до публикации, PDF придет в чат</span></button>
-  <button class="card" onclick="pdf('hate')"><b>📄 Если пришел хейт</b><span>что делать с первым злым комментом, PDF придет в чат</span></button>
+  <a class="card" href="../trainer/"><b>ИИ-Напарник</b><span>помощник по рилсам: страх, хуки, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
+  <a class="card" href="../quiz/"><b>Тест: кто из пятерых держит тебя</b><span>60 секунд, в конце имя твоего главного врага</span></a>
+  <button class="card" onclick="pdf('five')"><b>Методичка: все пятеро поименно</b><span>реплики и приемы против каждого, PDF придет в чат</span></button>
+  <button class="card" onclick="pdf('chek')"><b>Чек-лист: первые 3 секунды</b><span>проверь ролик до публикации, PDF придет в чат</span></button>
+  <button class="card" onclick="pdf('hate')"><b>Если пришел хейт</b><span>что делать с первым злым комментом, PDF придет в чат</span></button>
 
   <div class="sect">Приемы</div>
   <div id="list"></div>
 
   <div class="sect">Банда</div>
   <a class="card" href="../wall/"><b>Стена бойцов</b><span>кто уже вышел из штиля и сколько боев выиграл</span></a>
-  <button class="card" onclick="club(this)"><b>🔓 ИИ-Напарник без лимита</b><span>потолок в 5 бесплатных вопросов снят. 399 звезд в месяц, отмена в два клика</span></button>
+  <button class="card" onclick="club(this)"><b>ИИ-Напарник без лимита</b><span>потолок в 5 бесплатных вопросов снят. 399 звезд в месяц, отмена в два клика</span></button>
 
   <div class="sect">Дальше</div>
-  <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank" rel="noopener"><b>🔥 Сайт</b><span>кто я и что за продукты</span></a>
-  <button class="card" onclick="prods()"><b>⚡ Три продукта Максима</b><span>«Что подумают», «Потом», «Не живу, а существую». 7 дней каждый, проходишь сам. Отметь свой, пришлю первым</span></button>
+  <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank" rel="noopener"><b>Сайт</b><span>кто я и что за продукты</span></a>
+  <button class="card" onclick="prods()"><b>Три продукта Максима</b><span>«Что подумают», «Потом», «Не живу, а существую». 7 дней каждый, проходишь сам</span></button>
 
-  <p style="color:var(--grey);font-size:11.5px;line-height:1.5;margin-top:18px"><a href="../legal/" target="_blank" style="color:var(--grey)">Правила и данные, без мелкого шрифта</a>. Стереть свои данные: слово УДАЛИ боту</p>
+  <p style="color:var(--grey);font-size:12px;line-height:1.5;margin-top:22px"><a href="../legal/" target="_blank" style="color:var(--grey)">Правила и данные, без мелкого шрифта</a>. Стереть свои данные: слово УДАЛИ боту</p>
 </div>
 
 <div id="lib">

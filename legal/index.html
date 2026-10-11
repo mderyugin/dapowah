@@ -5,20 +5,32 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Правила и данные</title>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#12100C;--fire:#E45329;--amber:#F0A63C;--ink:#EFE6D0;--grey:#9BA093;--panel:#26201A}
+  :root{--bg:#15100B;--fire:#D9572A;--amber:#E9A845;--ink:#EEE2C6;--grey:#A8977A;--panel:#22170F;--brass:#C9A05A;--line:rgba(201,160,90,.34)}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:'Golos Text',sans-serif;padding:34px 22px 60px;max-width:720px;margin:0 auto}
-  .kicker{font-family:'Underdog',cursive;color:var(--amber);font-size:17px;margin-bottom:8px}
-  h1{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.95;color:var(--fire);margin-bottom:6px}
+  body{background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif;padding:34px 22px 60px;max-width:720px;margin:0 auto}
+  .kicker{font-family:'Manrope',sans-serif;color:var(--amber);font-size:17px;margin-bottom:8px}
+  h1{font-family:'Sofia Sans Extra Condensed';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.95;color:var(--fire);margin-bottom:6px}
   .upd{color:var(--grey);font-size:13px;margin-bottom:26px}
-  h2{font-family:'Russo One';text-transform:uppercase;font-size:15px;color:var(--amber);letter-spacing:.05em;margin:26px 0 10px}
+  h2{font-family:'Manrope';font-weight:800;text-transform:uppercase;font-size:15px;color:var(--amber);letter-spacing:.05em;margin:26px 0 10px}
   p,li{font-size:15.5px;line-height:1.6;margin-bottom:10px}
   ul{padding-left:18px}
   .frame{border:3px solid var(--fire);padding:12px 14px;margin:18px 0;font-size:15px;line-height:1.55;background:var(--panel)}
   a{color:var(--amber)}
-  .back{display:inline-block;margin-top:30px;font-family:'Russo One';text-transform:uppercase;font-size:13px;color:var(--fire);text-decoration:none}
+  .back{display:inline-block;margin-top:30px;font-family:'Manrope';font-weight:800;text-transform:uppercase;font-size:13px;color:var(--fire);text-decoration:none}
+
+  /* ===== ВЕСТЕРН (12.10.2026): как на главной — Druk-двойник + Manrope, латунь, матовые кнопки ===== */
+  body{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .84 0 0 0 0 .68 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E"),var(--bg);font-weight:500}
+  .kicker{font-family:'Manrope',sans-serif!important;font-weight:800;font-size:12px!important;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)!important;display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:22px;height:1px;background:currentColor;opacity:.7;flex:none}
+  h1{font-family:'Sofia Sans Extra Condensed',sans-serif;font-weight:900;color:var(--ink)!important;letter-spacing:.005em}
+
+  h1{font-size:3.2rem!important;line-height:.9!important}
+  h2{font-family:'Manrope',sans-serif!important;font-weight:800;letter-spacing:.14em!important;color:var(--brass)!important;font-size:13px!important}
+  p,li{font-size:16px!important}
+  .frame{border:0!important;box-shadow:inset 0 0 0 1px var(--line);background:#20160E!important;padding:14px 16px!important}
+  .back{font-family:'Manrope',sans-serif!important;font-weight:800;letter-spacing:.14em;color:var(--amber)!important}
 </style>
 </head>
 <body>

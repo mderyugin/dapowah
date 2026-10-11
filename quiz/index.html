@@ -6,44 +6,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Кто из пятерых держит тебя</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Russo+One&family=Golos+Text:wght@400;600&family=Underdog&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#12100C;--fire:#E45329;--amber:#F0A63C;--ink:#EFE6D0;--grey:#9BA093;--panel:#26201A}
+  :root{--bg:#15100B;--fire:#D9572A;--amber:#E9A845;--ink:#EEE2C6;--grey:#A8977A;--panel:#22170F;--brass:#C9A05A;--line:rgba(201,160,90,.34)}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{background:var(--bg);color:var(--ink);font-family:'Golos Text',sans-serif;min-height:100vh;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif;min-height:100vh;overflow-x:hidden}
   .screen{display:none;min-height:100vh;padding:28px 22px 40px;flex-direction:column}
   .screen.on{display:flex}
-  .kicker{font-family:'Underdog',cursive;color:var(--amber);font-size:19px;margin-bottom:14px}
-  h1{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,11vw,4rem);line-height:.95;color:var(--fire)}
+  .kicker{font-family:'Manrope',sans-serif;color:var(--amber);font-size:19px;margin-bottom:14px}
+  h1{font-family:'Sofia Sans Extra Condensed';font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,11vw,4rem);line-height:.95;color:var(--fire)}
   h1 .ink{color:var(--ink)}
-  h2{font-family:'Russo One';text-transform:uppercase;font-size:clamp(1.25rem,5.6vw,1.7rem);line-height:1.2;margin-bottom:20px}
+  h2{font-family:'Manrope';font-weight:800;text-transform:uppercase;font-size:clamp(1.25rem,5.6vw,1.7rem);line-height:1.2;margin-bottom:20px}
   p{font-size:16px;line-height:1.5}
   .grey{color:var(--grey)}
   .btn{display:block;width:100%;border:0;cursor:pointer;background:var(--fire);color:#16100A;
-       font-family:'Russo One';text-transform:uppercase;font-size:16px;padding:16px;margin-top:auto;letter-spacing:.03em}
+       font-family:'Manrope';font-weight:800;text-transform:uppercase;font-size:16px;padding:16px;margin-top:auto;letter-spacing:.03em}
   .btn:active{transform:translateY(2px)}
   .opt{display:block;width:100%;text-align:left;background:var(--panel);border:0;border-left:4px solid var(--fire);
-       color:var(--ink);font-family:'Golos Text';font-size:15.5px;line-height:1.4;padding:14px 14px;margin-bottom:10px;cursor:pointer}
+       color:var(--ink);font-family:'Manrope';font-size:15.5px;line-height:1.4;padding:14px 14px;margin-bottom:10px;cursor:pointer}
   .opt:active{background:#332a20}
   .bar{height:4px;background:var(--panel);margin-bottom:18px}
   .bar i{display:block;height:100%;background:var(--fire);transition:width .2s}
-  .qnum{font-family:'Russo One';color:var(--grey);font-size:13px;margin-bottom:8px}
+  .qnum{font-family:'Manrope';font-weight:800;color:var(--grey);font-size:13px;margin-bottom:8px}
   /* stories */
   .dots{display:flex;gap:4px;margin-bottom:18px}
   .dots i{flex:1;height:3px;background:var(--panel)}
   .dots i.on{background:var(--fire)}
   .card{flex:1;display:flex;flex-direction:column;justify-content:center}
-  .tagname{font-family:'Alumni Sans';font-weight:900;text-transform:uppercase;font-size:clamp(3rem,16vw,5.2rem);line-height:.9;color:var(--fire)}
-  .frame{border:3px solid var(--fire);padding:14px 16px;margin:18px 0;font-family:'Underdog',cursive;font-size:19px;color:var(--amber)}
+  .tagname{font-family:'Sofia Sans Extra Condensed';font-weight:900;text-transform:uppercase;font-size:clamp(3rem,16vw,5.2rem);line-height:.9;color:var(--fire)}
+  .frame{border:3px solid var(--fire);padding:14px 16px;margin:18px 0;font-family:'Manrope',sans-serif;font-size:19px;color:var(--amber)}
   .pf{color:var(--grey);font-size:14px;margin-top:14px}
-  .pf b{color:var(--amber);font-family:'Russo One';font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+  .pf b{color:var(--amber);font-family:'Manrope';font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
   .priem{border-left:4px solid var(--fire);background:var(--panel);padding:14px;margin-top:16px;font-size:15px;line-height:1.5}
-  .priem b{display:block;font-family:'Russo One';color:var(--fire);font-size:13px;text-transform:uppercase;margin-bottom:6px}
+  .priem b{display:block;font-family:'Manrope';font-weight:800;color:var(--fire);font-size:13px;text-transform:uppercase;margin-bottom:6px}
   .hint{position:fixed;bottom:10px;left:0;right:0;text-align:center;color:var(--grey);font-size:12px;opacity:.7}
   .spiral{position:fixed;right:-120px;top:-120px;width:300px;height:300px;opacity:.1;pointer-events:none;z-index:0}
   .cta-stack{margin-top:22px;display:flex;flex-direction:column;gap:10px}
   .cta2{display:block;text-align:center;text-decoration:none;border:2px solid var(--ink);color:var(--ink);
-        font-family:'Russo One';text-transform:uppercase;font-size:14px;padding:13px}
+        font-family:'Manrope';font-weight:800;text-transform:uppercase;font-size:14px;padding:13px}
+
+  /* ===== ВЕСТЕРН (12.10.2026): как на главной — Druk-двойник + Manrope, латунь, матовые кнопки ===== */
+  body{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .84 0 0 0 0 .68 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E"),var(--bg);font-weight:500}
+  .kicker{font-family:'Manrope',sans-serif!important;font-weight:800;font-size:12px!important;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)!important;display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:22px;height:1px;background:currentColor;opacity:.7;flex:none}
+  h1{font-family:'Sofia Sans Extra Condensed',sans-serif;font-weight:900;color:var(--ink)!important;letter-spacing:.005em}
+
+  #s-start{background:linear-gradient(180deg,rgba(14,9,5,.72),rgba(14,9,5,.92)),url(../img/wall.webp) center/cover}
+  h1{font-size:clamp(3.4rem,15vw,5rem)!important;line-height:.86!important}
+  h1 .ink{color:var(--fire)!important}
+  h2{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:900;font-size:clamp(1.9rem,8.4vw,2.6rem)!important;line-height:.95!important}
+  .btn{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;background:var(--fire);color:#160E08;font-size:1.45rem!important;padding:17px!important}
+  .opt{border:0!important;box-shadow:inset 0 0 0 1px var(--line);background:linear-gradient(180deg,#24180F,#1B120C)!important;font-family:'Manrope',sans-serif!important;font-weight:600;font-size:16px!important;padding:16px!important}
+  .opt:active{box-shadow:inset 0 0 0 1px var(--amber)}
+  .bar,.dots i{background:#2A1D13!important}
+  .bar i,.dots i.on{background:var(--amber)!important}
+  .qnum{font-family:'Manrope',sans-serif!important;font-weight:800;letter-spacing:.16em;color:var(--brass)!important}
+  .frame{border:0!important;border-left:2px solid var(--fire)!important;padding:4px 0 4px 16px!important;font-family:'Manrope',sans-serif!important;font-weight:700;font-size:18px!important;color:var(--amber)!important}
+  .priem{border:0!important;box-shadow:inset 0 0 0 1px var(--line);background:#20160E!important}
+  .priem b,.pf b{font-family:'Manrope',sans-serif!important;font-weight:800;letter-spacing:.12em;color:var(--amber)!important}
+  .cta2{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;background:transparent!important;color:var(--ink);border:0!important;box-shadow:inset 0 0 0 1px rgba(201,160,90,.6);font-size:1.25rem!important;padding:14px!important}
+  .wanted{position:relative;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .22 0 0 0 0 .14 0 0 0 0 .07 .8 0 0 0 -.45'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E"),radial-gradient(ellipse at 50% 40%,transparent 55%,rgba(110,66,26,.32) 100%),#E8D5AE;color:#22160D;text-align:center;padding:30px 16px 22px;margin:14px 0 4px;rotate:-1.2deg;box-shadow:0 18px 34px rgba(0,0,0,.55)}
+  .wanted::after{content:"";position:absolute;top:10px;left:50%;width:11px;height:11px;margin-left:-5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#b9a081,#4a3a28 55%,#1c140c)}
+  .wanted span{display:block;font-family:'Sofia Sans Extra Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:1.5rem;letter-spacing:.18em;border-block:2px solid rgba(34,22,13,.75);margin-bottom:10px}
+  .wanted .tagname{color:#22160D!important;font-size:clamp(2.6rem,13vw,4.4rem)!important}
 </style>
 </head>
 <body>
@@ -79,7 +104,7 @@ const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'
 
 // спираль
 function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
-document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#F0A63C" stroke-width="10" stroke-linecap="round"/></svg>';
+document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#C9A05A" stroke-width="10" stroke-linecap="round"/></svg>';
 
 const Q = [
  {q:"Ролик снят. Что происходит дальше чаще всего?", o:[
@@ -172,11 +197,11 @@ function result(){
   const r=R[win];
   const uname=esc(tg?.initDataUnsafe?.user?.first_name||"");
   slides=[
-   `<div class="kicker">твой разбор${uname?", "+uname:""}</div><h2 style="color:var(--grey)">Твой главный:</h2><div class="tagname">${r.name}</div><p class="grey" style="margin-top:14px">по твоим ответам. тапни, покажу, как он работает.</p>`,
+   `<div class="kicker">твой разбор${uname?", "+uname:""}</div><h2 style="color:var(--grey)">Твой главный:</h2><div class="wanted"><span>разыскивается</span><div class="tagname">${r.name}</div></div><p class="grey" style="margin-top:14px">по твоим ответам. тапни, покажу, как он работает.</p>`,
    `<div class="kicker">как он звучит</div><div class="frame">${r.rep}</div><p>${r.mech}</p>`,
    `<div class="kicker">почему это не «просто характер»</div><p>${r.mech.split(".")[0]}.</p><p class="pf" style="margin-top:16px"><b>По Прессфилду («Война за креатив»)</b><br>${r.pf}</p>`,
    `<div class="kicker">что делать</div><div class="priem"><b>Прием против него</b>${r.priem}</div><p class="grey" style="margin-top:14px">Это действие руками, а не «поверь в себя». Работает с первого раза, если сделать, а не прочитать.</p>`,
-   `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они ходят вместе</h2><p>Все пятеро, поименно и с приемами, собраны в методичке. А если этот голос мешает не только у камеры, у Максима в работе три продукта по 7 дней.</p>
+   `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они ходят вместе</h2><p>Все пятеро, поименно и с приемами, собраны в методичке. А если этот голос мешает не только у камеры, у Максима три продукта по 7 дней.</p>
     <div class="cta-stack">
       <button class="btn" style="border:0;cursor:pointer" onclick="prods()">Три продукта Максима</button>
       <button class="cta2" style="background:none;cursor:pointer" onclick="share()">Забрать карточку в сторис</button>
@@ -201,20 +226,20 @@ function share(){
   const r=R[winPat];
   const c=document.createElement('canvas');c.width=1080;c.height=1920;
   const x=c.getContext('2d');
-  x.fillStyle='#12100C';x.fillRect(0,0,1080,1920);
+  x.fillStyle='#15100B';x.fillRect(0,0,1080,1920);
   // спираль-водяной знак
-  x.save();x.globalAlpha=.09;x.strokeStyle='#F0A63C';x.lineWidth=14;x.beginPath();
+  x.save();x.globalAlpha=.09;x.strokeStyle='#C9A05A';x.lineWidth=14;x.beginPath();
   let px=540,py=760;x.moveTo(px,py);for(let a=0;a<=4*2*Math.PI;a+=.05){const rr=13*a;x.lineTo(540+rr*Math.cos(a),760+rr*Math.sin(a))}x.stroke();x.restore();
   x.textAlign='center';
-  x.fillStyle='#F0A63C';x.font='46px Georgia';x.fillText('мой главный враг перед камерой',540,300);
-  x.fillStyle='#E45329';x.font='900 190px "Alumni Sans",sans-serif';
-  const nm=r.name.toUpperCase();x.font=(nm.length>10?'900 130px ':'900 175px ')+'"Alumni Sans",sans-serif';
+  x.fillStyle='#E9A845';x.font='800 40px Manrope,sans-serif';x.fillText('мой главный враг перед камерой',540,300);
+  x.fillStyle='#D9572A';x.font='900 190px "Sofia Sans Extra Condensed",sans-serif';
+  const nm=r.name.toUpperCase();x.font=(nm.length>10?'900 150px ':'900 200px ')+'"Sofia Sans Extra Condensed",sans-serif';
   x.fillText(nm,540,1000);
-  x.fillStyle='#EFE6D0';x.font='40px "Golos Text",sans-serif';
+  x.fillStyle='#EEE2C6';x.font='600 40px Manrope,sans-serif';
   wrap(x,r.rep.replace(/[«»]/g,''),540,1150,880,54);
-  x.fillStyle='#9BA093';x.font='34px "Golos Text",sans-serif';
+  x.fillStyle='#A8977A';x.font='600 34px Manrope,sans-serif';
   x.fillText('а твой кто? пройди тест',540,1700);
-  x.fillStyle='#F0A63C';x.font='700 40px "Golos Text",sans-serif';
+  x.fillStyle='#E9A845';x.font='800 40px Manrope,sans-serif';
   x.fillText('@rowrowbratha',540,1770);
   c.toBlob(b=>{
     const f=new File([b],'moy-vrag.png',{type:'image/png'});
