@@ -5,12 +5,12 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Максим | Сломаем твой страх камеры</title>
-<meta name="description" content="Три продукта Максима по 7 дней: «Что подумают», «Потом», «Не живу, а существую». Проходишь сам, прямо в телеге. Плюс бесплатно: квиз, методичка, ИИ-Напарник.">
+<meta name="description" content="Три продукта Максима по 7 дней: «Что подумают», «Потом», «Не живу, а существую». Одно дело в день минут на 10, прямо в телеге. Плюс бесплатно: тест, методичка, ИИ-Напарник.">
 <link rel="canonical" href="https://mderyugin.github.io/dapowah/">
 <meta name="theme-color" content="#15100B">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Сломаем твой страх камеры">
-<meta property="og:description" content="Три продукта по 7 дней: «Что подумают», «Потом», «Не живу, а существую». Проходишь сам, прямо в телеге.">
+<meta property="og:description" content="Три продукта по 7 дней: «Что подумают», «Потом», «Не живу, а существую». Одно дело в день минут на 10, прямо в телеге.">
 <meta property="og:url" content="https://mderyugin.github.io/dapowah/">
 <meta property="og:image" content="https://mderyugin.github.io/dapowah/og.png">
 <meta property="og:image:width" content="1200">
@@ -21,275 +21,305 @@
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%2315100B"/><path d="M32 32m0-2a2 2 0 1 1 0 4 4 4 0 1 1-1-8 8 8 0 1 1 2 16 12 12 0 1 1-3-24 16 16 0 1 1 4 32 20 20 0 1 1-5-40" fill="none" stroke="%23D9572A" stroke-width="4" stroke-linecap="round"/></svg>'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Playfair+Display:ital,wght@1,600;1,700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* ===== ВЕСТЕРН (11.10.2026): картины закатов, доски салуна, бумага, латунь ===== */
+  /* ===== ВЕСТЕРН v3 (11.10.2026): два шрифта, сплошные кнопки, картинки в рамках-кадрах, без наложений ===== */
   :root{
-    --f-head:'Sofia Sans Extra Condensed',sans-serif;   /* заголовки: бесплатный двойник Druk */
-    --f-acc:'Playfair Display',serif;                    /* курсивные акценты */
-    --f-body:'Manrope',sans-serif;                       /* текст */
-    --bg:#15100B; --dark:#15100B; --fire:#D9572A; --amber:#E9A845; --brass:#C9A05A; --ink:#EADBB8; --paper:#E6D2AA;
-    --rust:#8E3517; --leather:#2B1B10; --grey:#A8977A; --text-dark:#22160D;
+    --f-head:'Sofia Sans Extra Condensed',sans-serif;
+    --f-body:'Manrope',sans-serif;
+    --dark:#15100B; --dark-2:#1D140D; --fire:#D9572A; --fire-hi:#E8693B; --amber:#E9A845; --brass:#C9A05A; --ink:#EEE2C6; --ink-dim:rgba(238,226,198,.78);
+    --paper:#E8D5AE; --rust:#8E3517; --text-dark:#22160D; --text-dark-dim:#4A3826;
     --grain-l:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .84 0 0 0 0 .68 1.05 0 0 0 -.6'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E");
     --grain-d:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .22 0 0 0 0 .14 0 0 0 0 .07 1.2 0 0 0 -.64'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E");
     --tear:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='14' preserveAspectRatio='none'%3E%3Cpath d='M0 14 L0 6 L8 9 L15 4 L24 8 L31 3 L40 7 L47 2 L57 8 L64 5 L73 9 L80 3 L90 7 L98 4 L106 9 L113 5 L120 7 L120 14 Z'/%3E%3C/svg%3E");
     --tear-b:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='14' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L0 8 L9 5 L17 10 L25 6 L33 11 L41 6 L50 12 L58 7 L66 10 L75 5 L83 11 L92 7 L100 10 L109 6 L120 9 L120 0 Z'/%3E%3C/svg%3E");
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--grain-l),var(--dark);color:var(--ink);font-family:var(--f-body);font-weight:500;line-height:1.55;overflow-x:hidden}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--grain-l),var(--dark);color:var(--ink);font-family:var(--f-body);font-weight:500;font-size:17px;line-height:1.6;overflow-x:hidden;text-rendering:optimizeLegibility}
   ::selection{background:var(--fire);color:#160E08}
   img{display:block;max-width:100%}
-
-  .wrap{max-width:1200px;margin-inline:auto;position:relative;z-index:2}
-  .micro{font-family:var(--f-body);font-weight:700;font-size:clamp(11px,.8vw,12.5px);letter-spacing:.2em;text-transform:uppercase}
-  .label{color:var(--brass);margin-bottom:12px}
-  .head{font-family:var(--f-head);font-weight:900;text-transform:uppercase;line-height:.84;letter-spacing:.002em;margin-bottom:.16em}
-  .acc{font-family:var(--f-acc);font-style:italic;font-weight:600;color:var(--amber)}
+  a{color:inherit}
   section{position:relative;overflow:hidden}
-  .pad{padding:clamp(64px,9vw,120px) clamp(20px,4vw,48px)}
+  .wrap{max-width:1160px;margin-inline:auto;position:relative;z-index:2}
+  .pad{padding:clamp(72px,9vw,128px) clamp(20px,4vw,48px)}
 
-  /* ===== КНОПКИ: билет с вырубленными углами и прострочкой ===== */
-  .cta{--c:var(--fire);--t:#160E08;--s:rgba(22,14,8,.45);position:relative;display:inline-flex;align-items:center;justify-content:center;text-align:center;
-    padding:19px 36px;font-family:var(--f-head);font-weight:800;font-size:1.32rem;letter-spacing:.12em;line-height:1;text-transform:uppercase;color:var(--t);text-decoration:none;
-    background:
-      radial-gradient(circle at 0 0,transparent 8px,var(--c) 8.5px) top left/51% 51% no-repeat,
-      radial-gradient(circle at 100% 0,transparent 8px,var(--c) 8.5px) top right/51% 51% no-repeat,
-      radial-gradient(circle at 0 100%,transparent 8px,var(--c) 8.5px) bottom left/51% 51% no-repeat,
-      radial-gradient(circle at 100% 100%,transparent 8px,var(--c) 8.5px) bottom right/51% 51% no-repeat;
-    filter:drop-shadow(0 4px 0 rgba(8,5,3,.55));transition:transform .14s cubic-bezier(.2,.9,.3,1),filter .14s,color .14s}
-  .cta::after{content:"";position:absolute;inset:6px;border:1.5px dashed var(--s);pointer-events:none}
-  @media(hover:hover){.cta:hover{--c:var(--ink);--t:var(--dark);--s:rgba(22,14,8,.4);transform:translateY(-2px);filter:drop-shadow(0 6px 0 rgba(8,5,3,.55))}}
-  .cta:active{transform:translateY(2px);filter:drop-shadow(0 1px 0 rgba(8,5,3,.55))}
-  .cta:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
-  .cta.leather{--c:rgba(43,27,16,.92);--t:var(--ink);--s:rgba(234,219,184,.5)}
-  .skip{position:absolute;left:-9999px;top:0;background:var(--fire);color:#160E08;font-family:var(--f-head);font-weight:800;font-size:1.1rem;padding:12px 18px;z-index:99;text-decoration:none;text-transform:uppercase;letter-spacing:.1em}
-  .skip:focus{left:0}
+  /* типографика */
+  .label{display:flex;align-items:center;gap:12px;font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);margin-bottom:18px}
+  .label::before{content:"";width:28px;height:1px;background:currentColor;opacity:.7}
+  .h2{font-family:var(--f-head);font-weight:900;text-transform:uppercase;line-height:.88;letter-spacing:.005em;font-size:clamp(3.2rem,7.4vw,6.6rem);text-wrap:balance}
+  .h2 em{font-style:normal;color:var(--fire)}
+  .lead{font-size:clamp(1.08rem,1.4vw,1.25rem);line-height:1.55;color:var(--ink-dim);max-width:54ch;margin-top:20px;text-wrap:pretty}
+  p{text-wrap:pretty}
 
-  /* ===== HERO: картина заката, фото как есть ===== */
-  .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px clamp(20px,3.5vw,56px) clamp(28px,5vh,56px);background:#130D09}
-  .hero-bg{position:absolute;inset:0;z-index:0}
+  /* ===== КНОПКИ: сплошные, без украшательств ===== */
+  .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:60px;padding:0 30px;border-radius:4px;
+    background:linear-gradient(180deg,var(--fire-hi),#C94C22);color:#1A0E07;text-decoration:none;
+    font-family:var(--f-body);font-weight:800;font-size:15px;letter-spacing:.08em;text-transform:uppercase;line-height:1.1;text-align:center;
+    box-shadow:inset 0 1px 0 rgba(255,214,180,.4),inset 0 -2px 0 rgba(90,30,10,.35),0 14px 28px -12px rgba(217,87,42,.7);
+    transition:transform .18s cubic-bezier(.2,.9,.3,1),box-shadow .18s,filter .18s}
+  .btn svg{width:18px;height:18px;flex:none;transition:transform .18s cubic-bezier(.2,.9,.3,1)}
+  @media(hover:hover){.btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:inset 0 1px 0 rgba(255,214,180,.45),inset 0 -2px 0 rgba(90,30,10,.35),0 20px 34px -12px rgba(217,87,42,.8)}
+    .btn:hover svg{transform:translateX(4px)}}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+  .btn.dark{background:rgba(29,20,13,.9);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(201,160,90,.55),0 14px 28px -14px rgba(0,0,0,.8)}
+  @media(hover:hover){.btn.dark:hover{box-shadow:inset 0 0 0 1px var(--amber),0 18px 30px -14px rgba(0,0,0,.85)}}
+  .link{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(201,160,90,.6);padding-bottom:2px;transition:color .15s,border-color .15s}
+  @media(hover:hover){.link:hover{color:var(--amber);border-color:var(--amber)}}
+  .actions{display:flex;align-items:center;gap:22px 26px;flex-wrap:wrap;margin-top:34px}
+  .note{font-size:14px;color:var(--ink-dim)}
+
+  /* ===== РАМКА-КАДР для картинок ===== */
+  .frame{position:relative;padding:7px;background:linear-gradient(180deg,#2A1D12,#1A120C);box-shadow:inset 0 0 0 1px rgba(201,160,90,.4),0 24px 50px -24px rgba(0,0,0,.85)}
+  .frame img{width:100%;height:100%;object-fit:cover}
+  .frame::after{content:"";position:absolute;inset:7px;pointer-events:none;box-shadow:inset 0 0 60px rgba(10,6,3,.55);background:var(--grain-l)}
+
+  /* ===== HERO ===== */
+  .hero{min-height:100svh;display:flex;flex-direction:column;padding:22px clamp(20px,3.5vw,56px) clamp(32px,6vh,64px);background:#130D09}
+  .hero-bg{position:absolute;inset:0;z-index:0;display:block}
   .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
   .hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:var(--grain-l),linear-gradient(90deg,rgba(15,10,6,.82) 0%,rgba(15,10,6,.45) 36%,transparent 62%),linear-gradient(180deg,rgba(15,10,6,.55) 0%,transparent 18%,transparent 52%,rgba(15,10,6,.9) 100%)}
-  .hero-photo{position:absolute;right:clamp(0px,3vw,60px);bottom:0;height:92%;width:min(46%,760px);z-index:2;pointer-events:none}
+    background:var(--grain-l),linear-gradient(90deg,rgba(15,10,6,.88) 0%,rgba(15,10,6,.6) 34%,rgba(15,10,6,.1) 58%,transparent 70%),linear-gradient(180deg,rgba(15,10,6,.55) 0%,transparent 16%,transparent 55%,rgba(15,10,6,.92) 100%)}
+  .hero-photo{position:absolute;right:clamp(0px,3vw,60px);bottom:0;height:90%;width:min(44%,720px);z-index:2;pointer-events:none}
   .hero-photo img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;
-    -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 99%);mask-image:linear-gradient(180deg,#000 72%,transparent 99%)}
-  .hero-spiral{position:absolute;z-index:1;right:-120px;top:-120px;width:440px;height:440px;opacity:.16;pointer-events:none;animation:spin 40s linear infinite}
-  .hero-top{position:relative;z-index:4;display:flex;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;color:var(--ink)}
-  .hero-top a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--brass)}
-  @media(hover:hover){.hero-top a:hover{color:var(--amber)}}
-  .hero-main{position:relative;z-index:4;max-width:min(58%,820px)}
-  .hero-main .acc{font-size:clamp(1.05rem,1.5vw,1.45rem);display:flex;align-items:center;gap:10px;margin-bottom:12px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
-  .kamina{width:24px;flex:none}
-  .hero h1{font-family:var(--f-head);font-weight:900;text-transform:uppercase;line-height:.8;letter-spacing:.002em;
-    font-size:clamp(4.4rem,11.6vw,11.6rem);color:var(--ink);text-shadow:0 6px 24px rgba(0,0,0,.55)}
+    -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 99%),linear-gradient(90deg,transparent 2%,#000 16%,#000 84%,transparent 98%);-webkit-mask-composite:source-in;
+    mask-image:linear-gradient(180deg,#000 72%,transparent 99%),linear-gradient(90deg,transparent 2%,#000 16%,#000 84%,transparent 98%);mask-composite:intersect}
+  .topbar{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:12px 22px;flex-wrap:wrap;font-weight:700;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand svg{width:26px;height:26px}
+  .topbar .slogan{color:var(--ink-dim)}
+  .topbar nav{display:flex;gap:22px}
+  .topbar nav a{text-decoration:none;border-bottom:1px solid rgba(201,160,90,.6);padding-bottom:2px}
+  @media(hover:hover){.topbar nav a:hover{color:var(--amber)}}
+  .hero-main{position:relative;z-index:4;margin-top:auto;max-width:min(52%,700px)}
+  .hero h1{font-family:var(--f-head);font-weight:900;text-transform:uppercase;line-height:.82;letter-spacing:.004em;font-size:clamp(4.4rem,10.4vw,10.4rem);color:var(--ink);text-shadow:0 6px 28px rgba(0,0,0,.5)}
   .hero h1 em{font-style:normal;color:var(--fire)}
-  .hero-lead{margin:22px 0 28px;font-size:clamp(1.02rem,1.25vw,1.2rem);max-width:40ch;color:#F1E6CC;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-  .hero-tag{margin-top:18px;color:var(--brass)}
+  .hero .sub{margin-top:24px;font-size:clamp(1.1rem,1.45vw,1.3rem);line-height:1.5;max-width:40ch;color:#F2E8D0;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+  .hero .offer-line{margin-top:12px;font-weight:800;font-size:clamp(1rem,1.25vw,1.12rem);color:var(--amber);max-width:46ch}
+  .hero .actions{margin-top:30px}
 
-  /* ===== ПРОДУКТЫ ===== */
-  .offer{background:var(--grain-l),radial-gradient(70% 50% at 90% 0%,rgba(217,87,42,.22),transparent 65%),linear-gradient(180deg,#24150C 0%,#18100A 100%)}
-  .badge-star{position:absolute;z-index:1;right:clamp(-120px,-4vw,-40px);top:clamp(30px,5vw,70px);width:clamp(220px,30vw,420px);rotate:12deg;mix-blend-mode:lighten;opacity:.95;pointer-events:none;
-    -webkit-mask-image:radial-gradient(circle,#000 55%,transparent 72%);mask-image:radial-gradient(circle,#000 55%,transparent 72%)}
-  .offer-spiral{position:absolute;z-index:0;left:-160px;bottom:-160px;width:460px;height:460px;opacity:.07;pointer-events:none;animation:spin 40s linear infinite}
-  .offer .head{font-size:clamp(5rem,15vw,12.5rem);color:var(--ink)}
-  .offer .head span{color:var(--fire)}
-  .offer .sub{font-family:var(--f-acc);font-style:italic;font-weight:600;font-size:clamp(1.2rem,2vw,1.6rem);color:var(--amber);margin:4px 0 14px}
-  .offer .why{max-width:56ch;color:rgba(234,219,184,.82);margin-bottom:34px}
-  .prods{display:grid;gap:18px}
-  .prod{display:grid;grid-template-columns:96px 1fr auto;gap:22px;align-items:center;padding:22px 28px 22px 18px;
-    background:var(--grain-l),linear-gradient(180deg,rgba(43,27,16,.9),rgba(30,19,11,.92));
-    border:1px solid rgba(201,160,90,.5);outline:1px solid rgba(201,160,90,.18);outline-offset:-8px;box-shadow:0 14px 30px rgba(0,0,0,.35)}
-  .prod-n{position:relative;width:92px;height:92px;display:grid;place-items:center}
-  .prod-n img{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:lighten;
-    -webkit-mask-image:radial-gradient(circle,#000 60%,transparent 74%);mask-image:radial-gradient(circle,#000 60%,transparent 74%)}
-  .prod-n i{position:relative;font-style:normal;font-family:var(--f-head);font-weight:900;font-size:1.75rem;color:#170C02;text-shadow:0 1px 0 rgba(255,228,160,.55),0 0 6px rgba(255,220,150,.35)}
-  .prod b{display:block;font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.7rem,2.8vw,2.3rem);line-height:.95;letter-spacing:.01em;margin-bottom:8px}
-  .prod p{max-width:60ch;color:rgba(234,219,184,.85)}
-  .prod .cta{white-space:nowrap}
-
-  /* ===== КАК ЭТО РАБОТАЕТ: камера-револьвер ===== */
-  .how{background:var(--grain-l),radial-gradient(60% 60% at 80% 55%,rgba(217,87,42,.16),transparent 70%),var(--dark)}
-  .how-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
-  .how .head{font-size:clamp(4rem,10vw,8.5rem)}
-  .how .head span{color:var(--fire);white-space:nowrap}
-  .doubt{max-width:56ch;color:rgba(234,219,184,.8);margin-bottom:18px}
-  .steps{counter-reset:s;list-style:none;display:grid;gap:16px;margin:26px 0 38px;max-width:640px}
-  .steps li{counter-increment:s;padding-left:58px;position:relative;font-weight:700;font-size:1.05rem}
-  .steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:-6px;font-family:var(--f-head);font-weight:900;font-size:2rem;color:var(--brass);line-height:1}
-  .how-cam{width:100%;max-width:440px;justify-self:center;mix-blend-mode:lighten;
-    -webkit-mask-image:radial-gradient(ellipse 46% 47% at 50% 50%,#000 50%,transparent 100%);mask-image:radial-gradient(ellipse 46% 47% at 50% 50%,#000 50%,transparent 100%)}
-
-  /* ===== БУМАГА (кто я, вопросы): рваные края ===== */
-  .paper{background:var(--grain-d),radial-gradient(ellipse at 50% 40%,transparent 50%,rgba(120,72,30,.3) 100%),var(--paper);color:var(--text-dark);
-    -webkit-mask:var(--tear) top/120px 14px repeat-x,var(--tear-b) bottom/120px 14px repeat-x,linear-gradient(#000,#000) center/100% calc(100% - 26px) no-repeat;
-    mask:var(--tear) top/120px 14px repeat-x,var(--tear-b) bottom/120px 14px repeat-x,linear-gradient(#000,#000) center/100% calc(100% - 26px) no-repeat}
-  .paper .label{color:#6E4A2A}
-  .paper .head{font-size:clamp(4.4rem,13vw,10.5rem);color:var(--text-dark)}
-  .paper .head span{color:var(--rust)}
-  .paper .sub{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:4px 0 30px;color:#5A4530}
-  table.facts{width:100%;border-collapse:collapse}
-  .facts th{text-align:left;padding:10px 8px;border-bottom:2px solid var(--text-dark);font-family:var(--f-body);font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5A4530}
-  .facts th:last-child{text-align:right}
-  .facts td{padding:16px 8px;border-bottom:1px dashed rgba(34,22,13,.38);vertical-align:top}
-  .facts .n{font-family:var(--f-head);font-weight:900;font-size:1.5rem;width:56px;color:var(--rust);line-height:1}
-  .facts .fact{max-width:60ch;color:#4E3B29}
-  .facts .fact b{display:block;font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:1.55rem;letter-spacing:.01em;line-height:1;color:var(--text-dark);margin-bottom:4px}
-  .facts .tag{font-family:var(--f-acc);font-style:italic;font-weight:600;color:var(--rust);white-space:nowrap;text-align:right;font-size:1.08rem}
-  @media(max-width:640px){.facts .tag,.facts th:last-child{display:none}}
-  .faq .qa{max-width:760px;margin-top:22px}
-  .faq dt{font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:1.7rem;line-height:1;letter-spacing:.01em;margin-top:28px}
-  .faq dt:first-child{margin-top:0}
-  .faq dd{margin:8px 0 0;max-width:62ch;line-height:1.55;color:#3E2E1F}
-
-  /* ===== БЕГУЩАЯ СТРОКА ===== */
-  .ticker{background:var(--grain-l),#130D09;border-block:4px double rgba(201,160,90,.55);padding:12px 0;overflow:hidden;color:var(--ink)}
-  .tick-track{display:flex;width:max-content;animation:tick 45s linear infinite}
-  .tick-track span{display:block;white-space:nowrap;font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.9rem,3.6vw,3rem);line-height:1;letter-spacing:.03em}
-  .ticker em{font-style:normal;color:var(--fire)}
-  @keyframes tick{to{transform:translateX(-50%)}}
-
-  /* ===== ПЯТЕРО: плакаты на стене салуна ===== */
-  .five{background:linear-gradient(180deg,rgba(14,9,5,.82),rgba(14,9,5,.55) 30%,rgba(14,9,5,.7) 100%),url(img/wall.webp) center/cover,#1A110B}
-  .five .label{color:var(--brass)}
-  .five .head{font-size:clamp(4rem,11vw,9rem);color:var(--ink)}
-  .five .head span{color:var(--fire)}
-  .five .sub2{max-width:56ch;color:rgba(234,219,184,.85);margin:6px 0 40px}
-  .five-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:clamp(18px,2.2vw,28px)}
-  .voice{position:relative;cursor:crosshair;background:var(--grain-d),radial-gradient(ellipse at 50% 40%,transparent 55%,rgba(110,66,26,.35) 100%),var(--paper);color:var(--text-dark);
-    text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;padding:30px 16px 22px;box-shadow:0 16px 30px rgba(0,0,0,.55);rotate:-1.4deg;transition:rotate .2s,translate .2s}
-  .voice:nth-child(2){rotate:1.1deg}.voice:nth-child(3){rotate:-.5deg}.voice:nth-child(4){rotate:1.5deg}.voice:nth-child(5){rotate:-1deg}
-  .voice::before{content:"разыскивается";font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:1.25rem;letter-spacing:.14em;
-    border-block:2px solid rgba(34,22,13,.75);padding:2px 0 1px;width:100%;color:var(--text-dark)}
-  .voice::after{content:"";position:absolute;top:9px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;
-    background:radial-gradient(circle at 35% 35%,#b9a081,#4a3a28 55%,#1c140c);box-shadow:0 2px 2px rgba(0,0,0,.5)}
-  .voice .vn{font-family:var(--f-head);font-weight:900;color:var(--rust);font-size:1.15rem}
-  .voice b{font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,1.9vw,2rem);line-height:.92;letter-spacing:.01em}
-  .voice q{font-family:var(--f-acc);font-style:italic;font-weight:600;color:var(--rust);font-size:1.02rem;line-height:1.35;quotes:"«" "»"}
+  /* ===== УЗНАЕШЬ? пятеро на стене салуна ===== */
+  .five{background:linear-gradient(180deg,rgba(14,9,5,.86),rgba(14,9,5,.62) 35%,rgba(14,9,5,.78) 100%),url(img/wall.webp) center/cover,#1A110B}
+  .scene{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+  .quote-me{font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.55;color:var(--ink);border-left:2px solid var(--fire);padding:4px 0 4px 22px;max-width:42ch}
+  .quote-me cite{display:block;margin-top:12px;font-style:normal;font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+  .five-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,1.8vw,24px)}
+  .voice{position:relative;cursor:crosshair;background:var(--grain-d),radial-gradient(ellipse at 50% 40%,transparent 55%,rgba(110,66,26,.32) 100%),var(--paper);color:var(--text-dark);
+    text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding:30px 14px 22px;box-shadow:0 18px 34px rgba(0,0,0,.55);rotate:-1.2deg;transition:rotate .2s,translate .2s}
+  .voice:nth-child(2){rotate:1deg}.voice:nth-child(3){rotate:-.4deg}.voice:nth-child(4){rotate:1.3deg}.voice:nth-child(5){rotate:-.9deg}
+  .voice::before{content:"разыскивается";font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:1.2rem;letter-spacing:.16em;line-height:1.3;
+    border-block:2px solid rgba(34,22,13,.75);width:100%;color:var(--text-dark)}
+  .voice::after{content:"";position:absolute;top:9px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#b9a081,#4a3a28 55%,#1c140c);box-shadow:0 2px 2px rgba(0,0,0,.5)}
+  .voice b{font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.45rem,1.7vw,1.85rem);line-height:.95;letter-spacing:.01em}
+  .voice q{font-weight:700;color:var(--rust);font-size:.95rem;line-height:1.4;quotes:"«" "»"}
   @media(hover:hover){.voice:hover{rotate:0deg;translate:0 -4px}}
   .voice.hit{animation:hit .22s}
   @keyframes hit{30%{translate:3px -2px}65%{translate:-2px 1px}}
-  .hole{position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;pointer-events:none;
-    background:radial-gradient(circle,#0b0705 0 30%,#3c2512 34% 46%,rgba(90,55,25,.45) 52%,transparent 70%)}
-  .five-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;align-items:center}
-  .five-note{font-size:.9rem;color:rgba(234,219,184,.75);font-weight:600}
-  .pinok{margin-top:36px;padding:24px 26px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;
-    background:var(--grain-l),linear-gradient(180deg,rgba(43,27,16,.92),rgba(30,19,11,.94));border:1px solid rgba(201,160,90,.45);outline:1px dashed rgba(201,160,90,.35);outline-offset:-8px}
-  .pinok b{display:block;font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:1.7rem;line-height:1;margin-bottom:8px}
-  .pinok p{font-size:.98rem;max-width:56ch;color:rgba(234,219,184,.85)}
+  .hole{position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#0b0705 0 30%,#3c2512 34% 46%,rgba(90,55,25,.45) 52%,transparent 70%)}
+  .hint{margin-top:18px;font-size:13px;color:rgba(238,226,198,.55)}
 
-  /* ===== ФИНАЛ: всадник уезжает в закат ===== */
-  .final{background:#130D09;padding-bottom:40px}
-  .final-bg{position:absolute;inset:0;z-index:0}
+  /* ===== ПРОДУКТЫ: карточки с кадром ===== */
+  .offer{background:var(--grain-l),radial-gradient(70% 45% at 85% 0%,rgba(217,87,42,.18),transparent 65%),linear-gradient(180deg,#22140B 0%,#17100A 100%)}
+  .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,28px);margin-top:clamp(40px,5vw,60px)}
+  .prod{display:flex;flex-direction:column;background:var(--grain-l),linear-gradient(180deg,#24180F,#1A110B);box-shadow:inset 0 0 0 1px rgba(201,160,90,.3),0 26px 50px -26px rgba(0,0,0,.9)}
+  .prod .frame{aspect-ratio:3/2;padding:0;box-shadow:none;background:none}
+  .prod .frame::after{inset:0}
+  .prod-body{display:flex;flex-direction:column;flex:1;padding:22px 22px 24px}
+  .prod-num{font-weight:800;font-size:12px;letter-spacing:.22em;color:var(--brass)}
+  .prod h3{font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.9rem,2.4vw,2.3rem);line-height:.95;margin:8px 0 12px}
+  .prod p{color:var(--ink-dim);font-size:16px;line-height:1.55}
+  .prod .meta{margin:18px 0 20px;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--amber)}
+  .prod .btn{margin-top:auto;width:100%}
+  .offer .actions{justify-content:center;margin-top:36px}
+
+  /* ===== КАК ЭТО РАБОТАЕТ ===== */
+  .how{background:var(--grain-l),var(--dark)}
+  .how-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,90px);align-items:center}
+  .how .frame{aspect-ratio:4/5;max-width:440px;justify-self:end}
+  .steps{counter-reset:s;list-style:none;display:grid;gap:18px;margin:30px 0 0;max-width:560px}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:6px;align-items:baseline;font-weight:700;font-size:17px;line-height:1.45;padding-bottom:18px;border-bottom:1px solid rgba(201,160,90,.2)}
+  .steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-head);font-weight:900;font-size:2rem;color:var(--brass);line-height:1}
+
+  /* ===== БУМАГА: кто я, вопросы ===== */
+  .paper{background:var(--grain-d),radial-gradient(ellipse at 50% 40%,transparent 50%,rgba(120,72,30,.28) 100%),var(--paper);color:var(--text-dark);
+    -webkit-mask:var(--tear) top/120px 14px repeat-x,var(--tear-b) bottom/120px 14px repeat-x,linear-gradient(#000,#000) center/100% calc(100% - 26px) no-repeat;
+    mask:var(--tear) top/120px 14px repeat-x,var(--tear-b) bottom/120px 14px repeat-x,linear-gradient(#000,#000) center/100% calc(100% - 26px) no-repeat}
+  .paper .label{color:#7A5430}
+  .paper .h2 em{color:var(--rust)}
+  .paper .lead{color:var(--text-dark-dim)}
+  .facts{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px;margin-top:40px}
+  .facts li{padding:20px 0;border-top:1px solid rgba(34,22,13,.25)}
+  .facts b{display:block;font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:1.75rem;line-height:1;margin-bottom:6px}
+  .facts span{color:var(--text-dark-dim);font-size:16.5px}
+  .faq{background:var(--grain-l),linear-gradient(180deg,#1B120B,#15100B)}
+  .qa{max-width:780px;margin-top:36px}
+  .faq .qa details{border-color:rgba(201,160,90,.25)}
+  .faq .qa summary::after{color:var(--amber)}
+  .faq .qa .a{color:var(--ink-dim)}
+  .faq .qa .a a{color:var(--amber)}
+  .qa details{border-top:1px solid rgba(201,160,90,.25)}
+  .qa details:last-child{border-bottom:1px solid rgba(201,160,90,.25)}
+  .qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.5rem,2.2vw,1.9rem);line-height:1}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary::after{content:"+";font-family:var(--f-body);font-weight:600;font-size:1.6rem;color:var(--rust);transition:transform .2s}
+  .qa details[open] summary::after{transform:rotate(45deg)}
+  .qa .a{padding:0 0 22px;max-width:62ch;color:var(--text-dark-dim);font-size:16.5px}
+  .qa .a a{color:var(--rust);font-weight:700}
+
+  /* ===== ФИНАЛ ===== */
+  .final{background:#130D09;padding-bottom:36px}
+  .final-bg{position:absolute;inset:0;z-index:0;display:block}
   .final-bg img{width:100%;height:100%;object-fit:cover;object-position:70% 50%}
   .final::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:var(--grain-l),linear-gradient(90deg,rgba(15,10,6,.9) 0%,rgba(15,10,6,.6) 42%,transparent 70%),linear-gradient(180deg,rgba(15,10,6,.6) 0%,transparent 25%,transparent 70%,rgba(15,10,6,.92) 100%)}
-  .final .wrap{min-height:min(78vh,720px);display:flex;flex-direction:column;justify-content:center}
-  .final .doubt{color:rgba(234,219,184,.88);max-width:46ch}
-  .final .doubt-strong{font-family:var(--f-acc);font-style:italic;font-weight:700;font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.15;max-width:22ch;margin:6px 0 30px;color:var(--ink)}
-  .final .ps{margin-top:22px;font-family:var(--f-acc);font-style:italic;font-weight:600;color:var(--amber);font-size:1.15rem}
-  footer{position:relative;z-index:2;max-width:1200px;margin:60px auto 0;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid rgba(201,160,90,.3);padding-top:16px;color:var(--grey)}
-  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--brass)}
+    background:var(--grain-l),linear-gradient(90deg,rgba(15,10,6,.92) 0%,rgba(15,10,6,.7) 38%,rgba(15,10,6,.1) 62%,transparent 72%),linear-gradient(180deg,rgba(15,10,6,.55) 0%,transparent 22%,transparent 72%,rgba(15,10,6,.95) 100%)}
+  .final .wrap{min-height:min(80vh,740px);display:flex;flex-direction:column;justify-content:center}
+  .final .h2{max-width:13ch}
+  .final .lead{color:var(--ink);max-width:36ch}
+  footer{position:relative;z-index:2;max-width:1160px;margin:64px auto 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid rgba(201,160,90,.25);padding-top:18px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,226,198,.6)}
+  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(201,160,90,.6)}
 
-  @keyframes spin{to{transform:rotate(360deg)}}
-
-  /* ===== ПОЯВЛЕНИЕ ===== */
-  .rv{opacity:0;transform:translateY(20px)}
-  .rv.in{opacity:1;transform:none;transition:opacity .3s cubic-bezier(.2,.9,.3,1),transform .3s cubic-bezier(.2,.9,.3,1)}
-
-  /* ===== STICKY CTA (мобила) ===== */
+  /* появление */
+  .rv{opacity:0;transform:translateY(18px)}
+  .rv.in{opacity:1;transform:none;transition:opacity .35s cubic-bezier(.2,.9,.3,1),transform .35s cubic-bezier(.2,.9,.3,1)}
   .sticky-cta{display:none}
 
-  @media(max-width:860px){
-    .hero{justify-content:flex-start}
-    .hero-photo{width:100%;height:44%;right:0;top:56px;bottom:auto}
-    .hero-photo img{object-position:50% 0;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
-    .hero::before{background:var(--grain-l),linear-gradient(180deg,rgba(15,10,6,.5) 0%,transparent 20%,rgba(15,10,6,.15) 40%,rgba(15,10,6,.88) 62%,rgba(15,10,6,.96) 100%)}
-    .hero-main{max-width:none;margin-top:auto;text-align:center}
-    .hero-main{display:flex;flex-direction:column}
-    .hero-main .acc{justify-content:center;font-size:.98rem;order:2;margin:12px 0 0}
-    .hero h1{order:1}.hero-lead{order:3}.hero-cta{order:4}.hero-tag{order:5}
-    .hero h1{font-size:clamp(3.6rem,17vw,6rem)}
-    .hero-lead{margin:14px auto 20px;font-size:.96rem}
-    .hero-cta{flex-direction:column;align-items:stretch}
-    .hero-top{font-size:10.5px;letter-spacing:.14em}
-    .hero-spiral{width:260px;height:260px;right:-90px;top:-90px}
+  /* ===== ПЛАНШЕТ ===== */
+  @media(max-width:1040px){
+    .five-grid{grid-template-columns:repeat(3,1fr)}
+    .prods{grid-template-columns:1fr;max-width:620px;margin-inline:auto}
+  }
+  /* ===== ТЕЛЕФОН: картинка сверху, текст снизу, ничего не налезает ===== */
+  @media(max-width:760px){
+    body{font-size:16.5px}
+    .hero{padding:0;min-height:auto}
+    .hero-bg{position:relative;inset:auto;height:48svh;min-height:340px}
+    .hero-bg img{object-position:30% 35%}
+    .hero::before{inset:0 0 auto 0;height:48svh;min-height:340px;background:var(--grain-l),linear-gradient(180deg,rgba(15,10,6,.55) 0%,transparent 22%,transparent 62%,#130D09 100%)}
+    .hero-photo{top:48px;bottom:auto;right:0;left:0;margin:auto;width:92%;height:calc(48svh - 48px);min-height:292px}
+    .hero-photo img{object-position:50% 100%}
+    .topbar{position:absolute;top:0;left:0;right:0;padding:16px 20px;font-size:11px;letter-spacing:.12em}
+    .topbar .slogan{display:none}
+    .topbar nav{gap:16px}
+    .hero-main{max-width:none;margin:0;padding:6px 20px 40px;text-align:left}
+    .hero h1{font-size:clamp(3.4rem,16vw,5.2rem)}
+    .hero .sub{margin-top:14px;font-size:1.02rem}
+    .hero .offer-line{font-size:.98rem}
+    .hero .actions{margin-top:22px}
+    .actions{gap:16px}
+    .hero .actions .btn,.five .btn,.how .btn,.final .btn{width:100%}
+    .scene{grid-template-columns:1fr;gap:24px}
+    .five-grid{grid-template-columns:1fr 1fr}
+    .five-grid .voice:last-child{grid-column:1/-1;max-width:62%;justify-self:center}
+    .voice{padding:26px 10px 18px}
+    .voice b{font-size:1.35rem}
     .how-grid{grid-template-columns:1fr}
-    .how-cam{max-width:300px;margin:-10px auto 0;order:2}
-    .prod{grid-template-columns:1fr;gap:12px;padding:20px}
-    .prod-n{width:76px;height:76px}
-    .prod .cta{width:100%}
-    .five-cta .cta,.pinok .cta,.final .cta{width:100%}
-    .five-note{flex-basis:100%;text-align:center}
-    .final .wrap{justify-content:flex-end;min-height:80vh}
-    .final::before{background:var(--grain-l),linear-gradient(180deg,rgba(15,10,6,.35) 0%,transparent 30%,rgba(15,10,6,.85) 58%,rgba(15,10,6,.96) 100%)}
+    .how .frame{justify-self:start;max-width:100%;aspect-ratio:3/2;order:-1}
+    .how .frame img{object-position:50% 30%}
+    .facts{grid-template-columns:1fr}
+    .final{padding-top:0}
+    .final-bg{position:relative;inset:auto;height:62vw;min-height:240px;margin:0 calc(-1*clamp(20px,4vw,48px))}
+    .final::before{inset:0 0 auto 0;height:62vw;min-height:240px;background:linear-gradient(180deg,transparent 55%,#130D09 100%)}
+    .final .wrap{min-height:0;padding-top:8px}
     .rv{opacity:1;transform:none;transition:none}
-    .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:95;display:flex;padding:10px 14px;background:rgba(19,13,9,.95);border-top:1px solid rgba(201,160,90,.5);
-      transform:translateY(110%);transition:transform .18s cubic-bezier(.2,.9,.3,1)}
+    .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:95;display:flex;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(19,13,9,.95);
+      box-shadow:0 -1px 0 rgba(201,160,90,.35);transform:translateY(110%);transition:transform .18s cubic-bezier(.2,.9,.3,1)}
     .sticky-cta.show{transform:none}
-    .sticky-cta .cta{flex:1;padding:16px 12px}
+    .sticky-cta .btn{flex:1}
   }
   @media (prefers-reduced-motion:reduce){
     .rv{opacity:1;transform:none;transition:none}
-    .hero-spiral,.offer-spiral,.tick-track,.voice.hit{animation:none}
+    .voice.hit{animation:none}
   }
 </style>
 </head>
 <body>
-<a class="skip" href="#offer">К продуктам</a>
 
-<!-- ============ HERO ============ -->
+<!-- ============ ПЕРВЫЙ ЭКРАН ============ -->
 <section class="hero">
   <picture class="hero-bg" aria-hidden="true"><source media="(max-width:760px)" srcset="img/hero-sky-m.webp"><img src="img/hero-sky.webp" alt="" width="1536" height="864" fetchpriority="high"></picture>
-  <div class="hero-spiral" id="spiral1" aria-hidden="true"></div>
   <div class="hero-photo"><picture><source type="image/webp" srcset="me.webp"><img src="me.png" width="1400" height="1868" alt="Максим, автор" loading="eager"></picture></div>
-  <div class="hero-top micro">
-    <span>Максим</span>
-    <span>пинок здравому смыслу и страхам</span>
-    <a href="https://instagram.com/rowrowbratha" target="_blank" rel="noopener">IG @rowrowbratha</a>
-    <a href="https://t.me/dapowah_bot?start=site_top" target="_blank" rel="noopener">TG-бот</a>
-  </div>
-
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Максим, на главную"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 32m0-2a2 2 0 1 1 0 4 4 4 0 1 1-1-8 8 8 0 1 1 2 16 12 12 0 1 1-3-24 16 16 0 1 1 4 32 20 20 0 1 1-5-40" fill="none" stroke="#D9572A" stroke-width="4" stroke-linecap="round"/></svg>Максим</a>
+    <span class="slogan">пинок здравому смыслу и страхам</span>
+    <nav><a href="https://instagram.com/rowrowbratha" target="_blank" rel="noopener">Instagram</a><a href="https://t.me/dapowah_bot?start=site_top" target="_blank" rel="noopener">Telegram</a></nav>
+  </header>
   <div class="hero-main">
-    <p class="acc"><svg class="kamina" viewBox="0 0 120 90" aria-hidden="true"><path d="M66 4 L28 50 L52 50 L44 86 L92 34 L64 34 Z" fill="#E9A845" stroke="#E9A845" stroke-width="3" stroke-linejoin="round"/></svg>не веришь в себя? норм. я верю за двоих.</p>
     <h1>Сломаем<br>твой страх<br><em>камеры</em></h1>
-    <p class="hero-lead">Тебе есть что сказать. Но голос внутри шепчет «не сейчас», и ты опять не снимаешь. Я этот голос знаю в лицо.</p>
-    <div class="hero-cta">
-      <a class="cta" href="#offer">Три продукта</a>
-      <a class="cta leather" href="cab/">Забрать бесплатное</a>
+    <p class="sub">Тебе есть что сказать, но голос внутри шепчет «не сейчас», и ты опять не снимаешь.</p>
+    <p class="offer-line">Три продукта по 7 дней прямо в телеге: одно дело в день, минут на 10.</p>
+    <div class="actions">
+      <a class="btn" href="#offer">Выбрать продукт<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="link" href="cab/">Сначала бесплатно →</a>
     </div>
-    <p class="hero-tag micro">три продукта по 7 дней · проходишь сам, прямо в телеге</p>
   </div>
 </section>
 
-<!-- ============ ПРОДУКТЫ (личная работа закрыта 10.10.2026) ============ -->
-<section class="offer pad" id="offer">
-  <img class="badge-star" src="img/star.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy">
-  <div class="offer-spiral" id="spiral2" aria-hidden="true"></div>
+<!-- ============ УЗНАЕШЬ? ============ -->
+<section class="five pad" id="five">
   <div class="wrap">
-  <div class="micro label">[ SIDE B · ЗА ДЕНЬГИ ]</div>
-  <h2 class="head">Три <span>продукта</span></h2>
-  <p class="sub">По 7 дней. Проходишь сам, прямо в телеге</p>
-  <p class="why">Голос «не сейчас» держит тебя не только у камеры. Он же решает, что подумают свои, что подождет до понедельника и зачем вообще все это. В день одно короткое чтение и одно дело минут на 10.</p>
-  <div class="prods">
-    <div class="prod">
-      <span class="prod-n" aria-hidden="true"><img src="img/star.webp" alt="" width="92" height="92" loading="lazy"><i>01</i></span>
-      <div><b>«Что подумают»</b><p>Перед каждым шагом прикидываешь, что скажут свои: родня, коллеги, бывшие одноклассники. Новая куртка, ролик, увольнение, неважно что.</p></div>
-      <a class="cta" href="https://t.me/dapowah_bot?start=wait_chto">Записаться</a>
+    <div class="scene">
+      <div>
+        <div class="label">Знакомо?</div>
+        <h2 class="h2">Пятеро, которые <em>держат тебя</em></h2>
+        <p class="lead">У голоса, который откладывает твои ролики, пять лиц. Кто из них говорит у тебя в голове?</p>
+      </div>
+      <blockquote class="quote-me">Я понимаю, насколько тяжело просто включить камеру. Включаешь, садишься и такой: «А-а, я хочу рассказать...» Я сам через это прошел.<cite>Максим</cite></blockquote>
     </div>
-    <div class="prod">
-      <span class="prod-n" aria-hidden="true"><img src="img/star.webp" alt="" width="92" height="92" loading="lazy"><i>02</i></span>
-      <div><b>«Потом»</b><p>Важное дело лежит месяцами, а день уходит на мелочи и ленту. Разберешь, почему откладываешь именно его, и сдвинешь с места.</p></div>
-      <a class="cta" href="https://t.me/dapowah_bot?start=wait_potom">Записаться</a>
+    <div class="five-grid">
+      <div class="voice"><b>Перфекционист</b><q>Может, еще что-то докрутить, потом выложим</q></div>
+      <div class="voice"><b>«Потом»</b><q>А, пох*й, потом сделаю</q></div>
+      <div class="voice"><b>Оценщик</b><q>А вдруг кто-то что-то скажет</q></div>
+      <div class="voice"><b>«Вдруг зря»</b><q>А вдруг зря, вдруг не получится</q></div>
+      <div class="voice"><b>Удаляльщик</b><q>Ну что, выложил? Теперь удаляй</q></div>
     </div>
-    <div class="prod">
-      <span class="prod-n" aria-hidden="true"><img src="img/star.webp" alt="" width="92" height="92" loading="lazy"><i>03</i></span>
-      <div><b>«Не живу, а существую»</b><p>Работа, дом, лента, и непонятно, чего вообще хочется. Найдешь, что тебе правда нужно, без сказок про предназначение.</p></div>
-      <a class="cta" href="https://t.me/dapowah_bot?start=wait_zhivu">Записаться</a>
+    <p class="hint">Можешь пальнуть по любому из них.</p>
+    <div class="actions">
+      <a class="btn" href="quiz/">Тест: кто держит тебя<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span class="note">60 секунд, бесплатно, в конце имя твоего</span>
     </div>
   </div>
+</section>
+
+<!-- ============ ТРИ ПРОДУКТА ============ -->
+<section class="offer pad" id="offer">
+  <div class="wrap">
+    <div class="label">Три продукта</div>
+    <h2 class="h2">Выбери свой <em>продукт</em></h2>
+    <p class="lead">Голос «не сейчас» держит тебя не только у камеры. Он же решает, что подумают свои, что подождет до понедельника и зачем вообще все это.</p>
+    <div class="prods">
+      <article class="prod">
+        <div class="frame"><img src="img/p-chto.webp" alt="" width="900" height="600" loading="lazy"></div>
+        <div class="prod-body">
+          <span class="prod-num">01</span>
+          <h3>«Что подумают»</h3>
+          <p>Перед каждым шагом прикидываешь, что скажут свои: родня, коллеги, бывшие одноклассники. Новая куртка, ролик, увольнение, неважно что.</p>
+          <span class="meta">7 дней · 10 минут в день · в телеге</span>
+          <a class="btn" href="https://t.me/dapowah_bot?start=wait_chto">Записаться</a>
+        </div>
+      </article>
+      <article class="prod">
+        <div class="frame"><img src="img/p-potom.webp" alt="" width="900" height="600" loading="lazy"></div>
+        <div class="prod-body">
+          <span class="prod-num">02</span>
+          <h3>«Потом»</h3>
+          <p>Важное дело лежит месяцами, а день уходит на мелочи и ленту. Разберешь, почему откладываешь именно его, и сдвинешь с места.</p>
+          <span class="meta">7 дней · 10 минут в день · в телеге</span>
+          <a class="btn" href="https://t.me/dapowah_bot?start=wait_potom">Записаться</a>
+        </div>
+      </article>
+      <article class="prod">
+        <div class="frame"><img src="img/p-zhivu.webp" alt="" width="900" height="600" loading="lazy"></div>
+        <div class="prod-body">
+          <span class="prod-num">03</span>
+          <h3>«Не живу, а существую»</h3>
+          <p>Работа, дом, лента, и непонятно, чего вообще хочется. Найдешь, что тебе правда нужно, без сказок про предназначение.</p>
+          <span class="meta">7 дней · 10 минут в день · в телеге</span>
+          <a class="btn" href="https://t.me/dapowah_bot?start=wait_zhivu">Записаться</a>
+        </div>
+      </article>
+    </div>
+    <div class="actions"><a class="link" href="quiz/">Не знаешь, какой взять? Тест подскажет →</a></div>
   </div>
 </section>
 
@@ -297,83 +327,50 @@
 <section class="how pad">
   <div class="wrap how-grid">
     <div>
-      <div class="micro label">[ КАК ЭТО РАБОТАЕТ ]</div>
-      <h2 class="head">Одно дело <span>в день</span></h2>
-      <p class="doubt">Голос «не сейчас» любой большой план откладывает до понедельника. С делом на 10 минут ему спорить не о чем, поэтому день тут маленький: прочитал, сделал одно дело, закрыл телефон.</p>
+      <div class="label">Как это работает</div>
+      <h2 class="h2">Одно дело <em>в день</em></h2>
+      <p class="lead">Голос «не сейчас» любой большой план откладывает до понедельника. С делом на 10 минут ему спорить не о чем: прочитал, сделал одно дело, закрыл телефон.</p>
       <ol class="steps">
-        <li>Выбираешь свой продукт и жмешь «Записаться», дальше все в боте</li>
+        <li>Выбираешь продукт и жмешь «Записаться», дальше все в боте</li>
         <li>Платишь один раз, прямо в телеге</li>
         <li>День 1 приходит сразу, дальше по дню в сутки</li>
         <li>Потерял день? Пишешь боту «мои покупки», он пришлет заново</li>
       </ol>
-      <a class="cta" href="#offer">Выбрать продукт</a>
+      <div class="actions"><a class="btn" href="#offer">Выбрать продукт<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
-    <img class="how-cam" src="img/camera.webp" alt="" aria-hidden="true" width="720" height="960" loading="lazy">
+    <div class="frame"><img src="img/camera.webp" alt="" width="720" height="960" loading="lazy"></div>
   </div>
 </section>
 
-<!-- ============ КТО Я (таблица-треклист) ============ -->
+<!-- ============ КТО Я ============ -->
 <section class="paper pad">
   <div class="wrap">
-  <div class="micro label">[ SIDE A · БИОГРАФИЯ УДАРОМ ]</div>
-  <h2 class="head">Кто <span>я</span></h2>
-  <div class="sub micro"><span>факты · не отзывы</span><span>вылизанное никто не услышал</span></div>
-  <table class="facts">
-    <thead><tr><th>№</th><th>факт</th><th>вывод</th></tr></thead>
-    <tbody>
-      <tr><td class="n">01</td><td class="fact"><b>Музыкант</b>Биты уходили в Европу. Сырые. А вылизанные месяцами не услышал никто.</td><td class="tag">сырое побеждает</td></tr>
-      <tr><td class="n">02</td><td class="fact"><b>QA-инженер</b>Ломаю софт за деньги. И вижу, где ломаешься ты.</td><td class="tag">найду, где течет</td></tr>
-      <tr><td class="n">03</td><td class="fact"><b>33 собеседования</b>Прошел, чтобы попасть в IT. Знаю это «вроде готов, но страшно» изнутри.</td><td class="tag">страх знаком</td></tr>
-      <tr><td class="n">04</td><td class="fact"><b>Ушел из банка</b>В никуда. Лучшая зарплата в жизни. И худший год.</td><td class="tag">голос тот же</td></tr>
-      <tr><td class="n">05</td><td class="fact"><b>Полгода удалял</b>Снимал рилсы и стирал. Все. Теперь снимаю, выкладываю и учу ломать этот страх.</td><td class="tag">удаляльщик побежден</td></tr>
-    </tbody>
-  </table>
-  </div>
-</section>
-
-<!-- ============ TICKER ============ -->
-<div class="ticker" aria-hidden="true"><div class="tick-track"><span>Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · </span><span>Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · Сними · Выложи · <em>Повтори</em> · </span></div></div>
-
-<!-- ============ ПЯТЕРО (голоса сопротивления) ============ -->
-<section class="five pad">
-  <div class="wrap">
-  <div class="micro label">[ БЕСПЛАТНО · С ЧЕГО НАЧАТЬ ]</div>
-  <h2 class="head">Пятеро, которые <span>держат тебя</span></h2>
-  <p class="sub2">Это не «лень» и не «нет времени». У голоса, который откладывает твои ролики, пять лиц. Узнал реплику? Узнал врага.</p>
-  <div class="five-grid">
-    <div class="voice"><span class="vn">01</span><b>Перфекционист</b><q>Может, еще что-то докрутить, потом выложим</q></div>
-    <div class="voice"><span class="vn">02</span><b>«Потом»</b><q>А, пох*й, потом сделаю</q></div>
-    <div class="voice"><span class="vn">03</span><b>Оценщик</b><q>А вдруг кто-то что-то скажет</q></div>
-    <div class="voice"><span class="vn">04</span><b>«Вдруг зря»</b><q>А вдруг зря, вдруг не получится</q></div>
-    <div class="voice"><span class="vn">05</span><b>Удаляльщик</b><q>Ну что, выложил? Теперь удаляй</q></div>
-  </div>
-  <div class="five-cta">
-    <a class="cta" href="quiz/">Тест: кто держит тебя</a>
-    <a class="cta leather" href="https://t.me/dapowah_bot?start=pdf_five">Методичка против пятерых</a>
-    <span class="five-note">60 секунд · бесплатно · в конце имя твоего</span>
-  </div>
-  <div class="pinok">
-    <div>
-      <b>А бесплатно есть?</b>
-      <p>Есть. «ИИ-Напарник»: помощник по рилсам, собранный на моем методе и в моем стиле. Знает пятерых поименно, разбирает начало ролика, страхи и цифры. В три ночи тоже отвечает. Первые 5 вопросов бесплатно. Это нейросеть, не живой я.</p>
-    </div>
-    <a class="cta leather" href="https://t.me/dapowah_bot?start=site_ai">Спросить ИИ-Напарника</a>
-  </div>
+    <div class="label">Почему меня слушать</div>
+    <h2 class="h2">Кто <em>я</em></h2>
+    <p class="lead">Отзывов пока нет, продукты только открываются, поэтому вот просто факты.</p>
+    <ul class="facts">
+      <li><b>Музыкант</b><span>Биты, которые вылизывал месяцами, не услышал никто. Сырые за два дня купили из Германии.</span></li>
+      <li><b>QA-инженер</b><span>Ищу, где ломается софт. С роликами так же, вижу, где течет.</span></li>
+      <li><b>33 собеседования</b><span>Прошел, чтобы попасть в IT. Знаю это «вроде готов, но страшно» изнутри.</span></li>
+      <li><b>Ушел из банка</b><span>В никуда, с самой большой зарплаты в жизни. Это был худший год.</span></li>
+      <li><b>Полгода удалял</b><span>Снимал рилсы и стирал. Все. Теперь снимаю, выкладываю и учу ломать этот страх.</span></li>
+    </ul>
   </div>
 </section>
 
 <!-- ============ ВОПРОСЫ ============ -->
-<section class="paper faq pad">
+<section class="faq pad">
   <div class="wrap">
-  <div class="micro label">[ ВОПРОСЫ ]</div>
-  <h2 class="head">Пока <span>думаешь</span></h2>
-  <dl class="qa">
-    <dt>Сколько времени в день?</dt><dd>Минут 10 на чтение и одно дело, следующий день бот пришлет сам через сутки.</dd>
-    <dt>Это курс с вебинарами?</dt><dd>Нет. Ни вебинаров, ни созвонов, ни общих чатов. Текст приходит в телегу, проходишь, когда удобно.</dd>
-    <dt>Это психология?</dt><dd>Нет. Я не психолог и не коуч, и это не терапия. Это 7 дней маленьких дел против голоса «не сейчас». Если тебе совсем плохо, иди к специалисту.</dd>
-    <dt>Как платить?</dt><dd>Звездами Telegram, прямо в боте, один раз. Подписки нет, ничего не продлевается.</dd>
-    <dt>С какого начать?</dt><dd>Пройди квиз за 60 секунд. Он покажет, кто из пятерых держит тебя, и бот предложит продукт под него.</dd>
-  </dl>
+    <div class="label">Вопросы</div>
+    <h2 class="h2">Перед тем, <em>как нажать</em></h2>
+    <div class="qa">
+      <details open><summary>Сколько времени в день?</summary><div class="a">Минут 10: короткое чтение и одно дело. Следующий день бот пришлет сам через сутки.</div></details>
+      <details><summary>Это курс с вебинарами?</summary><div class="a">Нет. Ни вебинаров, ни созвонов, ни общих чатов. Текст приходит в телегу, проходишь, когда удобно.</div></details>
+      <details><summary>Это психология?</summary><div class="a">Нет. Я не психолог и не коуч, и это не терапия. Это 7 дней маленьких дел против голоса «не сейчас». Если тебе совсем плохо, иди к специалисту.</div></details>
+      <details><summary>Как платить?</summary><div class="a">Звездами Telegram, прямо в боте, один раз. Подписки нет, ничего не продлевается.</div></details>
+      <details><summary>А бесплатно что-то есть?</summary><div class="a">Есть. <a href="quiz/">Тест на 60 секунд</a>, <a href="https://t.me/dapowah_bot?start=pdf_five">методичка против пятерых</a> и <a href="https://t.me/dapowah_bot?start=site_ai">ИИ-Напарник</a>: первые 5 вопросов бесплатно. Напарник это нейросеть на моем методе, не живой я.</div></details>
+      <details><summary>С какого продукта начать?</summary><div class="a">Пройди <a href="quiz/">тест</a>. Он покажет, кто из пятерых держит тебя, и бот предложит продукт под него.</div></details>
+    </div>
   </div>
 </section>
 
@@ -381,35 +378,32 @@
 <section class="final pad">
   <picture class="final-bg" aria-hidden="true"><source media="(max-width:760px)" srcset="img/final-m.webp"><img src="img/final.webp" alt="" width="1536" height="864" loading="lazy"></picture>
   <div class="wrap">
-  <div class="micro label">[ ТВОЙ ХОД ]</div>
-  <p class="doubt">Сомневаешься? Нормально. Сомнение и есть тот голос, про который весь мой блог. Мне он стоил месяцев «подготовки» и полугода удаленных роликов.</p>
-  <p class="doubt-strong">Ты не обязан быть готовым. Ты обязан только начать.</p>
-  <div><a class="cta" id="cta-final" href="https://t.me/dapowah_bot?start=prods">Погнали</a></div>
-  <p class="ps">P.S. 7 дней по 10 минут, все в телеге.</p>
+    <div class="label">Твой ход</div>
+    <h2 class="h2">Не веришь в&nbsp;себя? Норм. <em>Я&nbsp;верю за&nbsp;двоих</em></h2>
+    <p class="lead">Все равно все закончится, нас всех забудут, а так хоть что-то останется.</p>
+    <div class="actions">
+      <a class="btn" id="cta-final" href="https://t.me/dapowah_bot?start=prods">Погнали<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span class="note">Откроется бот, в нем все три продукта</span>
+    </div>
   </div>
-  <footer class="micro">
+  <footer>
     <span>Максим · rowrowbratha</span>
-    <span><a href="https://instagram.com/rowrowbratha">Instagram</a> · <a href="https://t.me/dapowah_bot">Telegram-бот</a> · <a href="legal/">Правила и данные, без мелкого шрифта</a></span>
+    <span><a href="https://instagram.com/rowrowbratha">Instagram</a> · <a href="https://t.me/dapowah_bot">Telegram-бот</a> · <a href="legal/">Правила и данные</a></span>
   </footer>
 </section>
 
-<div class="sticky-cta"><a class="cta" href="#offer">Три продукта</a></div>
+<div class="sticky-cta"><a class="btn" href="#offer">Выбрать продукт</a></div>
 
 <script>
 (function(){
-  function spiralPath(cx,cy,turns,step){var d='M '+cx+' '+cy;for(var t=0;t<=turns*2*Math.PI;t+=0.05){var r=step*t;d+=' L '+(cx+r*Math.cos(t)).toFixed(1)+' '+(cy+r*Math.sin(t)).toFixed(1);}return d;}
-  function spiral(el,color){if(!el)return;el.innerHTML='<svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="'+color+'" stroke-width="10" stroke-linecap="round"/></svg>';}
-  spiral(document.getElementById('spiral1'),'#E9A845');
-  spiral(document.getElementById('spiral2'),'#C9A05A');
-
-  var targets=document.querySelectorAll('.head,.sub2,.facts tbody tr,.voice,.five-cta,.prod,.steps li,.doubt');
+  var targets=document.querySelectorAll('.h2,.lead,.voice,.prod,.steps li,.facts li,.quote-me');
   targets.forEach(function(el,i){el.classList.add('rv');el.style.transitionDelay=(Math.min(i%5,3)*70)+'ms';});
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
     targets.forEach(function(el){io.observe(el);});
   } else {targets.forEach(function(el){el.classList.add('in');});}
 
-  // пасхалка: по плакату пятерых можно выстрелить, остается дырка (до 6 на плакат)
+  // по плакатам пятерых можно стрелять: остается дырка, до 6 на плакат
   document.querySelectorAll('.voice').forEach(function(v){
     v.addEventListener('click',function(e){
       if(v.querySelectorAll('.hole').length>=6)return;
@@ -419,14 +413,14 @@
     });
   });
 
+  // плавающая кнопка на телефоне: прячется у первого экрана, у продуктов и у финала
   var bar=document.querySelector('.sticky-cta');
   if(bar&&'IntersectionObserver' in window){
-    var heroEl=document.querySelector('.hero'),priceEl=document.querySelector('.prods'),finalEl=document.getElementById('cta-final');
     var heroOut=false,priceIn=false,finalIn=false;
     var upd=function(){bar.classList.toggle('show',heroOut&&!priceIn&&!finalIn);};
-    new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting;upd();}).observe(heroEl);
-    if(priceEl){new IntersectionObserver(function(e){priceIn=e[0].isIntersecting;upd();}).observe(priceEl);}
-    if(finalEl){new IntersectionObserver(function(e){finalIn=e[0].isIntersecting;upd();}).observe(finalEl);}
+    new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting;upd();}).observe(document.querySelector('.hero'));
+    new IntersectionObserver(function(e){priceIn=e[0].isIntersecting;upd();}).observe(document.querySelector('.prods'));
+    new IntersectionObserver(function(e){finalIn=e[0].isIntersecting;upd();}).observe(document.getElementById('cta-final'));
   }
 })();
 </script>
