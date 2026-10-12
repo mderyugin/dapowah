@@ -108,7 +108,13 @@
   @media(hover:hover){.voice:hover{transform:translateY(-4px)}}
   .voice.hit{animation:hit .22s}
   @keyframes hit{30%{transform:translate(3px,-2px)}65%{transform:translate(-2px,1px)}}
-  .hole{position:absolute;z-index:3;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#050306 0 32%,#3c1407 38% 48%,rgba(240,138,36,.55) 54%,transparent 72%)}
+  /* трещины по клику: темный разлом, внутри тлеет лава, рисуется от точки удара */
+  .crack{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+  .crack path{fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke-dashoffset .45s cubic-bezier(.2,.9,.3,1)}
+  .crack .glow{stroke:#F08A24;stroke-opacity:.5;filter:blur(1.6px)}
+  .crack .core{stroke:#120604}
+  .crack .hot{stroke:#FFC27A;stroke-opacity:.8}
+  .voice.broken::before{filter:blur(24px) brightness(.8)}
   .hint{margin-top:18px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(164,159,144,.7)}
 
   /* ===== ПРОДУКТЫ: картины ===== */
@@ -310,7 +316,7 @@
       <div class="voice" style="--a:radial-gradient(circle at 50% 40%,#05060F 0 30%,#2A1B4A 58%,#6A4A8A 85%)"><span class="t">04 · разыскивается</span><b>«Вдруг зря»</b><q>А вдруг зря, вдруг не получится</q></div>
       <div class="voice" style="--a:radial-gradient(circle at 50% 40%,#0D0207 0 28%,#A73110 55%,#F08A24 82%)"><span class="t">05 · разыскивается</span><b>Удаляльщик</b><q>Ну что, выложил? Теперь удаляй</q></div>
     </div>
-    <p class="hint">Можешь пальнуть по любому из них.</p>
+    <p class="hint">Ткни в любого, и он треснет.</p>
     <div class="actions">
       <a class="btn" href="quiz/">Тест: кто твой главарь<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <span class="note">60 секунд, бесплатно, в конце имя твоего главаря</span>
@@ -440,12 +446,32 @@
     targets.forEach(function(el){io.observe(el);});
   } else {targets.forEach(function(el){el.classList.add('in');});}
 
-  // по постерам банды можно стрелять: остается прожженная дырка, до 6 на постер
+  // по постерам банды можно ткнуть: от точки удара расходится трещина, в ней тлеет лава. До 5 трещин на постер
+  var NS='http://www.w3.org/2000/svg';
+  function branch(x,y,ang,len,w,W,H,out){
+    var d='M'+x.toFixed(1)+' '+y.toFixed(1),steps=Math.round(len/12);
+    for(var i=0;i<steps;i++){
+      ang+=(Math.random()-.5)*0.55;var s=8+Math.random()*9;x+=Math.cos(ang)*s;y+=Math.sin(ang)*s;d+=' L'+x.toFixed(1)+' '+y.toFixed(1);
+      if(x<-10||y<-10||x>W+10||y>H+10)break;
+      if(w>1&&Math.random()<0.1)branch(x,y,ang+(Math.random()<.5?-1:1)*(0.5+Math.random()*0.5),len*0.4,w*0.55,W,H,out);
+    }
+    out.push({d:d,w:w});
+  }
   document.querySelectorAll('.voice').forEach(function(v){
     v.addEventListener('click',function(e){
-      if(v.querySelectorAll('.hole').length>=6)return;
-      var r=v.getBoundingClientRect(),h=document.createElement('span');
-      h.className='hole';h.style.left=(e.clientX-r.left)+'px';h.style.top=(e.clientY-r.top)+'px';v.appendChild(h);
+      var n=v.querySelectorAll('.crack').length;if(n>=5)return;
+      var r=v.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,W=r.width,H=r.height,parts=[];
+      var k=2+Math.floor(Math.random()*2),a0=Math.random()*6.28;
+      for(var i=0;i<k;i++)branch(x,y,a0+i*6.28/k+(Math.random()-.5)*0.7,(0.22+Math.random()*0.22)*Math.max(W,H),1.6,W,H,parts);
+      var svg=document.createElementNS(NS,'svg');svg.setAttribute('class','crack');svg.setAttribute('viewBox','0 0 '+W+' '+H);
+      ['glow','core','hot'].forEach(function(cls){parts.forEach(function(pt){
+        var pa=document.createElementNS(NS,'path');pa.setAttribute('d',pt.d);pa.setAttribute('class',cls);
+        pa.setAttribute('stroke-width',(cls==='glow'?pt.w*2.4:cls==='core'?pt.w:pt.w*0.3).toFixed(2));svg.appendChild(pa);
+      });});
+      v.appendChild(svg);
+      svg.querySelectorAll('path').forEach(function(pa){var L=pa.getTotalLength();pa.style.strokeDasharray=L;pa.style.strokeDashoffset=L;});
+      requestAnimationFrame(function(){requestAnimationFrame(function(){svg.querySelectorAll('path').forEach(function(pa){pa.style.strokeDashoffset=0;});});});
+      if(n+1>=5)v.classList.add('broken');
       v.classList.remove('hit');void v.offsetWidth;v.classList.add('hit');
     });
   });
