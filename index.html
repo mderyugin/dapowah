@@ -192,6 +192,26 @@
   .who .lead,.facts span{color:#4A3B33}
   ::selection{background:var(--gold);color:#13080A}
 
+
+  /* ===== ОРАНЖЕВЫЙ ТОЛЬКО ТАМ, ГДЕ ЖАТЬ (13.10.2026, Максим: «не слишком оранжевые?») =====
+     Текст нейтральный, как у AKILA. Огонь остается у кнопок и двух главных фраз: «камеры» и «Я верю за двоих». */
+  .h2 em{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink-dim);filter:none}
+  .final .h2 em{background:linear-gradient(180deg,#F6C077 0%,#EC7A2C 52%,#D4531A 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(226,103,23,.38))}
+  .hero .offer-line{color:var(--ink-dim)}
+  .prod-num,.prod .meta,.steps li::before{color:var(--ash)}
+  .label::before{background:var(--ash);opacity:.6}
+  .link,.topbar nav a,footer a{border-bottom-color:var(--line)}
+  .quote-me{border-left-color:rgba(226,103,23,.7)}
+  .qa .a a,.qa summary::after{color:var(--ink)}
+
+  /* ===== КНОПКИ ИЗ ЛАВЫ: внутри картина раскаленной породы, при наведении лава течет ===== */
+  .btn{background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(248,160,70,.5),transparent 78%),url(img/e-btn.webp) 0% 50%/240% auto,var(--magma);
+    color:#120604;text-shadow:0 1px 0 rgba(255,205,150,.4);box-shadow:inset 0 0 0 1px rgba(30,8,2,.4),inset 0 0 16px rgba(70,14,2,.45)}
+  @media(hover:hover){.btn:hover{background-color:var(--magma);animation:lava 7s linear infinite alternate;box-shadow:inset 0 0 0 1px rgba(255,190,110,.5),0 0 44px rgba(226,103,23,.55)}}
+  .btn:active{filter:brightness(.9)}
+  @keyframes lava{to{background-position:0 0,100% 50%,0 0}}
+  @media (prefers-reduced-motion:reduce){.btn:hover{animation:none}}
+
   .rv{opacity:0;transform:translateY(18px)}
   .rv.in{opacity:1;transform:none;transition:opacity .4s cubic-bezier(.2,.9,.3,1),transform .4s cubic-bezier(.2,.9,.3,1)}
   .sticky-cta{display:none}
