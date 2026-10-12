@@ -29,7 +29,8 @@
     --f-head:'Sofia Sans Extra Condensed',sans-serif; --f-body:'Manrope',sans-serif; --f-mono:'Martian Mono',monospace;
     --void:#07070F; --void-2:#0E0C18; --void-3:#151226; --violet:#2A1B4A;
     --magma:#E26717; --ember:#F08A24; --ochre:#DB9F51; --rust:#A73110; --wine:#761A2B;
-    --ink:#F1E6D6; --ink-dim:rgba(241,230,214,.74); --ash:#A49F90; --line:rgba(241,230,214,.13);
+    --ink:#F4E7D4; --ink-dim:#CDBBA8; --ash:#A8958A; --gold:#E3AA5E; --line:rgba(244,231,212,.13);
+    /* текст: заголовки кость #F4E7D4 (16.5:1), основной песок #CDBBA8 (10.8:1), подписи дымчатая роза #A8958A (7:1), акцент охра #E3AA5E (9.7:1) */
     --pale:#CBC5B8; --text-dark:#14100F;
     --gutter:clamp(20px,4vw,56px);
     --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .9 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
@@ -168,6 +169,28 @@
   footer{position:relative;z-index:2;max-width:1160px;margin:64px auto 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px;
     font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
   footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+
+
+  /* ===== ЦВЕТ ТЕКСТА (13.10.2026): все тексты из одной теплой гаммы огня ===== */
+  .h2 em,.hero h1 em{background:linear-gradient(180deg,#F6C077 0%,#EC7A2C 52%,#D4531A 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 22px rgba(226,103,23,.38))}
+  .hero .sub{color:var(--ink-dim)}
+  .hero .offer-line,.prod-num,.prod .meta,.steps li::before{color:var(--gold)}
+  .label::before{background:var(--gold);opacity:.75}
+  .link{border-bottom-color:rgba(227,170,94,.45)}
+  .topbar nav a,footer a{border-bottom-color:rgba(227,170,94,.4)}
+  .quote-me{color:var(--ink);border-left-color:var(--gold)}
+  .voice b{color:#F7EBDA;text-shadow:0 1px 14px rgba(7,7,15,.55)}
+  .voice .t{color:rgba(247,235,218,.74)}
+  .voice q{color:rgba(247,235,218,.9)}
+  .qa summary{color:var(--ink)}
+  .qa .a a,.qa summary::after{color:var(--gold)}
+  .who{color:#1A1210}
+  .who .label{color:#64503F}
+  .who .label::before{background:#8E3517;opacity:.8}
+  .who .h2,.facts b{color:#1A1210}
+  .who .lead,.facts span{color:#4A3B33}
+  ::selection{background:var(--gold);color:#13080A}
 
   .rv{opacity:0;transform:translateY(18px)}
   .rv.in{opacity:1;transform:none;transition:opacity .4s cubic-bezier(.2,.9,.3,1),transform .4s cubic-bezier(.2,.9,.3,1)}
