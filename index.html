@@ -56,7 +56,7 @@
   p{text-wrap:pretty}
 
   /* кнопка: сплошная магма, матовая; при наведении светится изнутри, как лава */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:60px;padding:0 30px;border-radius:2px;background:var(--magma);color:#13080A;text-decoration:none;
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:60px;padding:0 30px;border-radius:2px;background:#9A3414;color:#F2E4CF;text-decoration:none;
     font-family:var(--f-head);font-weight:800;font-size:1.4rem;letter-spacing:.1em;text-transform:uppercase;line-height:1;text-align:center;transition:box-shadow .25s,background-color .25s}
   .btn svg{width:18px;height:18px;flex:none;transition:transform .2s}
   @media(hover:hover){.btn:hover svg{transform:translateX(4px)}}
@@ -228,14 +228,19 @@
   .quote-me{border-left-color:rgba(226,103,23,.7)}
   .qa .a a,.qa summary::after{color:var(--ink)}
 
-  /* ===== КНОПКИ ИЗ ОСТЫВШЕЙ ЛАВЫ (13.10.2026): черная порода, в трещинах тлеет огонь; при наведении трещины разгораются и лава ползет ===== */
-  .btn{background:url(img/e-btn.webp) 0% 50%/240% auto,#120C0B;color:var(--ink);text-shadow:0 1px 8px rgba(7,7,15,.9);
-    box-shadow:inset 0 0 0 1px rgba(226,103,23,.45),0 0 0 rgba(226,103,23,0);transition:box-shadow .35s,filter .35s}
-  @media(hover:hover){.btn:hover{filter:brightness(1.55) saturate(1.25);animation:lava 9s linear infinite alternate;
-    box-shadow:inset 0 0 0 1px rgba(240,138,36,.85),0 0 34px rgba(226,103,23,.4)}}
-  .btn:active{filter:brightness(1.2)}
-  @keyframes lava{to{background-position:100% 50%}}
-  @media (prefers-reduced-motion:reduce){.btn:hover{animation:none}}
+  /* ===== КНОПКИ «ПОЛЕ РОТКО» (14.10.2026, после разбора с арт-директором и критиком) =====
+     Матовая ржавая плита с неровным полем и зерном, как картины на сайте. Без блика, рамки-фаски, тени текста и свечения.
+     Под курсором жар поднимается снизу, как металл в горне. Кремовый текст на ржавчине: контраст около 7:1 */
+  .btn{position:relative;isolation:isolate;overflow:hidden;color:#F2E4CF;text-shadow:none;
+    background:linear-gradient(180deg,#A83D18 0%,#9A3414 48%,#85290F 100%);box-shadow:inset 0 0 0 1px rgba(58,14,6,.6);transition:filter .2s}
+  .btn::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(0deg,#E26717 0%,rgba(226,103,23,.6) 28%,rgba(226,103,23,0) 62%);opacity:0;transform:translateY(40%);
+    transition:opacity .25s ease,transform .3s cubic-bezier(.2,.9,.3,1)}
+  .btn::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--grain-d);opacity:.85}
+  @media(hover:hover){.btn:hover::before{opacity:1;transform:none}}
+  .btn:active{filter:brightness(.88)}
+  .btn:active::before{opacity:.8;transform:none}
+  @media (prefers-reduced-motion:reduce){.btn::before{transition:none}}
 
   /* ===== СЛОВА-ОГОНЬ: внутри букв живописная магма, а не ровный градиент; медленно дрейфует ===== */
   .hero h1 em,.final .h2 em{background:url(img/e-textfill.webp) 15% 35%/150% auto;-webkit-background-clip:text;background-clip:text;color:transparent;filter:none;animation:ember 16s ease-in-out infinite alternate}
