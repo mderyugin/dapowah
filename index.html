@@ -147,7 +147,10 @@
   .prod h3{font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.9rem,2.4vw,2.3rem);line-height:.95;margin:10px 0 12px}
   .prod p{color:var(--ink-dim);font-size:16px;line-height:1.55}
   .prod p b{display:block;margin-bottom:6px;color:var(--ink);font-weight:800;font-size:17px}
-  .prod .meta{margin:auto 0 18px;padding-top:20px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
+  .prod .meta{margin:auto 0 10px;padding-top:20px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
+  .prod .price{display:flex;align-items:baseline;gap:12px;margin:0 0 16px}
+  .prod .price b{font-family:var(--f-head);font-weight:900;font-size:2.2rem;line-height:1;color:var(--ink)}
+  .prod .price span{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash)}
   .prod .btn{width:100%}
   .offer .actions{justify-content:center}
   .open-note{margin-top:28px;text-align:center;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash);max-width:none}
@@ -372,6 +375,7 @@
           <h3>«Что подумают»</h3>
           <p><b>Про чужое мнение.</b>Хочешь выложить ролик, купить яркую куртку или уйти с работы, но сначала думаешь, что скажут родня и коллеги.</p>
           <span class="meta">7 дней · 10 минут в день · в телеге</span>
+          <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
           <a class="btn" href="https://t.me/dapowah_bot?start=wait_chto">Забрать</a>
         </div>
       </article>
@@ -382,6 +386,7 @@
           <h3>«Потом»</h3>
           <p><b>Про дела, которые откладываешь.</b>Весь день вроде занят, а главное опять не тронул: резюме, запись к врачу, первый ролик.</p>
           <span class="meta">7 дней · 10 минут в день · в телеге</span>
+          <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
           <a class="btn" href="https://t.me/dapowah_bot?start=wait_potom">Забрать</a>
         </div>
       </article>
@@ -392,11 +397,12 @@
           <h3>«Не живу, а существую»</h3>
           <p><b>Про жизнь по кругу.</b>Работа, ужин, лента, сон, и так каждый день. Вроде все нормально, а чего хочешь сам, непонятно.</p>
           <span class="meta">7 дней · 10 минут в день · в телеге</span>
+          <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
           <a class="btn" href="https://t.me/dapowah_bot?start=wait_zhivu">Забрать</a>
         </div>
       </article>
     </div>
-    <p class="open-note">Купить пока нельзя. Бот запишет тебя в очередь, а пока ждешь, там бесплатно тест и методичка. Откроется продукт, бот назовет цену, а решать тебе</p>
+    <p class="open-note">Купить пока нельзя. Бот запишет тебя в очередь, а пока ждешь, там бесплатно тест и методичка. Откроется продукт, бот напишет, а решать тебе</p>
     <div class="actions"><a class="link" href="quiz/">Не знаешь, какой взять? Тест подскажет →</a></div>
   </div>
 </section>
@@ -410,7 +416,7 @@
       <p class="lead">Большой план легко отложить до понедельника. 10 минут отложить труднее, поэтому день тут маленький: прочитал, сделал одно дело, закрыл телефон.</p>
       <ol class="steps">
         <li>Жмешь «Забрать», бот записывает тебя в очередь</li>
-        <li>Платишь звездами Telegram один раз, подписки нет</li>
+        <li>Платишь 1490 ₽ один раз звездами Telegram, подписки нет</li>
         <li>День 1 приходит сразу после оплаты, дальше по дню в сутки</li>
         <li>Потерял день? Пишешь боту «мои покупки», он пришлет последний заново</li>
       </ol>
@@ -443,7 +449,7 @@
     <h2 class="h2">Перед тем, <em>как нажать</em></h2>
     <div class="qa">
       <details open><summary>Сколько времени в день?</summary><div class="a">Минут 10: короткое чтение и одно дело. Следующий день бот пришлет сам через сутки.</div></details>
-      <details><summary>Сколько стоит?</summary><div class="a">Цены пока нет, очередь узнает ее первой. Платишь один раз звездами, это деньги внутри Telegram, подписки нет.</div></details>
+      <details><summary>Сколько стоит?</summary><div class="a">1490 ₽ за продукт, один раз. Платишь в боте звездами, это деньги внутри Telegram, подписки нет.</div></details>
       <details><summary>Это психология?</summary><div class="a">Я не психолог и не лечу. Читаешь пару минут и делаешь одно дело руками.</div></details>
       <details><summary>А если брошу на середине?</summary><div class="a">Бывает. Все дни остаются у тебя в чате, вернешься и продолжишь.</div></details>
       <details><summary>А мне точно подойдет?</summary><div class="a">Не подойдет, если ждешь живого разбора: меня в боте нет. Тут каждый день одно дело, и делаешь его ты.</div></details>
