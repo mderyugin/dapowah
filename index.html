@@ -89,6 +89,8 @@
   @media(hover:hover){.topbar nav a:hover{color:var(--ochre);border-color:var(--ochre)}}
   .hero-main{position:relative;z-index:4;margin-top:auto;max-width:min(50%,700px)}
   .hero h1{font-family:var(--f-head);font-weight:900;text-transform:uppercase;line-height:.82;letter-spacing:.004em;font-size:clamp(4.4rem,10.4vw,10.4rem);color:var(--ink)}
+  /* 18.10: галочка над «Й» в «ТВОЙ» залезала в строку «СЛОМАЕМ»: воздух только между первой и второй строкой */
+  .hero h1 .l2,.hero h1 em{display:inline-block;padding-top:.16em}
   .hero .sub{margin-top:26px;font-size:clamp(1.1rem,1.45vw,1.3rem);line-height:1.5;max-width:40ch;color:#EFE3D2}
   .hero .offer-line{margin-top:12px;font-weight:700;font-size:clamp(1rem,1.2vw,1.1rem);color:var(--ochre);max-width:46ch}
 
@@ -325,7 +327,7 @@
     <nav><a href="https://instagram.com/rowrowbratha" target="_blank" rel="noopener">Instagram</a><a href="https://t.me/dapowah_bot?start=site_top" target="_blank" rel="noopener">Telegram</a></nav>
   </header>
   <div class="hero-main">
-    <h1>Сломаем<br>твой страх<br><em>камеры</em></h1>
+    <h1>Сломаем<br><span class="l2">твой страх</span><br><em>камеры</em></h1>
     <p class="sub">Включаешь камеру, садишься и такой: «А-а, я хочу рассказать...» Я понимаю, насколько это тяжело, я сам через это прошел.</p>
     <p class="offer-line">Три продукта по 7 дней в Telegram-боте. Одно дело в день минут на 10, без вебинаров и созвонов.</p>
     <div class="actions">
