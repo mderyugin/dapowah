@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>ИИ-Напарник</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#15100B;--fire:#D9572A;--amber:#E9A845;--ink:#EEE2C6;--grey:#A8977A;--panel:#22170F;--brass:#C9A05A;--line:rgba(201,160,90,.34);--hit:cubic-bezier(.2,.9,.3,1)}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -98,6 +98,42 @@
   .cta-line{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;background:transparent!important;color:var(--ink);border:0!important;box-shadow:inset 0 0 0 1px rgba(201,160,90,.6);font-size:1.2rem!important}
   #gate h2{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:900;font-size:2.2rem!important;line-height:.95}
   #gate a{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;background:var(--fire);color:#160E08;font-size:1.35rem!important;padding:16px!important}
+
+  /* ===== «ОГОНЬ В ТЕМНОТЕ» (18.10.2026): как на главной. Тьма с зерном, кость и песок, охра акцентом, оранжевым только то, на что жать ===== */
+  :root{--bg:#07070F;--panel:#0E0C18;--fire:#E3AA5E;--amber:#E3AA5E;--brass:#A8958A;--ink:#F4E7D4;--grey:#A8958A;--line:rgba(244,231,212,.13);
+    --void:#07070F;--void-2:#0E0C18;--void-3:#151226;--magma:#E26717;--ochre:#DB9F51;--rust:#A73110;--ink-dim:#CDBBA8;--pale:#CBC5B8;
+    --f-head:'Sofia Sans Extra Condensed',sans-serif;--f-mono:'Martian Mono',monospace;
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .9 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");--grain-d:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .07 0 0 0 0 .06 .8 0 0 0 -.45'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E")}
+  body{background:var(--grain),var(--void)!important;color:var(--ink)}
+  .kicker{font-family:var(--f-mono)!important;font-weight:400!important;font-size:11px!important;letter-spacing:.16em!important;color:var(--grey)!important}
+  .kicker::before{opacity:1!important}
+  h1{color:var(--ink)!important}
+  h1 .ink{background:linear-gradient(180deg,var(--ochre) 0%,var(--magma) 55%,var(--rust) 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+  /* кнопка «поле Ротко»: матовая ржавая плита с зерном, под пальцем жар поднимается снизу */
+  #send,.cta-fire,#gate a{position:relative;isolation:isolate;overflow:hidden;border:0!important;border-radius:2px!important;color:#F2E4CF!important;text-shadow:none;
+    background:linear-gradient(180deg,#A83D18 0%,#9A3414 48%,#85290F 100%)!important;box-shadow:inset 0 0 0 1px rgba(58,14,6,.6)!important;
+    font-family:var(--f-head)!important;font-weight:800!important;letter-spacing:.1em!important;text-transform:uppercase;transition:filter .2s}
+  #send::before,.cta-fire::before,#gate a::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,#E26717 0%,rgba(226,103,23,.6) 28%,rgba(226,103,23,0) 62%);opacity:0;transform:translateY(40%);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.9,.3,1)}
+  #send::after,.cta-fire::after,#gate a::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--grain-d);opacity:.85}
+  @media(hover:hover){#send:hover::before,.cta-fire:hover::before,#gate a:hover::before{opacity:1;transform:none}}
+  #send:active,.cta-fire:active,#gate a:active{filter:brightness(.88);transform:none!important}
+  #send:active::before,.cta-fire:active::before,#gate a:active::before{opacity:.8;transform:none}
+  @media (prefers-reduced-motion:reduce){#send::before,.cta-fire::before,#gate a::before{transition:none}}
+  .cta-line{background:transparent!important;border:0!important;border-radius:2px!important;box-shadow:inset 0 0 0 1px rgba(244,231,212,.32)!important;color:var(--ink)!important;font-family:var(--f-head)!important;font-weight:800!important;letter-spacing:.1em!important;text-transform:uppercase}
+  .cta-line:active{box-shadow:inset 0 0 0 1px var(--ochre)!important}
+
+  .ammo{color:var(--grey)!important}
+  .ammo b{color:var(--ochre)!important}
+  .bot,.typing{background:var(--void-2)!important;border:0!important;box-shadow:inset 0 0 0 1px var(--line)!important}
+  .me{background:var(--void-3)!important;border:0!important;box-shadow:inset 0 0 0 1px rgba(219,159,81,.35)!important}
+  .typing i{background:var(--ochre)!important}
+  #bar,#done{background:#0A0913!important;box-shadow:inset 0 1px 0 var(--line)}
+  #inp{background:var(--void-2)!important;border:0!important;box-shadow:inset 0 0 0 1px var(--line)!important}
+  .chip{background:transparent!important;border:0!important;box-shadow:inset 0 0 0 1px rgba(244,231,212,.24)!important;color:var(--ink)!important}
+  .chip:active{background:var(--void-3)!important;color:var(--ink)!important;box-shadow:inset 0 0 0 1px var(--ochre)!important}
+  .rate button{border-color:var(--line)!important}
+  .rate button:active{border-color:var(--ochre)!important}
+  #gate{background:var(--grain),var(--void)!important}
 </style>
 </head>
 <body>
@@ -149,7 +185,7 @@ const API = "https://dapowah-bot.mdklurk.workers.dev";
 const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
 
 function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
-document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#C9A05A" stroke-width="10" stroke-linecap="round"/></svg>';
+document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#DB9F51" stroke-width="10" stroke-linecap="round"/></svg>';
 
 const chat=document.getElementById('chat'), inp=document.getElementById('inp'), send=document.getElementById('send');
 let LIMIT=5, used=0, busy=false, SUB=false;

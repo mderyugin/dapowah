@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ранчо</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#15100B;--fire:#D9572A;--amber:#E9A845;--ink:#EEE2C6;--grey:#A8977A;--panel:#22170F;--brass:#C9A05A;--line:rgba(201,160,90,.34)}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -61,12 +61,46 @@
   #art .do{border:0!important;box-shadow:inset 0 0 0 1px var(--line);background:#20160E!important;padding:14px!important}
   #art .do b{font-family:'Manrope',sans-serif!important;font-weight:800;letter-spacing:.14em;color:var(--amber)!important}
   .cta{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;background:var(--fire);color:#160E08;font-size:1.35rem!important;padding:16px!important}
+
+  /* ===== «ОГОНЬ В ТЕМНОТЕ» (18.10.2026): как на главной. Тьма с зерном, кость и песок, охра акцентом, оранжевым только то, на что жать ===== */
+  :root{--bg:#07070F;--panel:#0E0C18;--fire:#E3AA5E;--amber:#E3AA5E;--brass:#A8958A;--ink:#F4E7D4;--grey:#A8958A;--line:rgba(244,231,212,.13);
+    --void:#07070F;--void-2:#0E0C18;--void-3:#151226;--magma:#E26717;--ochre:#DB9F51;--rust:#A73110;--ink-dim:#CDBBA8;--pale:#CBC5B8;
+    --f-head:'Sofia Sans Extra Condensed',sans-serif;--f-mono:'Martian Mono',monospace;
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .9 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");--grain-d:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .07 0 0 0 0 .06 .8 0 0 0 -.45'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E")}
+  body{background:var(--grain),var(--void)!important;color:var(--ink)}
+  .kicker{font-family:var(--f-mono)!important;font-weight:400!important;font-size:11px!important;letter-spacing:.16em!important;color:var(--grey)!important}
+  .kicker::before{opacity:1!important}
+  h1{color:var(--ink)!important}
+  h1 .ink{background:linear-gradient(180deg,var(--ochre) 0%,var(--magma) 55%,var(--rust) 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+  /* кнопка «поле Ротко»: матовая ржавая плита с зерном, под пальцем жар поднимается снизу */
+  .cta{position:relative;isolation:isolate;overflow:hidden;border:0!important;border-radius:2px!important;color:#F2E4CF!important;text-shadow:none;
+    background:linear-gradient(180deg,#A83D18 0%,#9A3414 48%,#85290F 100%)!important;box-shadow:inset 0 0 0 1px rgba(58,14,6,.6)!important;
+    font-family:var(--f-head)!important;font-weight:800!important;letter-spacing:.1em!important;text-transform:uppercase;transition:filter .2s}
+  .cta::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,#E26717 0%,rgba(226,103,23,.6) 28%,rgba(226,103,23,0) 62%);opacity:0;transform:translateY(40%);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.9,.3,1)}
+  .cta::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--grain-d);opacity:.85}
+  @media(hover:hover){.cta:hover::before{opacity:1;transform:none}}
+  .cta:active{filter:brightness(.88);transform:none!important}
+  .cta:active::before{opacity:.8;transform:none}
+  @media (prefers-reduced-motion:reduce){.cta::before{transition:none}}
+
+  .banner::after{background:linear-gradient(180deg,rgba(7,7,15,.1) 0%,transparent 35%,var(--void) 100%)!important}
+  .banner img{object-position:62% 40%!important}
+  .card{background:var(--void-2)!important;border:0!important;box-shadow:inset 0 0 0 1px var(--line)!important;transition:box-shadow .15s}
+  .card:active{box-shadow:inset 0 0 0 1px var(--ochre)!important}
+  .card b{color:var(--ink)}
+  .card span{color:var(--ink-dim)!important}
+  .sect{font-family:var(--f-mono)!important;font-weight:400!important;font-size:11px!important;letter-spacing:.16em!important;color:var(--grey)!important}
+  .tag{border-color:var(--line)!important;color:var(--gold,#E3AA5E)!important;font-family:var(--f-mono)!important;font-weight:400!important;font-size:10.5px!important;letter-spacing:.08em;text-transform:uppercase}
+  #art .back,#lib .back{font-family:var(--f-mono)!important;font-weight:400!important;font-size:11px!important;color:var(--grey)!important}
+  #art .frame{border-left-color:var(--ochre)!important;color:var(--ink)!important}
+  #art .do{background:var(--void-2)!important;border:0!important;box-shadow:inset 0 0 0 1px var(--line)!important}
+  #art .do b{font-family:var(--f-mono)!important;font-weight:400!important;letter-spacing:.14em;color:var(--grey)!important;font-size:11px!important}
 </style>
 </head>
 <body>
 
 <div id="hub">
-  <div class="banner" aria-hidden="true"><img src="../img/hero-sky-m.webp" alt=""></div>
+  <div class="banner" aria-hidden="true"><img src="../img/e-hero-m.webp" alt=""></div>
   <div class="kicker">здорово, бандит</div>
   <h1>Ранчо</h1>
   <p class="sub">Все бесплатное в одном месте. Без почты и «оставьте телефон».</p>
