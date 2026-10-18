@@ -238,14 +238,14 @@ async function toRazbor(){
   if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot"}
 }
 
-// «1 зарубка, 3 зарубки, 5 зарубок»
-const zar=n=>n+' '+(n%10===1&&n%100!==11?'зарубка':n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?'зарубки':'зарубок');
+// «1 огонь, 3 огня, 5 огней»
+const zar=n=>n+' '+(n%10===1&&n%100!==11?'огонь':n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?'огня':'огней');
 function welcomeText(j){
-  const hi=j.name?`Здорово, ${j.name}.`:"Здорово.";
-  if(j.pattern&&j.fights>0)return `${hi} Главарь твоей банды по тесту ${j.pattern}, помню. И ${zar(j.fights)} у тебя тоже помню.\n\nРассказывай, где буксуешь, разберем через твоего главаря.`;
-  if(j.pattern)return `${hi} Главарь твоей банды по тесту ${j.pattern}, помню.\n\nРассказывай, где буксуешь: разберем через него, конкретикой, без «поверь в себя».`;
+  const hi=j.name?`Приветствую, ${j.name}.`:"Приветствую.";
+  if(j.pattern&&j.fights>0)return `${hi} Твоя главная тень по тесту ${j.pattern}, помню. И ${zar(j.fights)} у тебя тоже помню.\n\nРассказывай, где буксуешь, разберем через твою главную тень.`;
+  if(j.pattern)return `${hi} Твоя главная тень по тесту ${j.pattern}, помню.\n\nРассказывай, где буксуешь: разберем через нее, конкретикой, без «поверь в себя».`;
   if(j.fights>0)return `${hi} У тебя ${zar(j.fights)}, звание ${j.rank}. Уважение.\n\nРассказывай, где буксуешь сейчас.`;
-  return `${hi} Я ИИ-Напарник, твой напарник по рилсам на методе Максима: банда Пятерых, приемы руками, разбор цифр.\n\nРасскажи, где буксуешь: страшно снимать, ролик не заходит, не можешь выложить. Отвечаю конкретикой, без «поверь в себя».`;
+  return `${hi} Я ИИ-Напарник, твой напарник по рилсам на методе Максима: пять теней, приемы руками, разбор цифр.\n\nРасскажи, где буксуешь: страшно снимать, ролик не заходит, не можешь выложить. Отвечаю конкретикой, без «поверь в себя».`;
 }
 
 async function init(){
@@ -292,7 +292,7 @@ async function ask(){
   add('me',text);
   const t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i><span style="color:var(--grey);font-size:12.5px;margin-left:6px"></span>';
   chat.appendChild(t);chat.scrollTop=chat.scrollHeight;
-  const phrases=['перезаряжаю','сверяюсь с методичкой','выслеживаю твоего главаря','точу ответ'];
+  const phrases=['раздуваю угли','сверяюсь с методичкой','ищу твою главную тень','точу ответ'];
   let pi=0;const lbl=t.querySelector('span');lbl.textContent=phrases[0];
   const rot=setInterval(()=>{pi=(pi+1)%phrases.length;lbl.textContent=phrases[pi]},2600);
   try{
