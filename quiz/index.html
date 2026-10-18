@@ -40,7 +40,6 @@
   .priem{border-left:4px solid var(--fire);background:var(--panel);padding:14px;margin-top:16px;font-size:15px;line-height:1.5}
   .priem b{display:block;font-family:'Manrope';font-weight:800;color:var(--fire);font-size:13px;text-transform:uppercase;margin-bottom:6px}
   .hint{position:fixed;bottom:10px;left:0;right:0;text-align:center;color:var(--grey);font-size:12px;opacity:.7}
-  .spiral{position:fixed;right:-120px;top:-120px;width:300px;height:300px;opacity:.1;pointer-events:none;z-index:0}
   .cta-stack{margin-top:22px;display:flex;flex-direction:column;gap:10px}
   .cta2{display:block;text-align:center;text-decoration:none;border:2px solid var(--ink);color:var(--ink);
         font-family:'Manrope';font-weight:800;text-transform:uppercase;font-size:14px;padding:13px}
@@ -113,7 +112,6 @@
 </style>
 </head>
 <body>
-<div class="spiral" id="sp"></div>
 
 <!-- START -->
 <div class="screen on" id="s-start">
@@ -143,9 +141,6 @@
 const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-// спираль
-function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
-document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#DB9F51" stroke-width="10" stroke-linecap="round"/></svg>';
 
 const Q = [
  {q:"Ролик снят. Что происходит дальше чаще всего?", o:[
@@ -269,9 +264,6 @@ function share(){
   const c=document.createElement('canvas');c.width=1080;c.height=1920;
   const x=c.getContext('2d');
   x.fillStyle='#07070F';x.fillRect(0,0,1080,1920);
-  // спираль-водяной знак
-  x.save();x.globalAlpha=.09;x.strokeStyle='#DB9F51';x.lineWidth=14;x.beginPath();
-  let px=540,py=760;x.moveTo(px,py);for(let a=0;a<=4*2*Math.PI;a+=.05){const rr=13*a;x.lineTo(540+rr*Math.cos(a),760+rr*Math.sin(a))}x.stroke();x.restore();
   x.textAlign='center';
   x.fillStyle='#E3AA5E';x.font='800 40px Manrope,sans-serif';x.fillText('главарь моей банды перед камерой',540,300);
   {const g=x.createLinearGradient(0,830,0,1010);g.addColorStop(0,'#DB9F51');g.addColorStop(.55,'#E26717');g.addColorStop(1,'#A73110');x.fillStyle=g;}x.font='900 190px "Sofia Sans Extra Condensed",sans-serif';

@@ -11,7 +11,6 @@
   :root{--bg:#15100B;--fire:#D9572A;--amber:#E9A845;--ink:#EEE2C6;--grey:#A8977A;--panel:#22170F;--brass:#C9A05A;--line:rgba(201,160,90,.34);--hit:cubic-bezier(.2,.9,.3,1)}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   body{background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif;min-height:100dvh;padding:26px 18px 44px;overflow-x:hidden}
-  .spiral{position:fixed;right:-120px;top:-120px;width:300px;height:300px;opacity:.07;pointer-events:none;z-index:0;animation:spin 20s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
   .kicker{font-family:'Manrope',sans-serif;color:var(--amber);font-size:17px;margin-bottom:6px}
   h1{font-family:'Sofia Sans Extra Condensed';font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.92;color:var(--fire);margin-bottom:6px}
@@ -25,7 +24,7 @@
   .row .who span{color:var(--amber);font-size:12.5px}
   .row .sc{font-family:'Sofia Sans Extra Condensed';font-weight:900;font-size:2rem;color:var(--fire);line-height:1}
   .empty{color:var(--grey);font-size:15px;line-height:1.5;position:relative;z-index:1}
-  @media (prefers-reduced-motion:reduce){.row{opacity:1;transform:none;animation:none}.spiral{animation:none}}
+  @media (prefers-reduced-motion:reduce){.row{opacity:1;transform:none;animation:none}}
 
   /* ===== ВЕСТЕРН (12.10.2026): как на главной — Druk-двойник + Manrope, латунь, матовые кнопки ===== */
   body{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .84 0 0 0 0 .68 .62 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E"),var(--bg);font-weight:500}
@@ -61,7 +60,6 @@
 </style>
 </head>
 <body>
-<div class="spiral" id="sp"></div>
 <div class="kicker">кто уже выкладывает</div>
 <h1>Доска легенд</h1>
 <p class="sub">Тут не рейтинг, тут те, кто перестал молчать. Цифра справа это зарубки: сколько роликов человек выложил.</p>
@@ -70,8 +68,6 @@
 <script>
 const API="https://dapowah-bot.mdklurk.workers.dev";
 const tg=window.Telegram?.WebApp;tg?.expand();tg?.ready();
-function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
-document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#DB9F51" stroke-width="10" stroke-linecap="round"/></svg>';
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 async function load(){
   try{

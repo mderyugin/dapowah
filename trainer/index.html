@@ -12,7 +12,6 @@
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
   body{background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif;display:flex;flex-direction:column;height:100dvh;overflow:hidden}
-  .spiral{position:fixed;right:-130px;top:-130px;width:320px;height:320px;opacity:.08;pointer-events:none;z-index:0;animation:spin 20s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
 
   header{padding:18px 18px 12px;position:relative;z-index:1;flex:0 0 auto}
@@ -72,8 +71,7 @@
 
   @media (prefers-reduced-motion:reduce){
     .msg,.typing{opacity:1;transform:none;animation:none}
-    .spiral{animation:none}
-    .typing i{animation:none}
+      .typing i{animation:none}
   }
 
   /* ===== ВЕСТЕРН (12.10.2026): как на главной — Druk-двойник + Manrope, латунь, матовые кнопки ===== */
@@ -137,7 +135,6 @@
 </style>
 </head>
 <body>
-<div class="spiral" id="sp"></div>
 
 <header>
   <div class="kicker">напарник по рилсам на методе Максима</div>
@@ -184,8 +181,6 @@
 const API = "https://dapowah-bot.mdklurk.workers.dev";
 const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
 
-function spiralPath(cx,cy,t,s){let d='M '+cx+' '+cy;for(let a=0;a<=t*2*Math.PI;a+=.05){const r=s*a;d+=' L '+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
-document.getElementById('sp').innerHTML='<svg viewBox="0 0 600 600"><path d="'+spiralPath(300,300,4,11)+'" fill="none" stroke="#DB9F51" stroke-width="10" stroke-linecap="round"/></svg>';
 
 const chat=document.getElementById('chat'), inp=document.getElementById('inp'), send=document.getElementById('send');
 let LIMIT=5, used=0, busy=false, SUB=false;
