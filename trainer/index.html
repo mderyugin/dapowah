@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; form-action 'self'">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ИИ-Напарник</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -80,7 +80,6 @@
   .kicker::before{content:"";width:22px;height:1px;background:currentColor;opacity:.7;flex:none}
   h1{font-family:'Sofia Sans Extra Condensed',sans-serif;font-weight:900;color:var(--ink)!important;letter-spacing:.005em}
 
-  h1{font-size:2.9rem!important}
   .ammo b{color:var(--amber)!important}
   .bot{border-left:0!important;box-shadow:inset 0 0 0 1px var(--line);background:#20160E!important}
   .me{border-right:0!important;background:#2E1F13!important;box-shadow:inset 0 0 0 1px rgba(233,168,69,.35)}
@@ -127,11 +126,13 @@
   .typing i{background:var(--ochre)!important}
   #bar,#done{background:#0A0913!important;box-shadow:inset 0 1px 0 var(--line)}
   #inp{background:var(--void-2)!important;border:0!important;box-shadow:inset 0 0 0 1px var(--line)!important}
+  #inp:focus{box-shadow:inset 0 0 0 1px var(--ochre)!important}
   .chip{background:transparent!important;border:0!important;box-shadow:inset 0 0 0 1px rgba(244,231,212,.24)!important;color:var(--ink)!important}
   .chip:active{background:var(--void-3)!important;color:var(--ink)!important;box-shadow:inset 0 0 0 1px var(--ochre)!important}
   .rate button{border-color:var(--line)!important}
   .rate button:active{border-color:var(--ochre)!important}
   #gate{background:var(--grain),var(--void)!important}
+  h1{font-size:clamp(2.8rem,12vw,4.4rem)!important;line-height:.88!important}
 </style>
 </head>
 <body>

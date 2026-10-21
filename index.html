@@ -61,10 +61,10 @@
   .btn svg{width:18px;height:18px;flex:none;transition:transform .2s}
   @media(hover:hover){.btn:hover svg{transform:translateX(4px)}}
   .btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--ochre);outline-offset:4px}
-  .link{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px;transition:color .15s,border-color .15s}
+  .link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px;transition:color .15s,border-color .15s}
   @media(hover:hover){.link:hover{color:var(--ochre);border-color:var(--ochre)}}
   .actions{display:flex;align-items:center;gap:20px 28px;flex-wrap:wrap;margin-top:36px}
-  .note{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash)}
+  .note{font-size:14px;line-height:1.45;color:var(--ink-dim);max-width:34ch}
 
   /* картина в карточке */
   .art{position:relative;overflow:hidden;background:var(--void-2)}
@@ -85,7 +85,7 @@
   
   .topbar .slogan{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
   .topbar nav{display:flex;gap:24px;justify-content:flex-end;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
-  .topbar nav a{text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px}
+  .topbar nav a{text-decoration:none;border-bottom:1px solid var(--line);padding:12px 2px 3px}
   @media(hover:hover){.topbar nav a:hover{color:var(--ochre);border-color:var(--ochre)}}
   .hero-main{position:relative;z-index:4;margin-top:auto;max-width:min(50%,700px)}
   .hero h1{font-family:var(--f-head);font-weight:900;text-transform:uppercase;line-height:.82;letter-spacing:.004em;font-size:clamp(4.4rem,10.4vw,10.4rem);color:var(--ink)}
@@ -95,19 +95,21 @@
   .hero .offer-line{margin-top:12px;font-weight:700;font-size:clamp(1rem,1.2vw,1.1rem);color:var(--ochre);max-width:46ch}
 
   /* ===== БАНДА: аура-постеры ===== */
-  .five{background:var(--grain),radial-gradient(60% 50% at 85% 0%,rgba(118,26,43,.32),transparent 70%),var(--void)}
+  .five{background:var(--grain),linear-gradient(180deg,var(--void) 0,transparent 180px),radial-gradient(55% 45% at 85% 14%,rgba(118,26,43,.3),transparent 66%),var(--void)}
   .scene{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:end;margin-bottom:clamp(44px,5vw,64px)}
   .quote-me{font-size:clamp(1.12rem,1.5vw,1.32rem);line-height:1.55;color:var(--ink);border-left:1px solid var(--magma);padding:4px 0 4px 24px;max-width:44ch}
   .quote-me cite{display:block;margin-top:14px;font-style:normal;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
   .auras{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,20px);align-items:stretch}
   .voice{position:relative;cursor:crosshair;aspect-ratio:3/4.3;display:flex;flex-direction:column;justify-content:flex-end;text-align:center;padding:20px 14px 22px;overflow:hidden;background:var(--pale);transition:transform .25s}
-  .voice::before{content:"";position:absolute;inset:7%;filter:blur(24px);border-radius:10%;background:var(--a)}
+  .voice::before{content:"";position:absolute;inset:5% 8% 42% 8%;filter:blur(24px);border-radius:10%;background:var(--a)}
   .voice::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.9;mix-blend-mode:overlay;pointer-events:none}
   .voice>*{position:relative;z-index:2}
   .voice .front{display:flex;flex-direction:column}
-  .voice .t{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,230,214,.72);margin-bottom:10px}
-  .voice b{font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,1.9vw,2.05rem);line-height:.92;color:var(--ink)}
-  .voice q{display:block;min-height:3em;margin-top:10px;font-family:var(--f-mono);font-size:10.5px;line-height:1.5;letter-spacing:.04em;text-transform:uppercase;color:rgba(241,230,214,.86);quotes:"«" "»"}
+  .voice .front::after{content:"нажми";display:block;margin-top:10px;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,18,16,.42)}
+  .voice.focus .front::after{opacity:0}
+  .voice .t{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(26,18,16,.6);margin-bottom:10px}
+  .voice b{font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,1.95vw,2.05rem);line-height:.92;color:#1A1210;letter-spacing:.005em}
+  .voice q{display:block;min-height:4.5em;margin-top:10px;font-family:var(--f-mono);font-size:11px;line-height:1.5;letter-spacing:.04em;text-transform:uppercase;color:rgba(26,18,16,.82);quotes:"«" "»"}
   @media(hover:hover){.voice:hover{transform:translateY(-4px)}}
   .voice.hit{animation:hit .22s}
   @keyframes hit{30%{transform:translate(3px,-2px)}65%{transform:translate(-2px,1px)}}
@@ -115,7 +117,7 @@
   .voice{cursor:pointer;outline:none}
   .voice::before{transition:transform .9s cubic-bezier(.65,0,.2,1),opacity .6s;transform-origin:50% 46%}
   .voice .front{position:relative;z-index:2;transition:opacity .35s ease}
-  .voice .af{position:absolute;inset:16px;z-index:2;pointer-events:none;color:rgba(247,235,218,.85);opacity:0;transition:inset .35s cubic-bezier(.2,.9,.3,1),opacity .3s,color .4s;
+  .voice .af{position:absolute;inset:16px;z-index:2;pointer-events:none;color:rgba(26,18,16,.45);opacity:0;transition:inset .35s cubic-bezier(.2,.9,.3,1),opacity .3s,color .4s;
     background:linear-gradient(currentColor,currentColor) 0 0/16px 1.5px,linear-gradient(currentColor,currentColor) 0 0/1.5px 16px,
       linear-gradient(currentColor,currentColor) 100% 0/16px 1.5px,linear-gradient(currentColor,currentColor) 100% 0/1.5px 16px,
       linear-gradient(currentColor,currentColor) 0 100%/16px 1.5px,linear-gradient(currentColor,currentColor) 0 100%/1.5px 16px,
@@ -125,9 +127,10 @@
   .voice .back{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;justify-content:space-between;padding:22px 16px 20px;text-align:left;
     color:#14100F;opacity:0;transition:opacity .45s ease .35s;pointer-events:none}
   .voice .back .bh b{display:block;font-family:var(--f-head);font-weight:900;text-transform:uppercase;font-size:1.15rem;line-height:1;color:#14100F;text-shadow:none}
-  .voice .back .bh span{display:block;margin-top:5px;font-family:var(--f-mono);font-size:9.5px;line-height:1.45;letter-spacing:.04em;text-transform:uppercase;color:#5E554A}
-  .voice .back .bl{display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#5E554A;margin-bottom:6px}
+  .voice .back .bh span{display:block;margin-top:5px;font-family:var(--f-mono);font-size:11px;line-height:1.45;letter-spacing:.04em;text-transform:uppercase;color:#5E554A}
+  .voice .back .bl{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5E554A;margin-bottom:6px}
   .voice .back p{font-weight:800;font-size:16px;line-height:1.3;color:#14100F}
+  .voice .back .go{display:inline-block;margin-top:10px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7A3A1C;text-decoration:none;border-bottom:1px solid rgba(122,58,28,.45);padding-bottom:2px;pointer-events:auto}
   .voice.focus::before{transform:scale(.13);opacity:0}
   .voice .back .dot{display:block;width:24px;height:24px;margin:auto;border-radius:50%;background:var(--a);box-shadow:0 0 0 1px rgba(20,16,15,.25);transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1) .5s}
   .voice.focus .back .dot{transform:scale(1)}
@@ -136,10 +139,10 @@
   .voice.focus .af{opacity:1;inset:10px;color:rgba(20,16,15,.55)}
   .voice:focus-visible .af{opacity:1}
   @media (prefers-reduced-motion:reduce){.voice::before,.voice .af,.voice .back,.voice .front{transition:none}}
-  .hint{margin-top:20px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+  .hint{margin-top:20px;font-size:14px;line-height:1.45;color:var(--ink-dim)}
 
   /* ===== ПРОДУКТЫ: картины ===== */
-  .offer{background:var(--grain),radial-gradient(70% 50% at 8% 100%,rgba(42,27,74,.5),transparent 70%),var(--void)}
+  .offer{background:var(--grain),linear-gradient(0deg,var(--void) 0,transparent 160px),radial-gradient(60% 40% at 8% 82%,rgba(42,27,74,.45),transparent 68%),var(--void)}
   .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px);margin-top:clamp(44px,5vw,60px);align-items:stretch}
   .prod{display:flex;flex-direction:column;background:var(--void-2);box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .25s}
   @media(hover:hover){.prod:hover{box-shadow:inset 0 0 0 1px rgba(226,103,23,.55),0 0 60px -20px rgba(226,103,23,.45)}}
@@ -150,7 +153,8 @@
   .prod p{color:var(--ink-dim);font-size:16px;line-height:1.55}
   .prod p b{display:block;margin-bottom:6px;color:var(--ink);font-weight:800;font-size:17px}
   .prod .meta{margin:auto 0 10px;padding-top:20px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
-  .prod .price{display:flex;align-items:baseline;gap:12px;margin:0 0 16px}
+  .prod .price{display:flex;align-items:baseline;gap:12px;margin:0 0 10px}
+  .prod .soon{font-size:14px;line-height:1.45;color:var(--ink-dim);margin:0 0 14px}
   .prod .price b{font-family:var(--f-head);font-weight:900;font-size:2.2rem;line-height:1;color:var(--ink)}
   .prod .price span{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash)}
   .prod .btn{width:100%}
@@ -161,14 +165,14 @@
   /* ===== КАК ЭТО РАБОТАЕТ ===== */
   .how{background:var(--grain),var(--void)}
   .how-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,90px);align-items:center}
-  .how .art{aspect-ratio:4/5;max-width:440px;width:100%;justify-self:end;box-shadow:inset 0 0 0 1px var(--line)}
+  .how .art{aspect-ratio:3/4;max-width:400px;width:100%;justify-self:end;box-shadow:inset 0 0 0 1px rgba(244,231,212,.26)}
   .steps{counter-reset:s;list-style:none;display:grid;gap:0;margin:30px 0 0;max-width:560px}
   .steps li{counter-increment:s;display:grid;grid-template-columns:56px 1fr;align-items:baseline;font-weight:700;font-size:17px;line-height:1.45;padding:16px 0;border-bottom:1px solid var(--line)}
   .steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-mono);font-size:13px;letter-spacing:.1em;color:var(--ochre)}
 
   /* ===== КТО Я: светлый блок, как постер AKILA (бледный пепел + ржавая аура) ===== */
   .who{background:var(--grain-d),var(--pale);color:var(--text-dark)}
-  .who::before{content:"";position:absolute;right:-20%;top:-20%;width:44%;height:140%;filter:blur(60px);background:radial-gradient(circle at 50% 50%,rgba(20,8,6,.92) 0 22%,rgba(118,40,26,.75) 45%,rgba(219,159,81,.25) 70%,transparent 78%);z-index:0}
+  .who::before{content:"";position:absolute;right:5%;top:20%;width:26%;height:56%;filter:blur(40px);background:radial-gradient(circle at 50% 50%,rgba(20,8,6,.92) 0 22%,rgba(118,40,26,.75) 45%,rgba(219,159,81,.25) 70%,transparent 78%);z-index:0}
   .who .label{color:#5E554A}
   .who .h2{color:var(--text-dark)}
   .who .lead{color:#3D352D}
@@ -178,7 +182,7 @@
   .facts span{color:#3D352D;font-size:16.5px}
 
   /* ===== ВОПРОСЫ ===== */
-  .faq{background:var(--grain),radial-gradient(60% 50% at 90% 100%,rgba(118,26,43,.28),transparent 70%),var(--void)}
+  .faq{background:var(--grain),linear-gradient(0deg,var(--void) 0,transparent 160px),radial-gradient(55% 45% at 90% 84%,rgba(118,26,43,.26),transparent 66%),var(--void)}
   .qa{max-width:780px;margin-top:38px}
   .qa details{border-top:1px solid var(--line)}
   .qa details:last-child{border-bottom:1px solid var(--line)}
@@ -194,13 +198,13 @@
   .final-bg{position:absolute;inset:0;z-index:0;display:block}
   .final-bg img{width:100%;height:100%;object-fit:cover;object-position:75% 50%}
   .final::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:var(--grain),linear-gradient(90deg,rgba(7,7,15,.88) 0%,rgba(7,7,15,.55) 40%,transparent 64%),linear-gradient(180deg,rgba(7,7,15,.5) 0%,transparent 22%,transparent 72%,rgba(7,7,15,.95) 100%)}
+    background:var(--grain),linear-gradient(90deg,rgba(7,7,15,.88) 0%,rgba(7,7,15,.55) 40%,transparent 64%),linear-gradient(180deg,var(--void) 0%,rgba(7,7,15,.6) 9%,transparent 30%,transparent 72%,rgba(7,7,15,.95) 100%)}
   .final .wrap{min-height:min(80vh,740px);display:flex;flex-direction:column;justify-content:center}
   .final .h2{max-width:13ch}
   .final .lead{color:var(--ink);max-width:36ch}
   footer{position:relative;z-index:2;max-width:1160px;margin:64px auto 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px;
     font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
-  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);display:inline-block;padding:12px 0 2px}
 
 
   /* ===== ЦВЕТ ТЕКСТА (13.10.2026): все тексты из одной теплой гаммы огня ===== */
@@ -213,8 +217,6 @@
   .topbar nav a,footer a{border-bottom-color:rgba(227,170,94,.4)}
   .quote-me{color:var(--ink);border-left-color:var(--gold)}
   .voice b{color:#F7EBDA;text-shadow:0 1px 14px rgba(7,7,15,.55)}
-  .voice .t{color:rgba(247,235,218,.74)}
-  .voice q{color:rgba(247,235,218,.9)}
   .qa summary{color:var(--ink)}
   .qa .a a,.qa summary::after{color:var(--gold)}
   .who{color:#1A1210}
@@ -267,38 +269,45 @@
   @media(max-width:760px){
     body{font-size:16.5px}
     .hero{padding:0;min-height:auto}
-    .hero-bg{position:relative;inset:auto;height:48svh;min-height:340px}
+    .hero-bg{position:relative;inset:auto;height:32svh;min-height:230px}
     .hero-bg img{object-position:50% 50%}
-    .hero::before{inset:0 0 auto 0;height:48svh;min-height:340px;background:var(--grain),linear-gradient(180deg,rgba(7,7,15,.5) 0%,transparent 22%,transparent 62%,var(--void) 100%)}
-    .hero-photo{top:48px;bottom:auto;right:0;left:0;margin:auto;width:92%;height:calc(48svh - 48px);min-height:292px}
+    .hero::before{inset:0 0 auto 0;height:32svh;min-height:230px;background:var(--grain),linear-gradient(180deg,rgba(7,7,15,.5) 0%,transparent 22%,transparent 62%,var(--void) 100%)}
+    .hero-photo{top:40px;bottom:auto;right:0;left:0;margin:auto;width:92%;height:calc(32svh - 40px);min-height:190px}
     .topbar{position:absolute;top:0;left:0;right:0;padding:16px 20px;grid-template-columns:auto auto;justify-content:space-between}
     .topbar .slogan{display:none}
-    .topbar nav{gap:16px;font-size:10.5px}
-    .hero-main{max-width:none;margin:0;padding:6px 20px 40px}
+    .topbar nav{gap:16px;font-size:11px}
+    .topbar nav a:first-child{display:none}
+    .hero-main{max-width:none;margin:0;padding:4px 20px 28px}
     .hero h1{font-size:clamp(3.4rem,16vw,5.2rem)}
-    .hero .sub{margin-top:14px;font-size:1.02rem}
-    .hero .offer-line{font-size:.98rem}
-    .actions{gap:16px;margin-top:26px}
+    .hero .sub{margin-top:10px;font-size:1.02rem}
+    .hero .offer-line{font-size:.98rem;margin-top:8px}
+    .actions{gap:10px;margin-top:22px}
+    .hero .actions .link{display:flex;justify-content:center;align-items:center;width:100%;min-height:48px;box-shadow:inset 0 0 0 1px rgba(244,231,212,.32);border:0;padding:0 16px;border-radius:2px;font-family:var(--f-head);font-weight:800;font-size:1.25rem;letter-spacing:.1em;text-transform:uppercase}
     .hero .actions .btn,.five .btn,.how .btn,.final .btn{width:100%}
     .scene{grid-template-columns:1fr;gap:26px}
     .auras{grid-template-columns:1fr 1fr}
     .auras .voice:last-child{grid-column:1/-1;width:calc(50% - 6px);justify-self:center}
-    .voice b{font-size:1.4rem}
-    .voice .back{padding:20px 16px 16px}
+    .voice b{font-size:1.5rem}
+    .voice .back{padding:14px 12px 12px}
     .voice .back .bh b{font-size:.95rem}
-    .voice .back .bh span{font-size:8.5px}
-    .voice .back p{font-size:13.5px}
+    .voice .back .bh span{font-size:11px}
+    .voice .back p{font-size:13px;line-height:1.25}
+    .voice .back .go{margin-top:6px;font-size:9px;letter-spacing:.06em}
+    .voice .back .bh span{font-size:10px;line-height:1.3}
+    .voice .back .bl{margin-bottom:3px}
     .voice .back .dot{width:18px;height:18px}
     .voice .af{inset:7px}
     .voice.focus .af{inset:6px}
-    .voice .t{font-size:9px;letter-spacing:.08em;white-space:nowrap}
-    .voice q{font-size:10px}
+    .voice .t{font-size:10px;letter-spacing:.08em;white-space:nowrap}
+    .voice q{font-size:11px}
+    .voice::before{inset:5% 8% 46% 8%}
+    .voice .back .go{font-size:10px}
     .prod .meta{font-size:10px;letter-spacing:.06em;white-space:nowrap}
     .how-grid{grid-template-columns:1fr}
     .how .art{justify-self:stretch;max-width:100%;aspect-ratio:3/2;order:-1}
     .how .art img{object-position:50% 40%}
     .facts{grid-template-columns:1fr}
-    .who::before{right:-55%;width:100%;top:-30%;height:55%;opacity:.85}
+    .who::before{display:none}
     .final{padding-top:0}
     .final-bg{position:relative;inset:auto;height:62vw;min-height:240px;margin:0 calc(-1*var(--gutter))}
     .final::before{inset:0 0 auto 0;height:62vw;min-height:240px;background:linear-gradient(180deg,transparent 55%,var(--void) 100%)}
@@ -349,13 +358,13 @@
       <blockquote class="quote-me">Да, это бывает страшно, да, это бывает непонятно, да, ты забываешь, что снимать, запинываешься, и это нормально.<cite>Максим</cite></blockquote>
     </div>
     <div class="auras">
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Перфекционист»" style="--a:radial-gradient(circle at 50% 40%,#0B0507 0 30%,#5A1A16 55%,#B4502A 80%)"><span class="af"></span><div class="front"><span class="t">01 · тень</span><b>Перфекционист</b><q>Может, еще что-то докрутить, потом выложим</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Перфекционист</b><span>«Может, еще что-то докрутить, потом выложим»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Готово не будет никогда. Шестой дубль выкладывай, какой есть.</p></div></div></div>
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Потом»" style="--a:radial-gradient(circle at 50% 40%,#140A04 0 28%,#7A4A12 55%,#DB9F51 82%)"><span class="af"></span><div class="front"><span class="t">02 · тень</span><b>«Потом»</b><q>А, пох*й, потом сделаю</q></div><div class="back" aria-hidden="true"><div class="bh"><b>«Потом»</b><span>«А, пох*й, потом сделаю»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Снимай в первые 10 минут после идеи.</p></div></div></div>
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Оценщик»" style="--a:radial-gradient(circle at 50% 40%,#07070F 0 30%,#3A1625 55%,#761A2B 82%)"><span class="af"></span><div class="front"><span class="t">03 · тень</span><b>Оценщик</b><q>А вдруг кто-то что-то скажет</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Оценщик</b><span>«А вдруг кто-то что-то скажет»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Перечисли каждого, кто что подумает. Кто именно?</p></div></div></div>
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Вдруг зря»" style="--a:radial-gradient(circle at 50% 40%,#05060F 0 30%,#2A1B4A 58%,#6A4A8A 85%)"><span class="af"></span><div class="front"><span class="t">04 · тень</span><b>«Вдруг зря»</b><q>А вдруг зря, вдруг не получится</q></div><div class="back" aria-hidden="true"><div class="bh"><b>«Вдруг зря»</b><span>«А вдруг зря, вдруг не получится»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Попробуй снять интересно. Попробуй снять ху*во. Просто попробуй снять.</p></div></div></div>
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Удаляльщик»" style="--a:radial-gradient(circle at 50% 40%,#0D0207 0 28%,#A73110 55%,#F08A24 82%)"><span class="af"></span><div class="front"><span class="t">05 · тень</span><b>Удаляльщик</b><q>Ну что, выложил? Теперь удаляй</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Удаляльщик</b><span>«Ну что, выложил? Теперь удаляй»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Выложил? Сутки не удаляешь, даже если в час ночи рука тянется.</p></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Перфекционист»" style="--a:radial-gradient(circle at 50% 40%,#0B0507 0 30%,#5A1A16 55%,#B4502A 80%)"><span class="af"></span><div class="front"><span class="t">01 · тень</span><b>Перфекционист</b><q>Может, еще что-то докрутить, потом выложим</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Перфекционист</b><span>«Может, еще что-то докрутить, потом выложим»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Готово не будет никогда. Шестой дубль выкладывай, какой есть.</p><a class="go" href="#offer" data-prod="wait_chto">Этот голос не только у камеры → «Что подумают»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Потом»" style="--a:radial-gradient(circle at 50% 40%,#140A04 0 28%,#7A4A12 55%,#DB9F51 82%)"><span class="af"></span><div class="front"><span class="t">02 · тень</span><b>«Потом»</b><q>А, пох*й, потом сделаю</q></div><div class="back" aria-hidden="true"><div class="bh"><b>«Потом»</b><span>«А, пох*й, потом сделаю»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Снимай в первые 10 минут после идеи.</p><a class="go" href="#offer" data-prod="wait_potom">Этот голос не только у камеры → «Потом»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Оценщик»" style="--a:radial-gradient(circle at 50% 40%,#07070F 0 30%,#3A1625 55%,#761A2B 82%)"><span class="af"></span><div class="front"><span class="t">03 · тень</span><b>Оценщик</b><q>А вдруг кто-то что-то скажет</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Оценщик</b><span>«А вдруг кто-то что-то скажет»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Перечисли каждого, кто что подумает. Кто именно?</p><a class="go" href="#offer" data-prod="wait_chto">Этот голос не только у камеры → «Что подумают»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Вдруг зря»" style="--a:radial-gradient(circle at 50% 40%,#05060F 0 30%,#2A1B4A 58%,#6A4A8A 85%)"><span class="af"></span><div class="front"><span class="t">04 · тень</span><b>«Вдруг зря»</b><q>А вдруг зря, вдруг не получится</q></div><div class="back" aria-hidden="true"><div class="bh"><b>«Вдруг зря»</b><span>«А вдруг зря, вдруг не получится»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Попробуй снять интересно. Попробуй снять ху*во. Просто попробуй снять.</p><a class="go" href="#offer" data-prod="wait_potom">Этот голос не только у камеры → «Потом»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Удаляльщик»" style="--a:radial-gradient(circle at 50% 40%,#0D0207 0 28%,#A73110 55%,#F08A24 82%)"><span class="af"></span><div class="front"><span class="t">05 · тень</span><b>Удаляльщик</b><q>Ну что, выложил? Теперь удаляй</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Удаляльщик</b><span>«Ну что, выложил? Теперь удаляй»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Выложил? Сутки не удаляешь, даже если в час ночи рука тянется.</p><a class="go" href="#offer" data-prod="wait_chto">Этот голос не только у камеры → «Что подумают»</a></div></div></div>
     </div>
-    <p class="hint">Нажми на плакат: на обороте написано, что с ним делать</p>
+    <p class="hint">На обороте каждого плаката написано, что с ним делать</p>
     <div class="actions">
       <a class="btn" href="quiz/">Пройти тест<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <span class="note">60 секунд, бесплатно. Узнаешь, какая тень у тебя главная</span>
@@ -378,7 +387,8 @@
           <p><b>Про чужое мнение.</b>Хочешь выложить ролик, купить яркую куртку или уйти с работы, но сначала думаешь, что скажут родня и коллеги.</p>
           <span class="meta">7 дней · 10 минут в день · в телеге</span>
           <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
-          <a class="btn" href="https://t.me/dapowah_bot?start=wait_chto">Забрать</a>
+          <p class="soon">Откроется скоро. Жмешь, бот ставит тебя в очередь и сразу дает бесплатное: тест и методичку</p>
+          <a class="btn" href="https://t.me/dapowah_bot?start=wait_chto">Забрать место</a>
         </div>
       </article>
       <article class="prod">
@@ -389,7 +399,8 @@
           <p><b>Про дела, которые откладываешь.</b>Весь день вроде занят, а главное опять не тронул: резюме, запись к врачу, первый ролик.</p>
           <span class="meta">7 дней · 10 минут в день · в телеге</span>
           <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
-          <a class="btn" href="https://t.me/dapowah_bot?start=wait_potom">Забрать</a>
+          <p class="soon">Откроется скоро. Жмешь, бот ставит тебя в очередь и сразу дает бесплатное: тест и методичку</p>
+          <a class="btn" href="https://t.me/dapowah_bot?start=wait_potom">Забрать место</a>
         </div>
       </article>
       <article class="prod">
@@ -400,11 +411,11 @@
           <p><b>Про жизнь по кругу.</b>Работа, ужин, лента, сон, и так каждый день. Вроде все нормально, а чего хочешь сам, непонятно.</p>
           <span class="meta">7 дней · 10 минут в день · в телеге</span>
           <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
-          <a class="btn" href="https://t.me/dapowah_bot?start=wait_zhivu">Забрать</a>
+          <p class="soon">Откроется скоро. Жмешь, бот ставит тебя в очередь и сразу дает бесплатное: тест и методичку</p>
+          <a class="btn" href="https://t.me/dapowah_bot?start=wait_zhivu">Забрать место</a>
         </div>
       </article>
     </div>
-    <p class="open-note">Купить пока нельзя. Бот запишет тебя в очередь, а пока ждешь, там бесплатно тест и методичка. Откроется продукт, бот напишет, а решать тебе</p>
     <div class="actions"><a class="link" href="quiz/">Не знаешь, какой взять? Тест подскажет →</a></div>
   </div>
 </section>
@@ -417,8 +428,8 @@
       <h2 class="h2">Одно дело <em>в день</em></h2>
       <p class="lead">Большой план легко отложить до понедельника. 10 минут отложить труднее, поэтому день тут маленький: прочитал, сделал одно дело, закрыл телефон.</p>
       <ol class="steps">
-        <li>Жмешь «Забрать», бот записывает тебя в очередь</li>
-        <li>Платишь 1490 ₽ один раз звездами Telegram, подписки нет</li>
+        <li>Жмешь «Забрать место», бот записывает тебя в очередь</li>
+        <li>Когда откроется, платишь 1490 ₽ один раз звездами Telegram, подписки нет</li>
         <li>День 1 приходит сразу после оплаты, дальше по дню в сутки</li>
         <li>Потерял день? Пишешь боту «мои покупки», он пришлет последний заново</li>
       </ol>
@@ -450,13 +461,13 @@
     <div class="label">Вопросы</div>
     <h2 class="h2">Перед тем, <em>как нажать</em></h2>
     <div class="qa">
-      <details open><summary>Сколько времени в день?</summary><div class="a">Минут 10: короткое чтение и одно дело. Следующий день бот пришлет сам через сутки.</div></details>
-      <details><summary>Сколько стоит?</summary><div class="a">1490 ₽ за продукт, один раз. Платишь в боте звездами, это деньги внутри Telegram, подписки нет.</div></details>
+      <details open><summary>Сколько стоит?</summary><div class="a">1490 ₽ за продукт, один раз, когда откроется. Пока очередь. Платишь в боте звездами, это деньги внутри Telegram, подписки нет.</div></details>
+      <details open><summary>А бесплатно что-то есть?</summary><div class="a">Есть. <a href="quiz/">Тест</a>, <a href="https://t.me/dapowah_bot?start=pdf_five">методичка про пять теней</a> и <a href="https://t.me/dapowah_bot?start=site_ai">ИИ-Напарник</a>: 5 вопросов бесплатно, без лимита он стоит 399 звезд в месяц, отмена в два клика. Это нейросеть на моем методе, живого меня там нет.</div></details>
+      <details open><summary>С какого продукта начать?</summary><div class="a">Пройди <a href="quiz/">тест</a>. Он покажет, какая тень у тебя главная, и бот скажет, с чего начать.</div></details>
       <details><summary>Это психология?</summary><div class="a">Я не психолог и не лечу. Читаешь пару минут и делаешь одно дело руками.</div></details>
-      <details><summary>А если брошу на середине?</summary><div class="a">Бывает. Все дни остаются у тебя в чате, вернешься и продолжишь.</div></details>
       <details><summary>А мне точно подойдет?</summary><div class="a">Не подойдет, если ждешь живого разбора: меня в боте нет. Тут каждый день одно дело, и делаешь его ты.</div></details>
-      <details><summary>А бесплатно что-то есть?</summary><div class="a">Есть. <a href="quiz/">Тест</a>, <a href="https://t.me/dapowah_bot?start=pdf_five">методичка про пять теней</a> и <a href="https://t.me/dapowah_bot?start=site_ai">ИИ-Напарник</a>: 5 вопросов бесплатно, без лимита он стоит 399 звезд в месяц, отмена в два клика. Это нейросеть на моем методе, живого меня там нет.</div></details>
-      <details><summary>С какого продукта начать?</summary><div class="a">Пройди <a href="quiz/">тест</a>. Он покажет, какая тень у тебя главная, и бот скажет, с чего начать.</div></details>
+      <details><summary>А если брошу на середине?</summary><div class="a">Бывает. Все дни остаются у тебя в чате, вернешься и продолжишь.</div></details>
+      <details><summary>Сколько времени в день?</summary><div class="a">Минут 10: короткое чтение и одно дело. Следующий день бот пришлет сам через сутки.</div></details>
     </div>
   </div>
 </section>
@@ -495,6 +506,7 @@
     function toggle(){var on=!v.classList.contains('focus');v.classList.toggle('focus',on);v.setAttribute('aria-pressed',on?'true':'false');
       v.querySelector('.back').setAttribute('aria-hidden',on?'false':'true');}
     v.addEventListener('click',toggle);
+    v.querySelectorAll('a.go').forEach(function(a){a.addEventListener('click',function(e){e.stopPropagation();});});
     v.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
   });
 
@@ -502,9 +514,10 @@
   var bar=document.querySelector('.sticky-cta');
   if(bar&&'IntersectionObserver' in window){
     var heroOut=false,priceIn=false,finalIn=false;
-    var upd=function(){bar.classList.toggle('show',heroOut&&!priceIn&&!finalIn);};
+    var passed=false;
+    var upd=function(){bar.classList.toggle('show',passed&&!priceIn&&!finalIn);};
     new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting;upd();}).observe(document.querySelector('.hero'));
-    new IntersectionObserver(function(e){priceIn=e[0].isIntersecting;upd();}).observe(document.querySelector('.prods'));
+    new IntersectionObserver(function(e){priceIn=e[0].isIntersecting;if(!priceIn&&e[0].boundingClientRect.top<0)passed=true;upd();}).observe(document.querySelector('.prods'));
     new IntersectionObserver(function(e){finalIn=e[0].isIntersecting;upd();}).observe(document.getElementById('cta-final'));
   }
 })();

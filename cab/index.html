@@ -95,6 +95,12 @@
   #art .frame{border-left-color:var(--ochre)!important;color:var(--ink)!important}
   #art .do{background:var(--void-2)!important;border:0!important;box-shadow:inset 0 0 0 1px var(--line)!important}
   #art .do b{font-family:var(--f-mono)!important;font-weight:400!important;letter-spacing:.14em;color:var(--grey)!important;font-size:11px!important}
+  h1{font-size:clamp(2.8rem,12vw,4.4rem)!important;line-height:.88!important}
+  body{counter-reset:c}
+  .card{counter-increment:c;display:grid!important;grid-template-columns:30px 1fr;column-gap:6px;align-items:start}
+  .card::before{content:counter(c,decimal-leading-zero);font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--ash);padding-top:5px;grid-row:1/3}
+  .card b,.card span,.card .tag{grid-column:2}
+  .card .tag{justify-self:start;margin-top:8px;font-style:normal}
 </style>
 </head>
 <body>
@@ -103,31 +109,27 @@
   <div class="banner" aria-hidden="true"><img src="../img/e-hero-m.webp" alt=""></div>
   <div class="kicker">приветствую</div>
   <h1>Огниво</h1>
-  <p class="sub">Все бесплатное в одном месте. Без почты и «оставьте телефон».</p>
+  <p class="sub">Тут все бесплатное Максима и три продукта. Без почты и «оставьте телефон».</p>
 
   <div class="sect">Бесплатно</div>
-  <a class="card" href="../trainer/"><b>ИИ-Напарник</b><span>твой напарник по рилсам: страх, начало ролика, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
   <a class="card" href="../quiz/"><b>Тест: какая тень держит тебя</b><span>60 секунд, в конце имя твоей главной тени</span></a>
   <button class="card" onclick="pdf('five')"><b>Методичка: пять теней поименно</b><span>что каждая шепчет и как с ней разделаться, PDF придет в чат</span></button>
+  <a class="card" href="../trainer/"><b>ИИ-Напарник</b><span>твой напарник по рилсам: страх, начало ролика, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
   <button class="card" onclick="pdf('chek')"><b>Чек-лист: первые 3 секунды</b><span>проверь ролик до публикации, PDF придет в чат</span></button>
   <button class="card" onclick="pdf('hate')"><b>Если пришел хейт</b><span>что делать с первым злым комментом, PDF придет в чат</span></button>
+
+  <div class="sect">Продукты</div>
+  <button class="card" onclick="prods()"><b>Три продукта по 7 дней</b><span>«Что подумают», «Потом», «Не живу, а существую». 7 дней каждый, проходишь сам</span></button>
 
   <div class="sect">Приемы против теней</div>
   <div id="list"></div>
 
   <div class="sect">Огни</div>
   <a class="card" href="../wall/"><b>Огни в темноте</b><span>кто уже выкладывает и сколько у него огней</span></a>
-  <button class="card" onclick="club(this)"><b>ИИ-Напарник без лимита</b><span>потолок в 5 бесплатных вопросов снят. 399 звезд в месяц, отмена в два клика</span></button>
 
-  <div class="sect">Дальше</div>
-  <a class="card" href="https://mderyugin.github.io/dapowah/" target="_blank" rel="noopener"><b>Сайт</b><span>кто я и что за продукты</span></a>
-  <button class="card" onclick="prods()"><b>Три продукта Максима</b><span>«Что подумают», «Потом», «Не живу, а существую». 7 дней каждый, проходишь сам</span></button>
+  <div class="sect">Без лимита</div>
+  <button class="card" onclick="club(this)"><b>ИИ-Напарник без лимита</b><i class="tag">399 звезд в месяц</i><span>потолок в 5 бесплатных вопросов снят. 399 звезд в месяц, отмена в два клика</span></button>
 
-  <p style="color:var(--grey);font-size:12px;line-height:1.5;margin-top:22px"><a href="../legal/" target="_blank" style="color:var(--grey)">Правила и данные, без мелкого шрифта</a>. Стереть свои данные: слово УДАЛИ боту</p>
-</div>
-
-<div id="lib">
-  <span class="back" onclick="show('hub')">← Огниво</span>
   <div class="sect">Библиотека</div>
   <div id="liblist"></div>
 </div>

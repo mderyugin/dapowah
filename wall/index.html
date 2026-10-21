@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; form-action 'self'">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Огни в темноте</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -33,7 +33,6 @@
   h1{font-family:'Sofia Sans Extra Condensed',sans-serif;font-weight:900;color:var(--ink)!important;letter-spacing:.005em}
 
   body{background:linear-gradient(180deg,rgba(14,9,5,.82),rgba(14,9,5,.9)),url(../img/wall.webp) center top/cover,var(--bg)!important}
-  h1{font-size:3.4rem!important;line-height:.88!important}
   .sub{color:var(--ink)!important;opacity:.78}
   .row{border-left:0!important;box-shadow:inset 0 0 0 1px var(--line);background:linear-gradient(180deg,rgba(36,24,15,.94),rgba(27,18,12,.94))!important}
   .row .n{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:900;font-size:1.5rem!important;color:var(--brass)!important}
@@ -57,6 +56,7 @@
   .row .n{font-family:var(--f-mono)!important;font-weight:400!important;font-size:12px!important;color:var(--grey)!important}
   .row .who span{color:var(--ink-dim)!important;font-family:var(--f-mono);font-size:10.5px!important;letter-spacing:.1em;text-transform:uppercase}
   .row .sc{color:var(--ochre)!important}
+  h1{font-size:clamp(2.8rem,12vw,4.4rem)!important;line-height:.88!important}
 </style>
 </head>
 <body>
@@ -81,7 +81,7 @@ async function load(){
       d.innerHTML='<div class="n">'+(i+1)+'</div><div class="who"><b>'+esc(b.n)+'</b><span>'+esc(b.r)+'</span></div><div class="sc">'+esc(b.f)+'</div>';
       list.appendChild(d);
     });
-  }catch(e){document.getElementById('list').innerHTML='<p class="empty">Сеть моргнула. Закрой и открой заново.</p>'}
+  }catch(e){document.getElementById('list').innerHTML='<p class="empty">Не загрузилось. Открой еще раз.</p>'}
 }
 load();
 </script>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; form-action 'self'">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Какая тень держит тебя</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Manrope:wght@500;600;700;800&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
 
   #s-start{background:linear-gradient(180deg,rgba(14,9,5,.72),rgba(14,9,5,.92)),url(../img/wall.webp) center/cover}
   h1{font-size:clamp(3.4rem,15vw,5rem)!important;line-height:.86!important}
-  h1 .ink{color:var(--fire)!important}
+  h1 .ink{color:var(--ink-dim)!important;background:none!important;-webkit-background-clip:border-box;background-clip:border-box}
   h2{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:900;font-size:clamp(1.9rem,8.4vw,2.6rem)!important;line-height:.95!important}
   .btn{font-family:'Sofia Sans Extra Condensed',sans-serif!important;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;background:var(--fire);color:#160E08;font-size:1.45rem!important;padding:17px!important}
   .opt{border:0!important;box-shadow:inset 0 0 0 1px var(--line);background:linear-gradient(180deg,#24180F,#1B120C)!important;font-family:'Manrope',sans-serif!important;font-weight:600;font-size:16px!important;padding:16px!important}
@@ -78,7 +78,6 @@
   .kicker{font-family:var(--f-mono)!important;font-weight:400!important;font-size:11px!important;letter-spacing:.16em!important;color:var(--grey)!important}
   .kicker::before{opacity:1!important}
   h1{color:var(--ink)!important}
-  h1 .ink{background:linear-gradient(180deg,var(--ochre) 0%,var(--magma) 55%,var(--rust) 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important}
   /* кнопка «поле Ротко»: матовая ржавая плита с зерном, под пальцем жар поднимается снизу */
   .btn{position:relative;isolation:isolate;overflow:hidden;border:0!important;border-radius:2px!important;color:#F2E4CF!important;text-shadow:none;
     background:linear-gradient(180deg,#A83D18 0%,#9A3414 48%,#85290F 100%)!important;box-shadow:inset 0 0 0 1px rgba(58,14,6,.6)!important;
@@ -92,7 +91,8 @@
   .cta2{background:transparent!important;border:0!important;border-radius:2px!important;box-shadow:inset 0 0 0 1px rgba(244,231,212,.32)!important;color:var(--ink)!important;font-family:var(--f-head)!important;font-weight:800!important;letter-spacing:.1em!important;text-transform:uppercase}
   .cta2:active{box-shadow:inset 0 0 0 1px var(--ochre)!important}
 
-  #s-start{background:linear-gradient(180deg,rgba(7,7,15,.2) 0%,rgba(7,7,15,.88) 46%,var(--void) 70%),url(../img/e-hero-m.webp) center top/100% auto no-repeat,var(--void)!important}
+  #s-start{background:linear-gradient(180deg,rgba(7,7,15,.25) 0%,rgba(7,7,15,.55) 45%,rgba(7,7,15,.92) 100%),url(../img/e-hero-m.webp) center 30%/cover no-repeat,var(--void)!important;justify-content:flex-end}
+  #s-start .btn{margin-top:28px}
   .opt{background:var(--void-2)!important;border:0!important;box-shadow:inset 0 0 0 1px var(--line)!important;font-weight:600}
   .opt:active{box-shadow:inset 0 0 0 1px var(--ochre)!important;background:var(--void-3)!important}
   .bar,.dots i{background:var(--void-3)!important}
@@ -102,13 +102,14 @@
   .priem{background:var(--void-2)!important;border:0!important;box-shadow:inset 0 0 0 1px var(--line)!important}
   /* враг в результате: аура-плакат в цвет его голоса, как тени на главной */
   .wanted{position:relative;overflow:hidden;background:var(--pale)!important;border:0!important;box-shadow:none!important;padding:44px 16px 30px!important;text-align:center}
-  .wanted::before{content:"";position:absolute;inset:7%;width:auto;height:auto;margin:0;filter:blur(24px);border-radius:10%;background:var(--a,radial-gradient(circle at 50% 40%,#0D0207 0 28%,#A73110 55%,#F08A24 82%))}
+  .wanted::before{content:"";position:absolute;inset:5% 8% 42% 8%;width:auto;height:auto;margin:0;filter:blur(24px);border-radius:10%;background:var(--a,radial-gradient(circle at 50% 40%,#0D0207 0 28%,#A73110 55%,#F08A24 82%))}
   .wanted::after{content:"";position:absolute;inset:0;width:auto;height:auto;margin:0;border-radius:0;background:var(--grain);opacity:.9;mix-blend-mode:overlay;pointer-events:none}
   .wanted>*{position:relative;z-index:2}
-  .wanted span{font-family:var(--f-mono)!important;font-weight:400!important;font-size:11px!important;letter-spacing:.16em!important;border:0!important;color:rgba(241,230,214,.78)!important;margin-bottom:12px}
-  .wanted .tagname{color:var(--ink)!important}
+  .wanted span{font-family:var(--f-mono)!important;font-weight:400!important;font-size:11px!important;letter-spacing:.16em!important;border:0!important;color:rgba(26,18,16,.6)!important;margin-bottom:12px}
+  .wanted .tagname{color:#1A1210!important}
   .wanted{transform:none!important;rotate:none!important;aspect-ratio:3/4.1;width:min(78%,280px);margin:8px auto 0;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 14px 26px!important}
   .wanted .tagname{font-size:clamp(2.3rem,11vw,3.4rem)!important;line-height:.92!important}
+  h1{font-size:clamp(2.8rem,12vw,4.4rem)!important;line-height:.88!important}
 </style>
 </head>
 <body>
@@ -240,7 +241,8 @@ function result(){
    `<div class="kicker">что делать</div><div class="priem"><b>Прием против него</b>${r.priem}</div><p class="grey" style="margin-top:14px">Это действие руками, а не «поверь в себя». Работает с первого раза, если сделать, а не прочитать.</p>`,
    `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они редко ходят поодиночке</h2><p>Все пять теней, поименно и с приемами, собраны в методичке. А если этот голос мешает не только у камеры, у Максима три продукта по 7 дней.</p>
     <div class="cta-stack">
-      <button class="btn" style="border:0;cursor:pointer" onclick="prods()">Три продукта Максима</button>
+      <button class="btn" style="border:0;cursor:pointer" onclick="waitMine()">Забрать место на ${PROD_TITLE[win]}</button>
+      <button class="cta2" style="background:none;cursor:pointer" onclick="prods()">Все три продукта</button>
       <button class="cta2" style="background:none;cursor:pointer" onclick="share()">Забрать карточку в сторис</button>
       <button class="cta2" style="background:none;cursor:pointer" onclick="pdf('five')">Методичка: пять теней</button>
     </div>`
@@ -295,6 +297,14 @@ async function prods(){
   // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch
   if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/prods",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData})})}catch(e){} tg.close()}
   else location.href="https://t.me/dapowah_bot?start=prods";
+}
+const PROD_TITLE={P:"«Что подумают»",T:"«Потом»",O:"«Что подумают»",V:"«Потом»",U:"«Что подумают»"};
+const PROD_SLUG={P:"chto",T:"potom",O:"chto",V:"potom",U:"chto"};
+async function waitMine(){
+  // очередь на свой продукт + тень в бота одной ссылкой: /start wait_<slug>_<P>
+  const u="https://t.me/dapowah_bot?start=wait_"+PROD_SLUG[winPat]+"_"+winPat;
+  if(tg?.initData){try{await fetch(API+"/trainer/wait",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,slug:PROD_SLUG[winPat],pattern:winPat})})}catch(e){} tg.close()}
+  else location.href=u;
 }
 function askRazbor(){
   // диагноз уезжает в бота: /start quiz_<паттерн>, Максим видит врага человека в заявке
