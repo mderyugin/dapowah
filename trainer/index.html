@@ -175,7 +175,7 @@
   <div class="kicker">не так зашел</div>
   <h2>ИИ-Напарник открывается из бота</h2>
   <p>Это ИИ-помощник внутри Telegram. Зайди в бота Максима и жми кнопку «ИИ-Напарник».</p>
-  <a href="https://t.me/dapowah_bot?start=trainer">Открыть бота</a>
+  <a href="https://t.me/rowrowbrabot?start=trainer">Открыть бота</a>
 </div>
 
 <script>
@@ -227,16 +227,16 @@ function ammoDraw(){
 async function pdf(slug){
   // в телеге: бот присылает файл в чат, окно закрывается; в браузере: в бота со старт-меткой
   if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/pdf",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,slug})})}catch(e){} tg.close()}
-  else location.href="https://t.me/dapowah_bot?start=pdf_"+slug;
+  else location.href="https://t.me/rowrowbrabot?start=pdf_"+slug;
 }
 async function toProds(){
   try{await fetch(API+'/trainer/prods',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})})}catch(e){}
-  if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot?start=prods"}
+  if(tg&&tg.close){tg.close()} else {location.href="https://t.me/rowrowbrabot?start=prods"}
 }
 async function toRazbor(){
   // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch
   try{await fetch(API+'/trainer/razbor',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData:tg.initData})})}catch(e){}
-  if(tg&&tg.close){tg.close()} else {location.href="https://t.me/dapowah_bot"}
+  if(tg&&tg.close){tg.close()} else {location.href="https://t.me/rowrowbrabot"}
 }
 
 // «1 огонь, 3 огня, 5 огней»

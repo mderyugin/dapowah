@@ -291,24 +291,24 @@ function wrap(x,t,cx,cy,max,lh){
 async function pdf(slug){
   // в телеге: бот присылает файл в чат, окно закрывается; в браузере: в бота со старт-меткой
   if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/pdf",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,slug})})}catch(e){} tg.close()}
-  else location.href="https://t.me/dapowah_bot?start=pdf_"+slug;
+  else location.href="https://t.me/rowrowbrabot?start=pdf_"+slug;
 }
 async function prods(){
   // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch
   if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/prods",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData})})}catch(e){} tg.close()}
-  else location.href="https://t.me/dapowah_bot?start=prods";
+  else location.href="https://t.me/rowrowbrabot?start=prods";
 }
 const PROD_TITLE={P:"«Что подумают»",T:"«Потом»",O:"«Что подумают»",V:"«Потом»",U:"«Что подумают»"};
 const PROD_SLUG={P:"chto",T:"potom",O:"chto",V:"potom",U:"chto"};
 async function waitMine(){
   // очередь на свой продукт + тень в бота одной ссылкой: /start wait_<slug>_<P>
-  const u="https://t.me/dapowah_bot?start=wait_"+PROD_SLUG[winPat]+"_"+winPat;
+  const u="https://t.me/rowrowbrabot?start=wait_"+PROD_SLUG[winPat]+"_"+winPat;
   if(tg?.initData){try{await fetch(API+"/trainer/wait",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,slug:PROD_SLUG[winPat],pattern:winPat})})}catch(e){} tg.close()}
   else location.href=u;
 }
 function askRazbor(){
   // диагноз уезжает в бота: /start quiz_<паттерн>, Максим видит врага человека в заявке
-  const url="https://t.me/dapowah_bot"+(winPat?"?start=quiz_"+winPat:"");
+  const url="https://t.me/rowrowbrabot"+(winPat?"?start=quiz_"+winPat:"");
   if(tg?.openTelegramLink){tg.openTelegramLink(url);setTimeout(()=>tg.close(),400)}
   else if(tg){tg.close()}
   else{location.href=url}

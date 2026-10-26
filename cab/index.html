@@ -143,7 +143,7 @@
 <script>
 const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
 const inTG = !!tg?.initDataUnsafe?.user;   // объект WebApp есть и в обычном браузере, отличает нас только initData
-const BOT = "https://t.me/dapowah_bot";
+const BOT = "https://t.me/rowrowbrabot";
 
 // НОВЫЕ СТАТЬИ ДОБАВЛЯТЬ В НАЧАЛО МАССИВА: хаб показывает первые две как свежие, остальное живет в Библиотеке
 const ARTS = [
@@ -230,12 +230,12 @@ tg?.BackButton?.onClick(()=>{
 async function pdf(slug){
   // в телеге: бот присылает файл в чат, окно закрывается; в браузере: в бота со старт-меткой
   if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/pdf",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,slug})})}catch(e){} tg.close()}
-  else location.href="https://t.me/dapowah_bot?start=pdf_"+slug;
+  else location.href="https://t.me/rowrowbrabot?start=pdf_"+slug;
 }
 async function prods(){
   // запрос ждем до закрытия окна: телеграм убивает мини-апп раньше, чем уйдет fetch
   if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/prods",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData})})}catch(e){} tg.close()}
-  else location.href="https://t.me/dapowah_bot?start=prods";
+  else location.href="https://t.me/rowrowbrabot?start=prods";
 }
 async function club(btn){
   const label=btn?.querySelector('b');const old=label?.textContent;
