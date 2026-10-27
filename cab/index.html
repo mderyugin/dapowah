@@ -151,7 +151,7 @@ const tg = window.Telegram?.WebApp; tg?.expand(); tg?.ready();
 const inTG = !!tg?.initDataUnsafe?.user;   // объект WebApp есть и в обычном браузере, отличает нас только initData
 const BOT = "https://t.me/rowrowbrabot";
 
-// НОВЫЕ СТАТЬИ ДОБАВЛЯТЬ В НАЧАЛО МАССИВА: хаб показывает первые две как свежие, остальное живет в Библиотеке
+// НОВЫЕ СТАТЬИ ДОБАВЛЯТЬ В НАЧАЛО МАССИВА: все приемы живут в Библиотеке, свежие сверху (решение Максима 27.10.2026)
 const ARTS = [
  {t:"Правило сырого дубля", tag:"перфекционизм", d:"почему шестой дубль обязан уйти в мир",
   h:`<h2>Правило сырого дубля</h2>
@@ -202,9 +202,8 @@ function artCard(a,i,from){
   b.onclick=()=>openArt(i,from);return b;
 }
 
-// хаб: две свежие статьи + дверь в библиотеку
+// хаб: одна дверь в библиотеку, статьи только внутри
 const list = document.getElementById('list');
-ARTS.slice(0,2).forEach((a,i)=>list.appendChild(artCard(a,i,'hub')));
 const lb=document.createElement('button');lb.className='card';
 lb.innerHTML=`<b>Библиотека</b><span>все приемы метода, уже ${ARTS.length}, пополняется</span>`;
 lb.onclick=()=>show('lib');list.appendChild(lb);
