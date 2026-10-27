@@ -112,17 +112,10 @@
   <p class="sub">Тут все бесплатное Максима и три продукта. Без почты и «оставьте телефон».</p>
 
   <div class="sect">Бесплатно</div>
-  <a class="card" href="../quiz/"><b>Тест: какая тень держит тебя</b><span>60 секунд, в конце имя твоей главной тени</span></a>
-  <button class="card" onclick="pdf('five')"><b>Методичка: пять теней поименно</b><span>что каждая шепчет и как с ней разделаться, PDF придет в чат</span></button>
-  <a class="card" href="../trainer/"><b>ИИ-Напарник</b><span>твой напарник по рилсам: страх, начало ролика, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
-  <button class="card" onclick="pdf('chek')"><b>Чек-лист: первые 3 секунды</b><span>проверь ролик до публикации, PDF придет в чат</span></button>
-  <button class="card" onclick="pdf('hate')"><b>Если пришел хейт</b><span>что делать с первым злым комментом, PDF придет в чат</span></button>
+  <button class="card" onclick="show('lib')"><b>Библиотека</b><span>тест, методички, ИИ-Напарник и приемы против теней, все бесплатно</span></button>
 
   <div class="sect">Продукты</div>
   <button class="card" onclick="prods()"><b>Три продукта по 7 дней</b><span>«Что подумают», «Потом», «Не живу, а существую». 7 дней каждый, проходишь сам</span></button>
-
-  <div class="sect">Приемы против теней</div>
-  <div id="list"></div>
 
   <div class="sect">Огни</div>
   <a class="card" href="../wall/"><b>Огни в темноте</b><span>кто уже выкладывает и сколько у него огней</span></a>
@@ -135,8 +128,16 @@
 <div id="lib">
   <span class="back" onclick="hub()">← Назад</span>
   <div class="kicker">библиотека</div>
-  <h1>Все приемы</h1>
+  <h1>Все бесплатное</h1>
   <p class="sub" id="libsub"></p>
+  <div class="sect">Тест, методички, Напарник</div>
+  <a class="card" href="../quiz/"><b>Тест: какая тень держит тебя</b><span>60 секунд, в конце имя твоей главной тени</span></a>
+  <button class="card" onclick="pdf('five')"><b>Методичка: пять теней поименно</b><span>что каждая шепчет и как с ней разделаться, PDF придет в чат</span></button>
+  <a class="card" href="../trainer/"><b>ИИ-Напарник</b><span>твой напарник по рилсам: страх, начало ролика, цифры. Отвечает на методе Максима, 5 вопросов бесплатно</span></a>
+  <button class="card" onclick="pdf('chek')"><b>Чек-лист: первые 3 секунды</b><span>проверь ролик до публикации, PDF придет в чат</span></button>
+  <button class="card" onclick="pdf('hate')"><b>Если пришел хейт</b><span>что делать с первым злым комментом, PDF придет в чат</span></button>
+
+  <div class="sect">Приемы против теней</div>
   <div id="liblist"></div>
 </div>
 
@@ -202,15 +203,11 @@ function artCard(a,i,from){
   b.onclick=()=>openArt(i,from);return b;
 }
 
-// хаб: одна дверь в библиотеку, статьи только внутри
-const list = document.getElementById('list');
-const lb=document.createElement('button');lb.className='card';
-lb.innerHTML=`<b>Библиотека</b><span>все приемы метода, уже ${ARTS.length}, пополняется</span>`;
-lb.onclick=()=>show('lib');list.appendChild(lb);
+// хаб: одна дверь «Библиотека» в секции «Бесплатно», все бесплатное внутри (решение Максима 27.10.2026)
 
 // библиотека: все статьи
 const liblist=document.getElementById('liblist');
-document.getElementById('libsub').textContent=`Приемы против теней, уже ${ARTS.length}, пополняется.`;
+document.getElementById('libsub').textContent=`Без почты и «оставьте телефон». Приемов против теней уже ${ARTS.length}, пополняется.`;
 ARTS.forEach((a,i)=>liblist.appendChild(artCard(a,i,'lib')));
 
 let artFrom='hub';
