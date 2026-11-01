@@ -5,12 +5,12 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Максим | Сломаем твой страх камеры</title>
-<meta name="description" content="Тебе есть что сказать, но голос внутри шепчет «не сейчас». Три продукта по 7 дней в Telegram-боте, одно дело в день минут на 10. Бесплатно: тест, методичка, ИИ-Напарник.">
+<meta name="description" content="Тебе есть что сказать, но голос внутри шепчет «не сейчас». «Покажись»: 24 дня в Telegram-боте, одно дело в день минут на 10. Бесплатно: тест, методичка, ИИ-Напарник.">
 <link rel="canonical" href="https://mderyugin.github.io/dapowah/">
 <meta name="theme-color" content="#07070F">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Сломаем твой страх камеры">
-<meta property="og:description" content="Три продукта по 7 дней: «Что подумают», «Потом», «Не живу, а существую». Одно дело в день минут на 10, прямо в телеге.">
+<meta property="og:description" content="«Покажись»: 24 дня против голоса «а что подумают», «потом» и «а что такого». Одно дело в день минут на 10, прямо в телеге.">
 <meta property="og:url" content="https://mderyugin.github.io/dapowah/">
 <meta property="og:image" content="https://mderyugin.github.io/dapowah/og.png">
 <meta property="og:image:width" content="1200">
@@ -158,6 +158,11 @@
   .prod .price b{font-family:var(--f-head);font-weight:900;font-size:2.2rem;line-height:1;color:var(--ink)}
   .prod .price span{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash)}
   .prod .btn{width:100%}
+  /* один продукт (02.11.2026): карточка лежит, картинка слева, текст справа; на планшете и телефоне снова столбиком */
+  .prods.one{grid-template-columns:1fr;max-width:1000px;margin-inline:auto}
+  .prod-one{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+  .prod-one .art{aspect-ratio:auto;min-height:100%}
+  .prod-one .prod-body p+p{margin-top:10px}
   .offer .actions{justify-content:center}
   .open-note{margin-top:28px;text-align:center;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash);max-width:none}
   .open-note + .actions{margin-top:16px}
@@ -264,6 +269,9 @@
   @media(max-width:1040px){
     .auras{grid-template-columns:repeat(3,1fr)}
     .prods{grid-template-columns:1fr;max-width:620px;margin-inline:auto}
+    .prods.one{max-width:620px}
+    .prod-one{display:flex}
+    .prod-one .art{aspect-ratio:3/2;min-height:0}
   }
   /* ===== ТЕЛЕФОН: картинка сверху, текст снизу, все по одной сетке 20px ===== */
   @media(max-width:760px){
@@ -338,9 +346,9 @@
   <div class="hero-main">
     <h1>Сломаем<br><span class="l2">твой страх</span><br><em>камеры</em></h1>
     <p class="sub">Включаешь камеру, садишься и такой: «А-а, я хочу рассказать...» Я понимаю, насколько это тяжело, я сам через это прошел.</p>
-    <p class="offer-line">Три продукта по 7 дней в Telegram-боте. Одно дело в день минут на 10, без вебинаров и созвонов.</p>
+    <p class="offer-line">«Покажись»: 24 дня в Telegram-боте. Одно дело в день минут на 10, без вебинаров и созвонов.</p>
     <div class="actions">
-      <a class="btn" href="#offer">Выбрать продукт<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="#offer">К продукту<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="link" href="quiz/">Пройти бесплатный тест →</a>
     </div>
   </div>
@@ -358,11 +366,11 @@
       <blockquote class="quote-me">Да, это бывает страшно, да, это бывает непонятно, да, ты забываешь, что снимать, запинываешься, и это нормально.<cite>Максим</cite></blockquote>
     </div>
     <div class="auras">
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Перфекционист»" style="--a:radial-gradient(circle at 50% 40%,#0B0507 0 30%,#5A1A16 55%,#B4502A 80%)"><span class="af"></span><div class="front"><span class="t">01 · тень</span><b>Перфекционист</b><q>Может, еще что-то докрутить, потом выложим</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Перфекционист</b><span>«Может, еще что-то докрутить, потом выложим»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Готово не будет никогда. Шестой дубль выкладывай, какой есть.</p><a class="go" href="#offer" data-prod="wait_chto">Этот голос не только у камеры → «Что подумают»</a></div></div></div>
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Потом»" style="--a:radial-gradient(circle at 50% 40%,#140A04 0 28%,#7A4A12 55%,#DB9F51 82%)"><span class="af"></span><div class="front"><span class="t">02 · тень</span><b>«Потом»</b><q>А, пох*й, потом сделаю</q></div><div class="back" aria-hidden="true"><div class="bh"><b>«Потом»</b><span>«А, пох*й, потом сделаю»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Снимай в первые 10 минут после идеи.</p><a class="go" href="#offer" data-prod="wait_potom">Этот голос не только у камеры → «Потом»</a></div></div></div>
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Оценщик»" style="--a:radial-gradient(circle at 50% 40%,#07070F 0 30%,#3A1625 55%,#761A2B 82%)"><span class="af"></span><div class="front"><span class="t">03 · тень</span><b>Оценщик</b><q>А вдруг кто-то что-то скажет</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Оценщик</b><span>«А вдруг кто-то что-то скажет»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Перечисли каждого, кто что подумает. Кто именно?</p><a class="go" href="#offer" data-prod="wait_chto">Этот голос не только у камеры → «Что подумают»</a></div></div></div>
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Вдруг зря»" style="--a:radial-gradient(circle at 50% 40%,#05060F 0 30%,#2A1B4A 58%,#6A4A8A 85%)"><span class="af"></span><div class="front"><span class="t">04 · тень</span><b>«Вдруг зря»</b><q>А вдруг зря, вдруг не получится</q></div><div class="back" aria-hidden="true"><div class="bh"><b>«Вдруг зря»</b><span>«А вдруг зря, вдруг не получится»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Попробуй снять интересно. Попробуй снять ху*во. Просто попробуй снять.</p><a class="go" href="#offer" data-prod="wait_potom">Этот голос не только у камеры → «Потом»</a></div></div></div>
-      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Удаляльщик»" style="--a:radial-gradient(circle at 50% 40%,#0D0207 0 28%,#A73110 55%,#F08A24 82%)"><span class="af"></span><div class="front"><span class="t">05 · тень</span><b>Удаляльщик</b><q>Ну что, выложил? Теперь удаляй</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Удаляльщик</b><span>«Ну что, выложил? Теперь удаляй»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Выложил? Сутки не удаляешь, даже если в час ночи рука тянется.</p><a class="go" href="#offer" data-prod="wait_chto">Этот голос не только у камеры → «Что подумают»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Перфекционист»" style="--a:radial-gradient(circle at 50% 40%,#0B0507 0 30%,#5A1A16 55%,#B4502A 80%)"><span class="af"></span><div class="front"><span class="t">01 · тень</span><b>Перфекционист</b><q>Может, еще что-то докрутить, потом выложим</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Перфекционист</b><span>«Может, еще что-то докрутить, потом выложим»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Готово не будет никогда. Шестой дубль выкладывай, какой есть.</p><a class="go" href="#offer" data-prod="wait_pokazhis">Этот голос не только у камеры → «Покажись»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Потом»" style="--a:radial-gradient(circle at 50% 40%,#140A04 0 28%,#7A4A12 55%,#DB9F51 82%)"><span class="af"></span><div class="front"><span class="t">02 · тень</span><b>«Потом»</b><q>А, пох*й, потом сделаю</q></div><div class="back" aria-hidden="true"><div class="bh"><b>«Потом»</b><span>«А, пох*й, потом сделаю»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Снимай в первые 10 минут после идеи.</p><a class="go" href="#offer" data-prod="wait_pokazhis">Этот голос не только у камеры → «Покажись»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Оценщик»" style="--a:radial-gradient(circle at 50% 40%,#07070F 0 30%,#3A1625 55%,#761A2B 82%)"><span class="af"></span><div class="front"><span class="t">03 · тень</span><b>Оценщик</b><q>А вдруг кто-то что-то скажет</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Оценщик</b><span>«А вдруг кто-то что-то скажет»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Перечисли каждого, кто что подумает. Кто именно?</p><a class="go" href="#offer" data-prod="wait_pokazhis">Этот голос не только у камеры → «Покажись»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Вдруг зря»" style="--a:radial-gradient(circle at 50% 40%,#05060F 0 30%,#2A1B4A 58%,#6A4A8A 85%)"><span class="af"></span><div class="front"><span class="t">04 · тень</span><b>«Вдруг зря»</b><q>А вдруг зря, вдруг не получится</q></div><div class="back" aria-hidden="true"><div class="bh"><b>«Вдруг зря»</b><span>«А вдруг зря, вдруг не получится»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Попробуй снять интересно. Попробуй снять ху*во. Просто попробуй снять.</p><a class="go" href="#offer" data-prod="wait_pokazhis">Этот голос не только у камеры → «Покажись»</a></div></div></div>
+      <div class="voice" role="button" tabindex="0" aria-pressed="false" aria-label="Открыть прием против «Удаляльщик»" style="--a:radial-gradient(circle at 50% 40%,#0D0207 0 28%,#A73110 55%,#F08A24 82%)"><span class="af"></span><div class="front"><span class="t">05 · тень</span><b>Удаляльщик</b><q>Ну что, выложил? Теперь удаляй</q></div><div class="back" aria-hidden="true"><div class="bh"><b>Удаляльщик</b><span>«Ну что, выложил? Теперь удаляй»</span></div><i class="dot"></i><div><span class="bl">прием</span><p>Выложил? Сутки не удаляешь, даже если в час ночи рука тянется.</p><a class="go" href="#offer" data-prod="wait_pokazhis">Этот голос не только у камеры → «Покажись»</a></div></div></div>
     </div>
     <p class="hint">На обороте каждого плаката написано, что с ним делать</p>
     <div class="actions">
@@ -372,51 +380,28 @@
   </div>
 </section>
 
-<!-- ============ ТРИ ПРОДУКТА ============ -->
+<!-- ============ ПРОДУКТ ============ -->
 <section class="offer pad" id="offer">
   <div class="wrap">
-    <div class="label">Три продукта</div>
+    <div class="label">Продукт</div>
     <h2 class="h2">Не только <em>у камеры</em></h2>
-    <p class="lead">Тот же голос, что не дает выложить ролик, мешает и в остальной жизни. Каждый продукт на 7 дней: в день короткое чтение и одно дело минут на 10.</p>
-    <div class="prods">
-      <article class="prod">
+    <p class="lead">Тот же голос, что не дает выложить ролик, мешает и в остальной жизни. Три недели, в день короткое чтение и одно дело минут на 10, после каждой недели день проверки.</p>
+    <div class="prods one">
+      <article class="prod prod-one">
         <div class="art"><img src="img/e-chto.webp" alt="" width="900" height="600" loading="lazy"></div>
         <div class="prod-body">
-          <span class="prod-num">01</span>
-          <h3>«Что подумают»</h3>
-          <p><b>Про чужое мнение.</b>Хочешь выложить ролик, купить яркую куртку или уйти с работы, но сначала думаешь, что скажут родня и коллеги.</p>
-          <span class="meta">7 дней · 10 минут в день · в телеге</span>
+          <h3>«Покажись»</h3>
+          <p><b>Неделя 1. Чужое мнение.</b>Хочешь выложить ролик, купить яркую куртку или уйти с работы, но сначала думаешь, что скажут родня и коллеги.</p>
+          <p><b>Неделя 2. Дела, которые откладываешь.</b>Весь день вроде занят, а главное опять не тронул: резюме, запись к врачу, первый ролик.</p>
+          <p><b>Неделя 3. Жизнь по кругу.</b>Работа, ужин, лента, сон, и так каждый день. Вроде все нормально, а чего хочешь сам, непонятно.</p>
+          <span class="meta">24 дня · 10 минут в день · в телеге</span>
           <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
           <p class="soon">Откроется скоро. Жмешь, бот ставит тебя в очередь и сразу дает бесплатное: тест и методичку</p>
-          <a class="btn" href="https://t.me/rowrowbrabot?start=wait_chto">Забрать место</a>
-        </div>
-      </article>
-      <article class="prod">
-        <div class="art"><img src="img/e-potom.webp" alt="" width="900" height="600" loading="lazy"></div>
-        <div class="prod-body">
-          <span class="prod-num">02</span>
-          <h3>«Потом»</h3>
-          <p><b>Про дела, которые откладываешь.</b>Весь день вроде занят, а главное опять не тронул: резюме, запись к врачу, первый ролик.</p>
-          <span class="meta">7 дней · 10 минут в день · в телеге</span>
-          <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
-          <p class="soon">Откроется скоро. Жмешь, бот ставит тебя в очередь и сразу дает бесплатное: тест и методичку</p>
-          <a class="btn" href="https://t.me/rowrowbrabot?start=wait_potom">Забрать место</a>
-        </div>
-      </article>
-      <article class="prod">
-        <div class="art"><img src="img/e-zhivu.webp" alt="" width="900" height="600" loading="lazy"></div>
-        <div class="prod-body">
-          <span class="prod-num">03</span>
-          <h3>«Не живу, а существую»</h3>
-          <p><b>Про жизнь по кругу.</b>Работа, ужин, лента, сон, и так каждый день. Вроде все нормально, а чего хочешь сам, непонятно.</p>
-          <span class="meta">7 дней · 10 минут в день · в телеге</span>
-          <p class="price"><b>1490 ₽</b><span>один раз, без подписки</span></p>
-          <p class="soon">Откроется скоро. Жмешь, бот ставит тебя в очередь и сразу дает бесплатное: тест и методичку</p>
-          <a class="btn" href="https://t.me/rowrowbrabot?start=wait_zhivu">Забрать место</a>
+          <a class="btn" href="https://t.me/rowrowbrabot?start=wait_pokazhis">Забрать место</a>
         </div>
       </article>
     </div>
-    <div class="actions"><a class="link" href="quiz/">Не знаешь, какой взять? Тест подскажет →</a></div>
+    <div class="actions"><a class="link" href="quiz/">Какая из пяти теней у тебя главная, покажет тест →</a></div>
   </div>
 </section>
 
@@ -429,11 +414,11 @@
       <p class="lead">Большой план легко отложить до понедельника. 10 минут отложить труднее, поэтому день тут маленький: прочитал, сделал одно дело, закрыл телефон.</p>
       <ol class="steps">
         <li>Жмешь «Забрать место», бот записывает тебя в очередь</li>
-        <li>Когда откроется, платишь 1490 ₽ один раз звездами Telegram, подписки нет</li>
+        <li>Когда откроется, платишь 1490 ₽ один раз, подписки нет</li>
         <li>День 1 приходит сразу после оплаты, дальше по дню в сутки</li>
         <li>Потерял день? Пишешь боту «мои покупки», он пришлет последний заново</li>
       </ol>
-      <div class="actions"><a class="btn" href="#offer">Выбрать продукт<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="actions"><a class="btn" href="https://t.me/rowrowbrabot?start=wait_pokazhis">Забрать место<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
     <div class="art"><img src="img/e-how.webp" alt="" width="720" height="960" loading="lazy"></div>
   </div>
@@ -461,9 +446,9 @@
     <div class="label">Вопросы</div>
     <h2 class="h2">Перед тем, <em>как нажать</em></h2>
     <div class="qa">
-      <details open><summary>Сколько стоит?</summary><div class="a">1490 ₽ за продукт, один раз, когда откроется. Пока очередь. Платишь в боте звездами, это деньги внутри Telegram, подписки нет.</div></details>
+      <details open><summary>Сколько стоит?</summary><div class="a">1490 ₽, один раз, когда откроется. Пока очередь. Подписки нет.</div></details>
       <details open><summary>А бесплатно что-то есть?</summary><div class="a">Есть. <a href="quiz/">Тест</a>, <a href="https://t.me/rowrowbrabot?start=pdf_five">методичка про пять теней</a> и <a href="https://t.me/rowrowbrabot?start=site_ai">ИИ-Напарник</a>: 5 вопросов бесплатно, без лимита он стоит 399 звезд в месяц, отмена в два клика. Это нейросеть на моем методе, живого меня там нет.</div></details>
-      <details open><summary>С какого продукта начать?</summary><div class="a">Пройди <a href="quiz/">тест</a>. Он покажет, какая тень у тебя главная, и бот скажет, с чего начать.</div></details>
+      <details open><summary>А если моя тень другая?</summary><div class="a">Продукт один, и он про все пять: неделя на чужое мнение, неделя на «потом», неделя на жизнь по кругу. Пройди <a href="quiz/">тест</a>, он покажет, какая тень у тебя главная.</div></details>
       <details><summary>Это психология?</summary><div class="a">Я не психолог и не лечу. Читаешь пару минут и делаешь одно дело руками.</div></details>
       <details><summary>А мне точно подойдет?</summary><div class="a">Не подойдет, если ждешь живого разбора: меня в боте нет. Тут каждый день одно дело, и делаешь его ты.</div></details>
       <details><summary>А если брошу на середине?</summary><div class="a">Бывает. Все дни остаются у тебя в чате, вернешься и продолжишь.</div></details>
@@ -490,7 +475,7 @@
   </footer>
 </section>
 
-<div class="sticky-cta"><a class="btn" href="#offer">Выбрать продукт</a></div>
+<div class="sticky-cta"><a class="btn" href="https://t.me/rowrowbrabot?start=wait_pokazhis">Забрать место</a></div>
 
 <script>
 (function(){

@@ -239,10 +239,10 @@ function result(){
    `<div class="kicker">как он звучит</div><div class="frame">${r.rep}</div><p>${r.mech}</p>`,
    `<div class="kicker">почему это не «просто характер»</div><p>${r.mech.split(".")[0]}.</p><p class="pf" style="margin-top:16px"><b>По Прессфилду («Война за креатив»)</b><br>${r.pf}</p>`,
    `<div class="kicker">что делать</div><div class="priem"><b>Прием против него</b>${r.priem}</div><p class="grey" style="margin-top:14px">Это действие руками, а не «поверь в себя». Работает с первого раза, если сделать, а не прочитать.</p>`,
-   `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они редко ходят поодиночке</h2><p>Все пять теней, поименно и с приемами, собраны в методичке. А если этот голос мешает не только у камеры, у Максима три продукта по 7 дней.</p>
+   `<div class="kicker">дальше сам решай</div><h2>Их пятеро, и они редко ходят поодиночке</h2><p>Все пять теней, поименно и с приемами, собраны в методичке. А если этот голос мешает не только у камеры, у Максима есть «Покажись»: 24 дня, по неделе на чужое мнение, «потом» и жизнь по кругу.</p>
     <div class="cta-stack">
       <button class="btn" style="border:0;cursor:pointer" onclick="waitMine()">Забрать место на ${PROD_TITLE[win]}</button>
-      <button class="cta2" style="background:none;cursor:pointer" onclick="prods()">Все три продукта</button>
+      <button class="cta2" style="background:none;cursor:pointer" onclick="prods()">«Покажись»: что внутри</button>
       <button class="cta2" style="background:none;cursor:pointer" onclick="share()">Забрать карточку в сторис</button>
       <button class="cta2" style="background:none;cursor:pointer" onclick="pdf('five')">Методичка: пять теней</button>
     </div>`
@@ -298,8 +298,8 @@ async function prods(){
   if(tg?.initData){try{await fetch("https://dapowah-bot.mdklurk.workers.dev/trainer/prods",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData})})}catch(e){} tg.close()}
   else location.href="https://t.me/rowrowbrabot?start=prods";
 }
-const PROD_TITLE={P:"«Что подумают»",T:"«Потом»",O:"«Что подумают»",V:"«Потом»",U:"«Что подумают»"};
-const PROD_SLUG={P:"chto",T:"potom",O:"chto",V:"potom",U:"chto"};
+const PROD_TITLE={P:"«Покажись»",T:"«Покажись»",O:"«Покажись»",V:"«Покажись»",U:"«Покажись»"};
+const PROD_SLUG={P:"pokazhis",T:"pokazhis",O:"pokazhis",V:"pokazhis",U:"pokazhis"};
 async function waitMine(){
   // очередь на свой продукт + тень в бота одной ссылкой: /start wait_<slug>_<P>
   const u="https://t.me/rowrowbrabot?start=wait_"+PROD_SLUG[winPat]+"_"+winPat;
