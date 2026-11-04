@@ -140,7 +140,7 @@
 <header>
   <div class="kicker">напарник по рилсам на методе Максима</div>
   <h1>ИИ-Напарник</h1>
-  <div class="ammo">патроны: <b id="ammo">▮▮▮▮▮</b></div>
+  <div class="ammo">угли: <b id="ammo">▮▮▮▮▮</b></div>
   <div class="ammo" id="who" style="display:none"></div>
 </header>
 
@@ -162,7 +162,7 @@
 </div>
 
 <div id="done">
-  <p>Пять бесплатных патронов отстреляны. Дальше ИИ-Напарник без лимита, 399 звезд в месяц. А если затык глубже роликов, у Максима есть «Покажись»: 24 дня, по неделе на чужое мнение, «потом» и жизнь по кругу.</p>
+  <p>Пять бесплатных углей прогорели. Дальше ИИ-Напарник без лимита, 399 звезд в месяц. А если затык глубже роликов, у Максима есть «Покажись»: 24 дня, по неделе на чужое мнение, «потом» и жизнь по кругу.</p>
   <button class="cta-fire" style="width:100%;margin-bottom:8px" onclick="club()">ИИ-Напарник без лимита, 399 звезд в месяц</button>
   <p style="color:#A8977A;font-size:11px;margin:0 0 8px;text-align:center">Продлевается сам, отмена в два клика в настройках Telegram</p>
   <div class="row">
@@ -302,7 +302,7 @@ async function ask(){
     clearInterval(rot);t.remove();
     if(j.answer){used=j.used;if(j.sub!==undefined)SUB=!!j.sub;add('bot',j.answer);rateRow(text,j.answer);tg?.HapticFeedback?.impactOccurred('light');chipsNext()}
     else if(j.error==='limit'){used=LIMIT}
-    else if(j.error==='day_limit'){add('sys','На сегодня патроны кончились. Продолжим завтра')}
+    else if(j.error==='day_limit'){add('sys','На сегодня угли прогорели. Продолжим завтра')}
     else if(j.error==='fast'){add('sys','Не больше трех вопросов в минуту. Выдохни')}
     else if(j.error==='tired'){add('sys','ИИ-Напарник сегодня выдохся. Приходи завтра, ответит свежим')}
     else{add('sys','ИИ-Напарник завис. Попробуй еще раз')}
